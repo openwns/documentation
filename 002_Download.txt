@@ -14,9 +14,9 @@ included).
 
 <b> Short version</b>:
 @verbatim
-bzr branch bzr://bazaar.comnets.rwth-aachen.de/openWNS/main/openWNS--main--1.0 myOpenWNS
+bzr branch http://launchpad.net/~comnets/openwns-sdk/openwns--main--1.0 myOpenWNS
 cd myOpenWNS
-yes | ./playground.py upgrade
+./playground.py upgrade --noAsk
 @endverbatim
 
 @section download_configuring_tla Configuring Bazaar
@@ -57,8 +57,8 @@ checkout the current version of openWNS to 'myOpenWNS'. Choose
 whatever you want as name. A good name is 'openWNS--main--1.0' ;-).
 
 @verbatim
-$ bzr branch bzr://bazaar.comnets.rwth-aachen.de/openWNS/main/openWNS--main--1.0 myOpenWNS
-Branched 73 revision(s).
+$ bzr branch http://launchpad.net/~comnets/openwns-sdk/openwns--main--1.0 myOpenWNS
+Branched 70 revision(s).
 $ cd myOpenWNS
 @endverbatim
 
@@ -88,13 +88,13 @@ enter:
 @verbatim
 $ ./playground.py upgrade
 Warning: According to 'config/projects.py' the following directories are missing:
-  ./tests/unit (from URL: bzr://bazaar.comnets.rwth-aachen.de/openWNS/main/unitTest--main--1.0)
-  ./framework/cn-scons--main--1.0 (from URL: bzr://bazaar.comnets.rwth-aachen.de/openWNS/main/cn-scons--main--1.0)
-  ./extern--main--1.0 (from URL: bzr://bazaar.comnets.rwth-aachen.de/openWNS/main/extern--main--1.0)
-  ./WNS-Documentation--main--1.0 (from URL: bzr://bazaar.comnets.rwth-aachen.de/openWNS/main/WNS-Documentation--main--1.0)
-  ./framework/libwns--main--1.0 (from URL: bzr://bazaar.comnets.rwth-aachen.de/openWNS/main/libwns--main--1.0)
-  ./framework/openWNS-core--main--1.0 (from URL: bzr://bazaar.comnets.rwth-aachen.de/openWNS/main/openWNS-core--main--1.0)
-  ./framework/PyWNS--main--1.0 (from URL: bzr://bazaar.comnets.rwth-aachen.de/openWNS/main/PyWNS--main--1.0)
+  ./tests/unit (from URL: http://launchpad.net/~comnets/openwns-unittests/unittest--main--1.0)
+  ./framework/buildSupport (from URL: http://launchpad.net/~comnets/openwns-buildsupport/buildsupport--main--1.0)
+  ./supportlibs (from URL: http://launchpad.net/~comnets/openwns-supportlibs/supportlibs--main--1.0)
+  ./documentation (from URL: http://launchpad.net/~comnets/openwns-documentation/documentation--main--1.0)
+  ./framework/library (from URL: http://launchpad.net/~comnets/openwns-library/library--main--1.0)
+  ./framework/application (from URL: http://launchpad.net/~comnets/openwns-application/application--main--1.0)
+  ./framework/pywns (from URL: http://launchpad.net/~comnets/openwns-pywns/pywns--main--1.0)
 Try fetch the according projects? (Y/n) y
 @endverbatim
 
@@ -108,11 +108,10 @@ framework available:
 
 @verbatim
 $ ls framwork/*
-buildSupport@
-cn-scons--main--1.0/
-libwns--main--1.0/
-openWNS-core--main--1.0/
-PyWNS--main--1.0/
+buildSupport
+library/
+application/
+pywns/
 @endverbatim
 
 */
