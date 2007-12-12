@@ -44,6 +44,9 @@ versions below 3.4 do not work</li>
 <li><a href="http://www.doxygen.org/">Doxygen</a><br>Documentation is
 generated with this tool</li>
 
+<li><a href="http://www.graphviz.org/">Graphviz (Dot)</a><br>Used by
+doxygen to create nice UML diagrams</li>
+
 <li><a href="http://wiki.kde.org/icecream">Icecream</a><br>Allows for
 distributed compiling</li>
 
