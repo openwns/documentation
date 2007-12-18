@@ -14,7 +14,7 @@ included).
 
 <b> Short version</b>:
 @verbatim
-bzr branch http://launchpad.net/~comnets/openwns-sdk/openwns--main--1.0 myOpenWNS
+bzr branch http://launchpad.net/~comnets/openwns-sdk/sdk--main--1.0 myOpenWNS
 cd myOpenWNS
 ./playground.py upgrade --noAsk
 @endverbatim
@@ -54,10 +54,10 @@ href="http://bazaar-vcs.org">http://http://bazaar-vcs.org</a>.
 
 Now it's time to retrieve a copy of openWNS. The following command will
 checkout the current version of openWNS to 'myOpenWNS'. Choose
-whatever you want as name. A good name is 'openWNS--main--1.0' ;-).
+whatever you want as name. A good name is 'openWNS-sdk--main--1.0' ;-).
 
 @verbatim
-$ bzr branch http://launchpad.net/~comnets/openwns-sdk/openwns--main--1.0 myOpenWNS
+$ bzr branch http://launchpad.net/~comnets/openwns-sdk/sdk--main--1.0 myOpenWNS
 Branched 70 revision(s).
 $ cd myOpenWNS
 @endverbatim

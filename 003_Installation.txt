@@ -8,7 +8,7 @@ prerequisites.
 The installation itself is quite easy:
 
 @verbatim
-./playground.py install dbg
+./playground.py install --flavour=dbg
 @endverbatim
 
 After building has finished you can find the respective modules in
