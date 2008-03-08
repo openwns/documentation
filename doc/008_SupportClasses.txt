@@ -1,0 +1,6 @@
+/**
+@page supportclasses Support Classes
+
+  -# @subpage SmartPtr
+  -# @subpage StaticFactoryPage
+*/

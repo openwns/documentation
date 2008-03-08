@@ -1,8 +1,10 @@
 /**
 
 @mainpage
+<b>NEW!!! Read the @ref usermanual NEW!!!</b>
 
-@htmlonly <b>For the impatient:</b> On the left side you can find a
+@htmlonly
+<b>For the impatient:</b> On the left side you can find a
 menu, listing the most important topics. If you're new it is a good
 idea to simply go through the topics from top to bottom. They will
 provide you with the necessary information to work with openWNS
