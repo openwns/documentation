@@ -3,18 +3,18 @@
 @page usermanual openWNS User Manual
 
   -# @subpage gettingstarted
-    -# @ref prerequisites	
+    -# @ref prerequisites
     -# @ref download
     -# @ref installation
     -# @ref SDKLayout
   -# @subpage Features
-  -# @ref Tutorial
+  -# @subpage wns.queuingsystem.tutorial
   -# @subpage schedulerBestPractices
-  -# @ref RandomNumberGenerator
-  -# @ref PyConfig
+  -# @ref wns::rng
+  -# @ref wns::pyconfig
   -# @ref probing
   -# @subpage supportclasses
-    -# @ref SmartPtr
+    -# @ref wns::SmartPtr
     -# @ref StaticFactoryPage
 
 */
