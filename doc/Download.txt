@@ -3,7 +3,7 @@
 @page download Download
 
 @b Important: Before you actually start with the download make sure
-your system has all the necessary software to install and run WNS: see
+your system has all the necessary software to install and run openWNS: see
 @ref prerequisites.
 
 @b Note: This download instructions are a little bit longer than

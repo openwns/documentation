@@ -2,13 +2,6 @@
 
 @mainpage
 
-This documentation provides
- -# a @subpage usermanual,
- -# a @subpage wns.queuingsystem.tutorial and
- -# the API reference documentation.
-
-@section briefoverview Brief overview
-
 The open Wireless Network Simulator (openWNS) is a highly modular
 simulator for performance evaluation of mobile radio networks. It is
 written in C++ (with Python support for configuration) and developed
@@ -17,22 +10,30 @@ University</a>. It allows for stochastic simulations based on
 prototypic protocol implementations.
 
 The goal of this project is to provide a simulator which is suiteable
-for all kinds of performance evaluation of wireless networks. A point
+for various kinds of performance evaluation of wireless networks. A point
 of special interest is the support of cellular mobile radio
 networks. The key idea is to have a flexible framework which allows
-the researcher to adapt the grade of complexity/accuracy to his needs
-for the respective simulation/investigation.
+the researcher to adapt the grade of complexity/accuracy of the simulation
+model to his needs for the respective simulation/investigation.
 
 The second major goal of this project is to provide a simulator which
-supports the developer/researcher in testing his implementations in
+supports the researcher in testing his implementations in
 order to help him find errors at very early stages during his
 investigation. Therefor it provides comfortable to use testing
 frameworks at different levels of testing (from Unit Testing to System
 Testing). These frameworks have been carefully tailored to an
 event-driven, stochastic simulation system.
 
-We hope you enjoy working with openWNS,
+This documentation contains:
 
-Your openWNS Team
+  - @subpage wns_documentation_usermanual
+  - @subpage wns_documentation_developersguide
+  - API Documentation
+    - Choose the tab <a href="classes.htm">Classes</a> or
+    - choose the tab <a href="namespaces.htm">Namespaces</a>
+  - @subpage group_main_classes
+
+@defgroup group_main_classes Main classes
+@brief The most important classes
 
 */
