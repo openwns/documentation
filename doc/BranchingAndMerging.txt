@@ -1,0 +1,115 @@
+/**
+
+@page wns_documentation_branchingandmerging Creating and Maintaining Development Branches
+
+@todo bring up to date for BZR!
+
+@section rationale Rationale
+
+- You intend to develop a certain, cohesive feature in one
+of the WNS modules?
+- It will take you a number of days to develop it?
+- During this period you want to do interim commits whithout having to
+bother about leaving the mainline WNS in non-working state?
+- You are tired of merging other people's changes with your changes before being
+able to commit them?
+
+Then a private development branch may just be the right thing for you
+to use. Well, here's how to create one. It is strongly advised that
+you have read and understood the tla documentation
+(http://www.gnu.org/software/gnu-arch) and that you inform yourself
+about the options that the playground script offers:
+@verbatim
+$> ./playground.py --help
+@endverbatim
+
+@section creating_branch Creating a branch from the WNS Mainline
+
+This command creates a new archive (only to be done by the maintainer):
+
+@verbatim
+$> tla make-archive rs@comnets.rwth-aachen.de--2007 http://default:ttlapwd@arch.comnets.rwth-aachen.de/rs-2007
+@endverbatim
+
+This command registers the new archive (if you intend to check it out/work with it):
+
+@verbatim
+$> tla register-archive rs@comnets.rwth-aachen.de--2007 http://default:ttlapwd@arch.comnets.rwth-aachen.de/rs-2007
+@endverbatim
+
+This command shows the archive's contents:
+
+@verbatim
+$> tla abrowse -A rs@comnets.rwth-aachen.de--2007
+@endverbatim
+
+This command shows all the archives you have registered:
+
+@verbatim
+$> tla archives
+@endverbatim
+
+This command shows (and, with an optional argument sets) your default archive:
+
+@verbatim
+$> tla my-default-archive
+@endverbatim
+
+This command tags the most recent revisions of all WNS modules into the new (given) archive:
+
+@verbatim
+$> ./playground.py --branch=rs@comnets.rwth-aachen.de--2007
+@endverbatim
+
+This command checks out the branched version of WNS into the directory <PATH>:
+
+@verbatim
+$> tla get rs@comnets.rwth-aachen.de--2007/WNS--main--3.0 <PATH>/WNS--rs--3.0
+@endverbatim
+
+For easy access to WNS add this in ~/.aliases :
+@verbatim
+alias WNS       '<PATH>/WNS--rs--3.0/bin/setEnvironment <PATH>/WNS--rs--3.0/'
+@endverbatim
+
+
+@section obtaining_mainline_patches Obtaining Mainline Patches:
+
+First of all, make sure before that you have no local changes pending (i.e. un-commited)
+
+This command retrieves all missing changes from the mainline (prompting you for each module which is being updated):
+
+@verbatim
+$> ./playground.py --starMergeFromAncestor
+@endverbatim
+
+Finally, this command commits the patches you just retrieved to your branched archive
+
+@verbatim
+$> ./playground.py --foreach="tla commit -s'merged changes from main archive'" --if=changed
+@endverbatim
+
+
+@section merging_back Merging back
+
+in the dir where you have checked out the mainline:
+
+- merge back all modules with this command:
+
+  @verbatim
+  $> ./playground.py --starMergeFrom=rs@comnets.rwth-aachen.de--2007
+  @endverbatim
+  alternatively you can merge back individual modules by cd-ing into their subdir and using:
+  @verbatim
+  $> tla star-merge rs@comnets.rwth-aachen.de--2007/MODULENAME
+  @endverbatim
+
+- compile / test whole mainline WNS, make everything run
+
+- Seek the assistance of the respective modules maintainer
+
+- manually commit those modules where you made changes (other than base-0)
+
+- undo the irrelevant base-0 patches with this command: ./playground.py --foreach='tla undo'
+
+*/

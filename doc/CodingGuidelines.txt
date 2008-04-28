@@ -1,0 +1,265 @@
+/**
+@page wns_documentation_codingguidelines Coding Guidlines
+
+@todo Cleanup, update necessary
+
+This pages introduces a number of coding styles that should be
+followed through the projects in WNS. Applying one coding style to all
+projects greatly enhances the readibility of source code.
+
+This page is devided into a number of sections each covering a
+different topic (e.g. classes, functions, ...)
+
+A number of rules can be defined right from the beginning:
+
+<ol>
+<li> Tabs should be set to 8 characters.</li>
+    <ol>
+    <li> Most of the other applications (like cat, less, more, ...)
+    use a tab width of 8 characters. In order to ensure readability
+    also with these applications a tab should be 8 characters.</li>
+    </ol>
+
+<li> Maximum line width should be set to something around 100 characters.
+     <ol>
+     <li>It's a well known fact that reading long lines makes you much
+     more tired than reading short lines.</li>
+     <li>If you need long lines to code something this may be an
+     incdication something is wrong with your code. Consider using
+     more "temporary" variables. This also enhances readibility</li>
+     </ol>
+
+<li> Line breaks should be "space-independent" (emacs) (i.e. in a way,
+that emacs doesn't need spaces instead of tabs to create a "nice"
+layout of your code)<br>
+     <ol>
+     <li>This helps to make tabs "adjustable" (you can choose the tab
+     width, even if the advice is to use 8 characters ;))</li>
+     </ol>
+</ol>
+
+@section ClassesAndTemplates Classes and Templates
+
+The keyword class, the name of the class and the double colon should
+be in one line. Followed by one line for each class you're inheriting
+from. At the very top is the definition of the template (if
+any). Example:
+
+@code
+template <typename FOO, typename BAR>
+class Baz :
+      public FOO,
+      protected BAR,
+      private Lala
+{
+public:
+
+protected:
+
+private:
+};
+@endcode
+
+The opening curly brace is put into a separate line. The sections
+public, protected and private should be arranged in this order, since
+a reader of the class is most probably most interested in the public
+methods and least interested in the private methods.
+
+@section braces Opening and closing curly braces
+
+@subsection Namespaces
+
+@code
+namespace Foo { namespace Bar {
+
+} // Bar
+} // Foo
+@endcode
+
+@subsection control_structures Control structures
+@code
+if(a) {
+
+}
+@endcode
+
+@section Spaces
+@code
+if(a == b) {
+
+}
+@endcode
+@code
+for(int i = 0; i < 3; ++i) {
+
+}
+@endcode
+@code
+while(foo == "bar") {
+
+}
+@endcode
+
+@section Methods
+
+@code
+template <typename Foo>
+const Bar*
+theMethodName(const Baz& lala) const
+{
+
+}
+@endcode
+@code
+virtual const Bar*
+theMethodName(const Baz& lala) const
+{
+
+}
+@endcode
+
+The return type is put above the method name. As well as keywords like
+virtual and static.
+
+
+@section Includes
+
+Includes are listed from the most specific to the most generic one:
+
+@code
+#include "IncludeFromMyOwnProject.hpp"
+
+#include <WNS/Include.hpp>
+
+#include <SPEETCL/Include.hpp>
+
+#include <DistributionSpecificLibrary/Include.hpp>
+
+#include <SystemIncludes.hpp>
+@endcode
+
+
+@section Writing
+
+@subsection names_general Names in general
+no underscores, if name consists of more than one word start new words
+with capital letters:
+startTransmission(), PhysicalResource
+
+@subsection method_names Method Names
+name starts lower case: Transmitter::startTransmission()
+
+@subsection class_names Class Names
+start with upper case
+@code
+class PhysicalResource
+@endcode
+
+@subsection template_parameters Template Parameters
+are written CAPITALIZED
+@code
+template <typename TYPE>
+@endcode
+
+@subsection macros Macros
+Macros are written CAPITALIZED and new words are separated by underscores:
+@code
+REGISTER_AT_STATIC_FACTORY
+@endcode
+
+members of classes start lowerCase and have no special character or
+sign to show they are members
+@code
+double64 foo;
+@endcode
+
+Variables names should be descriptive. Don't choose names with only the typeinfo in it:
+don't call it:
+@code
+aSpeectlObjectArrayPtr
+@endcode
+rather call it:
+@code
+connectedStations
+@endcode
+
+@section Comments
+
+Comments and documentation are different: Comments explain a tricky or
+hard to understand part of source code (otherwise there is no need to
+write a comment ;)), or summarize the purpose of a few lines of code (on
+the other hand: if you need to write a comment there you might consider
+putting it into an own method ...). Hence, comments appear in methods.
+Like this:
+
+@code
+void Component::onNodeCreated()
+{
+	...
+	// create binding
+	wns::pyconfig::View bindingView = pyco.get("generatorBindings", ii);
+	std::string bindingName = bindingView.get<std::string>("nameInBindingFactory");
+	Binding::Creator* bindingCreator;
+	bindingCreator = Binding::Factory::creator(bindingName);
+	...
+}
+@endcode
+Avoid commenting each line of source code. If you need to do this,
+this might be an indication that something is wrong with your code.
+
+However most of the stuff we're writing is DOCUMENTATION and this
+appears in the header file (and only there!). Documentation looks a
+little different. Mainly you want to document classes and (their)
+methods. This looks like follows:
+
+@verbatim
+/**
+ * @brief Stores instances of type T with a name
+ * @author Marc Schinnenburg <msg@comnets.rwth-aachen.de>
+ *
+ * Key to the instances must be unique. Keys
+ * must provide strict weak ordering.
+ *
+ * The Registry works very much like a std::map but checks for example
+ * if a key is already occupied.
+ */
+template<typename KEY, typename ELEMENT>
+class Registry
+{
+	...
+public:
+	/**
+	 * @brief add an element with using a unique key
+	 *
+	 * @pre An element with this key MAY NOT have been registered before
+	 */
+	virtual void
+	insert(const KEY& key, ELEMENT e)
+	{
+		assureNotRegistered(key);
+		instances[key] = e;
+	}
+
+	/**
+	 * @brief erase the element according to its key it has been
+	 * registerd with
+	 *
+	 * @pre An element with this key MUST have been registered before
+	 */
+	virtual void
+	erase(const KEY& key)
+	{
+		assureRegistered(key);
+		instances.erase(key);
+	}
+
+	...
+};
+@endverbatim
+
+This documentation generated by <a href="http://www.doxygen.org">Doxygen</a>
+which understands the special keywords beginning with "@". A list of
+all keywords can be found <a href="http://www.stack.nl/~dimitri/doxygen/commands.html">here</a>.
+The format of the comment blocks should look like above.
+
+*/

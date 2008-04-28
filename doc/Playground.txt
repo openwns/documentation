@@ -1,0 +1,303 @@
+/**
+
+@page wns_documentation_playground Playground
+
+@todo This should rather be module than a page gathering information on all the avilable plugins in an SDK.
+
+@todo Rewrite and cleanup docu
+
+WNS consists of a number of sub-projects. Each of this project is
+configured in @c config/projects.py. The projects have different
+purposes. Some of them contribute as module to WNS, while others
+specify system tests. The system tests can be run to ensure the proper
+operation of WNS. All these projects are managed via TLA (see:
+http://www.gnu.org/software/gnu-arch/). Since TLA is has no built-in
+support to control multiple projects, @c playground.py has been
+developed to fulfill this task. Besides the management of the
+different project trees this script also performs WNS-wide tasks like
+compiling/installing all modules, building docu and running tests as
+will be shown below.
+
+playground.py offers a number of @em commands and according @em
+modifiers. A modifier modifies the way a command is executed (thus its
+name). All commands and modifiers are listed by executing:
+
+@verbatim
+$> ./playground.py --help
+@endverbatim
+
+
+@section playground_compilation Compilation/Installation
+
+One of the most important features of playground.py installs a version
+of WNS. You have probably used it right after check out. To install a
+version of WNS in @c WNS/sandbox issue the following command:
+
+@verbatim
+$> ./playground.py --install=dbg
+@endverbatim
+
+The string 'dbg' tells playground.py to build the debugging version of
+WNS. It can be found in @c WNS/sandbox/bin/dbg and the modules are
+located under @c WNS/sandbox/lib/dbg. Installation flavours available
+are:
+- @b dbg (for debugging)
+- @b opt (optimized, for simulations, messages and asserts are disabled)
+- @b profOpt (like opt but with profiling support for gprof)
+
+@subsection playground_compiling_modifiers Modifiers for compilation/installation
+
+There are also some modifiers available for the @c --install command.
+
+- @b -j/--jobs Specify the number of compile jobs to be executed in
+  parallel. Useful on multi-processor systems and when compiling
+  distributed.
+- @b --static All Modules will be linked into WNS
+- @b --scons Forwards options (like no-filter or no-inf) to scons
+
+@section playground_updates Staying up-to-date
+
+To upgrade the complete WNS including all sub-projects issue:
+
+@verbatim
+$> ./playground.py --upgrade
+@endverbatim
+
+For each (sub-)project @c tla @c update will be called. Any newly
+available patch in the repository will be applied. If you had
+changes on one of the projects, it can happen that conflicts occur. @c
+playground.py will stop and you should resolve the conflicts
+first.
+
+To have an overview in advance where new patches are available for
+your WNS issue the following command:
+@verbatim
+$> ./playground.py --missing
+@endverbatim
+
+To see where conflicts can happen you need to find out which projects
+have local changes:
+@verbatim
+$> ./playground.py --changes
+@endverbatim
+
+If you additionally specify @c --diffs with @c --changes the differences
+will be shown in detail for each project.
+
+@section playground_cleaning Cleaning up
+
+From time to time it can be useful to clean up things (to remove old
+object files, etc). The following command assist you in that:
+
+@verbatim
+$> ./playground.py --clean=[pristine-trees, objs, sandbox, docu, all]
+@endverbatim
+
+The options have the following meaning:
+
+- @b pristine-trees: remove all pristine-trees from the projects
+- @b objs: remove the object files from the projects
+- @b sandbox: remove the WNS installation (all libs, docu and binaries)
+- @b docu: remove the directory @c doxydoc from each project
+- @b all: all of the above
+
+@note All items which are removed here can be easily recreated. No
+hand-written code will be deleted.
+
+@note For the target @c objs you may need to additionally specify the
+modifier @c --flavour to remove the object file for a certain flavour
+(dbg, opt, ...)
+
+@section playground_perparing Preparing Simulation Campaigns
+
+Please see: @ref simulation
+
+@section playground_documentation Creating Documentation
+Freshening this docu after an upgrade.
+@verbatim
+$> yes | ./playground.py --docu
+@endverbatim
+
+// from here it is the N+1 habits of highly effective testbedding
+
+@section Effective SDKing
+
+@ref hab_intro<br>
+@ref hab_register<br>
+@ref hab_check<br>
+@ref hab_docu<br>
+@ref hab_sdl2speetcl<br>
+@ref hab_build<br>
+@ref hab_test<br>
+@ref hab_stayuptodate<br>
+@ref hab_commit<br>
+@ref hab_patch_trade<br>
+
+@section hab_intro 0.) Introduction
+   If your read this, you probably have checked out the testbed already. 
+   If not, section 1 and 2 tell you how to do it.
+
+
+@section hab_sdl2speetcl 1.) Check the requirements: sdl2speetcl
+   Make sure /software/cn/bin is included in your PATH!
+
+   Some projects need sdl2speetcl to translate sdl to C++. The build system
+   relies on finding the sdl2speetcl binary in your path.
+   At ComNets, the most recent version can be found in /software/cn/bin.
+   This is why you should make sure to have /software/cn/bin in your path.
+
+   You can check whether it is in you path using
+   @verbatim type -path sdl2speetcl @endverbatim
+   and
+   @verbatim echo $PATH @endverbatim
+
+   To add /software/cn/bin to you PATH, use
+   @verbatim export PATH=$PATH:/software/cn/bin @endverbatim
+
+   Other requirements can be found at the @li @ref prerequisites page.
+
+@section hab_register 2.) Registring and getting archives
+   Make sure you have registered the following archives:
+
+   @li software@comnets.rwth-aachen.de--2006
+   @li msg@comnets.rwth-aachen.de--central
+
+   by executing the following commands:
+
+   @verbatim
+   tla register-archive msg@comnets.rwth-aachen.de--central \
+       http://default:ttlapwd@arch.comnets.rwth-aachen.de/central
+
+   tla register-archive software@comnets.rwth-aachen.de--2006 \
+         http://default:ttlapwd@arch.comnets.rwth-aachen.de/software-2006 @endverbatim
+
+   Afterwards you can get the archive with the following command:
+   @verbatim tla get software@comnets.rwth-aachen.de--2006/testbed--unstable--3.0 testbed @endverbatim
+
+@section hab_check 3.) Check out everything
+   To check out all the testbed members call:
+   @verbatim./playground.py --missing @endverbatim
+
+   @note This command can be used later on to see if there are any pending
+         patches, that were committed, but not incorporated in your testbed, yet.
+
+@section hab_docu 4.) Generate documentation
+   To build documentation for every member call
+
+   @verbatim ./playground.py --docu @endverbatim
+
+   installing it to
+
+   @verbatim ./sandbox/doc @endverbatim
+
+@section hab_build 5.) Build instructions
+   To build every member of the testbed call:
+   @verbatim ./playground.py --install=dbg @endverbatim
+
+   The libraries and binaries are installed to
+   @verbatim ./sandbox/lib/dbg
+   ./sandbox/bin/dbg @endverbatim
+
+   @note In case you are tired of hitting return
+   @verbatim yes | ./playground.py --install=dbg @endverbatim
+
+   @note During development, you may whish to recompile only the project you are
+         currently working on. This can be done from within the project directory,
+         using:
+   @verbatim scons install-lib @endverbatim
+
+@section hab_test 6.) Run tests
+   Run the tests!
+
+   @verbatim ./playground.py --runTests @endverbatim
+
+   This command runs all the tests (unit tests and system tests) for you. Before committing
+   changes, *always* follow step 5+6, to assure that your changes don't break anything.
+
+   While developing, you can also run tests individually. To run all unit tests enter:
+
+   @verbatim cd tests/unit/unitTests/
+   ./wns-core -t @endverbatim
+
+   To run a certain unit test, use the option -T and give the name of the test you want to run, e.g.:
+
+   @verbatim ./wns-core -T "rise::tests::BeamformingTest::simple"  @endverbatim
+
+   If you want to configure certain parameters that are not explicitely configured in the test itself,
+   you can add them either in the unittest config file (tests/unit/unitTests/config.py) or by executing
+
+   @verbatim ./wns-core -T "rise::tests::BeamformingTest" -y "WNS.modules.rise.debug.antennas=True" -y "WNS.masterLogger.enabled=True"
+   @endverbatim
+
+   A graphical interface is available for the unit tests:
+
+   @verbatim ./wns-core -t -k qt  @endverbatim
+
+   To run a certain system test, go to the system test directory and execute 
+
+   @verbatim cd tests/system/WiMAC-Tests--main--1.0/
+   ./systemTest.py  @endverbatim
+
+   In order to run only one specific test suite, execute the wns-core 
+   with the specific config file for the test suite. Note that the reference
+   output will not be checked automatically!
+
+   @verbatim cd tests/system/WiMAC-Tests--main--1.0
+   ./wns-core ./wns-core -f configSDMA.py  @endverbatim
+
+
+@section hab_stayuptodate 7.) Stay up-to-date!
+
+   To apply the changes other committed, you have to issue the following commands:
+
+   @verbatim ./playground.py --update @endverbatim
+   to update the testbed itself
+
+   @verbatim ./playground.py --upgrade @endverbatim
+   to update every project within the testbed
+
+   @note During development, you may whish to update only the project you are currently
+         working on. This can be done from within the project directory, using:
+         @verbatim tla update @endverbatim
+
+   @note to check for changes available from the repository, use
+         @verbatim tla missing @endverbatim
+
+@section hab_commit 8.) Committing your changes
+
+   Committing changes is done for every project separately. Before you commit your
+   changes, you have to make sure that your project is a) up-to-date, b) all tests run,
+   and c) your project is in a clean state.
+   a) and b) are described in the previous sections.
+   to check whether your project is in a clean state, issue
+   @verbatim tla tree-lint @endverbatim
+   from within you project directory.
+
+   You can commit your changes by issuinng the following command:
+   @verbatim tla commit -s "This is the place where you can write a short comment about your changes." @endverbatim
+
+   or in cases you have made changes that need a better description you should use:
+   @verbatim emacs $(tla make-log) @endverbatim
+
+   This command opens a skeleton which contains two sections, a summary section and a keywords section. You can write your description of your changes in those sections. Do not forget to save the changes (the filename has been generated automatically for you), and issue the commit command:
+   @verbatim tla commit @endverbatim
+
+@section hab_patch_trade 9.) Trading patches
+   Patch a testbed with the changes from another patchset:
+
+   In your local member tree:
+   @verbatim mkpatchset @endverbatim
+   This creates a compressed tar archive with the changes you made to
+   the source tree. The archive will be automatically named after the archive
+   you are in, when invoking "mkpatchset". Assuming that the file created has
+   the name YOUR_SET.tgz:
+
+   In your testbed member tree:
+   @verbatim  applypatchset YOUR_SET.tgz @endverbatim
+
+   @note mkpatchset/applypatchset can be found in
+   @verbatim msg@comnets.rwth-aachen.de--central/cn-scons--main--1.0 @endverbatim
+   @note Or installed under /software/cn/bin
+
+
+*/
