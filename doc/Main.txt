@@ -28,6 +28,8 @@ This documentation contains:
 
   - @subpage wns_documentation_usermanual
   - @subpage wns_documentation_developersguide
+  - @subpage group_tutorials
+  - @subpage group_modules
   - API Documentation
     - Choose the tab <a href="classes.htm">Classes</a> or
     - choose the tab <a href="namespaces.htm">Namespaces</a>
@@ -35,5 +37,11 @@ This documentation contains:
 
 @defgroup group_main_classes Main classes
 @brief The most important classes
+
+@defgroup group_tutorials Tutorials
+@brief Various tutorials
+
+@defgroup group_modules SDK Modules
+@brief Modules like IP, TCP, ...
 
 */

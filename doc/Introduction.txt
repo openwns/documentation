@@ -10,12 +10,6 @@ openWNS is a modular, highly flexible framework for the investigation
 and performance evaluation of wireless systems. It allows for
 stochastic, event-driven simulations.
 
-
-based on prototypical protocol
-implementations, combined with a detailed channel model. Typically,
-multi-cellular scenarios with realistic interference and propagation
-behaviour are simulated.
-
 @section structure Overall Structure
 
 In the next two subsections some of the basic modules and mechanisms from WNS
