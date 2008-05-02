@@ -34,6 +34,7 @@ This documentation contains:
     - Choose the tab <a href="classes.htm">Classes</a> or
     - choose the tab <a href="namespaces.htm">Namespaces</a>
   - @subpage group_main_classes
+  - <a href="PyCoDoc/">PyConfig Documentation</a>
 
 @defgroup group_main_classes Main classes
 @brief The most important classes
