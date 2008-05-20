@@ -67,7 +67,7 @@ is rather an empty house. If you inspect all the sub-directories of @c
 myLocalDirectory at this moment, you would notice that they are almost
 all empty. Apart from some bash and Python scripts there is not much
 to see. Especially no C++ source code below the directory @c
-framwork.
+framework.
 
 @verbatim
 $ cd myLocalDirectory
@@ -107,7 +107,7 @@ proceed with the @ref installation of openWNS. Now there should be the
 framework available:
 
 @verbatim
-$ ls framwork/*
+$ ls framework/*
 buildSupport
 library/
 application/
