@@ -18,6 +18,7 @@ Content of the user manual:
   -# @subpage wns_documentation_networksimulators
   -# @subpage wns_documentation_features
   -# @subpage wns.queuingsystem.tutorial
+  -# @subpage openwns_evaluation
   -# @ref probing
 
 */
