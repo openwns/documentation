@@ -17,7 +17,7 @@ Content of the user manual:
     -# @ref SDKLayout
   -# @subpage wns_documentation_networksimulators
   -# @subpage wns_documentation_features
-  -# @subpage wns.queuingsystem.tutorial
+  -# @ref group_wns_queuingsystem_tutorial
   -# @subpage openwns_evaluation
   -# @ref probing
 
