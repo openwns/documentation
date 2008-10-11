@@ -9,3 +9,5 @@ The Simulation Platform
    RandomNumberDistributions
    MeasurementSources
    EvaluationFramework
+   FiniteStateMachines
+
