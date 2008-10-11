@@ -25,6 +25,7 @@ _output_formats = {
 #   'image/svg+xml': 'svg',
     'image/png': 'png',
     'application/postscript': 'ps',
+    'application/pdf': 'pdf',
 }
 
 class graphviz(nodes.General, nodes.Element):
@@ -51,13 +52,7 @@ def process_graphviz_nodes(app, doctree, docname):
                 relfn = '_images/graphviz/%s' % (filename,)
             newnode = nodes.image()
             newnode['candidates'] = dict( [ (format_mime, '%s.%s' % (relfn, format_ext)) for (format_mime, format_ext) in _output_formats.iteritems() ] )
-            # build PDF output from the previously generated postscript
-            Popen([
-                getattr(app.builder.config, 'graphviz_ps2pdf', 'ps2pdf'),
-                '%s.ps' % (outfn,),
-                '%s.pdf' % (outfn,)
-            ]).wait()
-            newnode['candidates']['application/pdf'] = '%s.pdf' % (outfn,)
+
             # and that's all, folks!
             node.replace_self(newnode)
         except Exception, err:

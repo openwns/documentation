@@ -1,9 +1,9 @@
 Coding Guidelines
 =================
 
-\tableOfContents
+.. note::
 
-@note For a short version please see \ref wns_documentation_codingguidelines_short
+   For a short version please see \ref wns_documentation_codingguidelines_short
 
 Why do we need a style guide for openWNS?
 -----------------------------------------
@@ -46,426 +46,503 @@ Indenting
 
 If tabs are used for indentation many editors mix tabs and spaces to get a nice indentation. This will result in an ugly indentation if the code is viewed with other settings for the tab-width. Example:
 
-@verbatim
-// edited with tab-width: 4
+.. code-block:: c++
 
-void
-Foo::bar(int foo,
-         string bar)
-{
-    // some code here
-}
-@endverbatim
+  // edited with tab-width: 4
 
-Since we have 9 characters in front of the type @c string, the editor set to tab-width 4 will use 2 tabs and one space to align @c string with @c int.
+  void
+  Foo::bar(int foo,
+	   string bar)
+  {
+      // some code here
+  }
+
+
+Since we have 9 characters in front of the type ``string``, the editor
+set to tab-width 4 will use 2 tabs and one space to align ``string`` with ``int``.
 
 Opening this file in an editor with tab-width set to 8 looks like this:
 
-@verbatim#!cplusplus
-// viewed with tab-width: 8
+.. code-block:: c++
 
-void
-Foo::bar(int foo,
-                 string bar)
-{
-        // some code here
-}
-@endverbatim
+  // viewed with tab-width: 8
 
-This is because two tabs à 8 spaces and one space add up to 17 spaces. This means tab-width is not adjustable. Thus the indentation style for openWNS is 4 spaces per indentation level.
+  void
+  Foo::bar(int foo,
+		   string bar)
+  {
+	  // some code here
+  }
 
-@subsection wns_coding_guidelines_emacs_indentation Indentation in Emacs
+
+This is because two tabs is 8 spaces and one space add up to 17 spaces. This means tab-width is not adjustable. Thus the indentation style for openWNS is 4 spaces per indentation level.
+
+Indentation in Emacs
+''''''''''''''''''''
 
 The following shows a c-style for emacs that provides the required indentation rules for the openWNS.
 
-@verbatim
-;; The wns-c-style.
-(defconst wns-c-style
-  '((c-tab-always-indent . t)
-    (c-basic-offset . 4)
-    (indent-tabs-mode . nil)
-    (c-comment-only-line-offset . 4)
-    (c-offsets-alist . ((comment-intro . 0)
-			(statement-block-intro . +)
-			(knr-argdecl-intro . +)
-			(substatement-open . 0)
-			(label . 0)
-			(statement-cont . +)
-			(inline-open . 0)
-			(inexpr-class . 0)
-			(inher-intro . ++)
-			))
-    ;;(c-echo-syntactic-information-p . t)
-    )
-  "WNS C/C++ Programming Style")
+.. code-block:: none
 
-(c-add-style "WNS" wns-c-style)
-@endverbatim
+  ;; The wns-c-style.
+  (defconst wns-c-style
+    '((c-tab-always-indent . t)
+      (c-basic-offset . 4)
+      (indent-tabs-mode . nil)
+      (c-comment-only-line-offset . 4)
+      (c-offsets-alist . ((comment-intro . 0)
+			  (statement-block-intro . +)
+			  (knr-argdecl-intro . +)
+			  (substatement-open . 0)
+			  (label . 0)
+			  (statement-cont . +)
+			  (inline-open . 0)
+			  (inexpr-class . 0)
+			  (inher-intro . ++)
+			  ))
+      ;;(c-echo-syntactic-information-p . t)
+      )
+    "WNS C/C++ Programming Style")
+
+  (c-add-style "WNS" wns-c-style)
+
 Feel free to include the WNS c-style into you ~/.emacs file.
-@subsection wns_coding_guidelines_maximumlinelength Maximum line length
 
-<b>Keep the line length readable</b>
+Maximum line length
+'''''''''''''''''''
+
+**Keep the line length readable**
 
 Suggestion is: around 80 characters or up to 10 words. Studies have shown that 10 words text-width are optimal for eye-tracking (from C++ Coding-Standards, Alexandrescu and Sutter, 2004).
 
-@subsection wns_coding_guidelines_whitespace Whitespaces
+Whitespaces
+'''''''''''
 
 Conventional operators should be surrounded by a space character. C++ reserved words should be followed by a white space.  Commas should be followed by a white space. Semicolons in for statments should be followed by a space character. Always surround these binary operators with a single space on either side: assignment (=), augmented assignment (+=, -= etc.),
 comparisons (==, <, >, !=, <=, >=).
 
-@verbatim
-a = (b + c) * d;                // NOT: a=(b+c)*d
-while (true)                    // NOT: while(true) { ...
-doSomething(a, b, c, d);        // NOT: doSomething(a,b,c,d);
-for (int ii = 0; ii < 10; ++ii) // NOT: for(i=0;i<10;i++)
-@endverbatim
+.. code-block:: c++
+
+  a = (b + c) * d;                // NOT: a=(b+c)*d
+  while (true)                    // NOT: while(true) { ...
+  doSomething(a, b, c, d);        // NOT: doSomething(a,b,c,d);
+  for (int ii = 0; ii < 10; ++ii) // NOT: for(i=0;i<10;i++)
+
 
 Avoid extraneous whitespace in the following situations:
 
 Immediately inside parentheses, brackets or braces. Immediately before the open parenthesis that starts the argument list of a function call. Immediately before the open parenthesis that starts an indexing. To align operators with others.
 
 
-@verbatim
-spam(ham, eggs(2))         // NOT: spam( ham, eggs (2) )
-spam(1)                    // NOT: spam (1)
-map['key'] = vector[index] // NOT: map ['key'] = vector [index]
-int a = 0;                 // NOT: int a     = 0
-int b = 0;                 // NOT: int b     = 0
-int index = 0;             // NOT: int index = 0
-@endverbatim
+.. code-block:: c++
+
+  spam(ham, eggs(2))         // NOT: spam( ham, eggs (2) )
+  spam(1)                    // NOT: spam (1)
+  map['key'] = vector[index] // NOT: map ['key'] = vector [index]
+  int a = 0;                 // NOT: int a     = 0
+  int b = 0;                 // NOT: int b     = 0
+  int index = 0;             // NOT: int index = 0
 
 
-@subsection wns_coding_guidelines_namespaces Namespaces
 
-@verbatim
-namespace a { namespace b { namespace c {
+Namespaces
+''''''''''
 
-} // namespace c
-} // namespace b
-} // namespace a
-@endverbatim
+.. code-block:: c++
 
-@subsection wns_coding_guidelines_classes_templates Classes and Templates
+  namespace a { namespace b { namespace c {
 
-@verbatim
-template <typename FOO, typename BAR>
-class FooBar :
-    public virtual SuperClassA
-    private SuperClassB
-{
-public:
-    // Public stuff first (most interesting)
-protected:
-    // Then protected stuff (only interesting if deriving)
-private:
-    // Last private stuff (internal realization)
-};
-@endverbatim
+  } // namespace c
+  } // namespace b
+  } // namespace a
 
-@subsection wns_coding_guidelines_methods Methods
-@verbatim
-// of course a virtual template method is impossible
-// but the keywords should be placed like this
-template <typename FOO, typename BAR>
-virtual const BAR&
-scheduleFooBar(const FOO& foo) const
-{
-    // some code
-}
-@endverbatim
 
-@subsection wns_coding_guidelines_constructors Constructors
+Classes and Templates
+'''''''''''''''''''''
 
-@verbatim
-// in case you have only one argument don't forget to add
-// explicit keyword to avoid automatic type cast
-explicit
-FooBar::FooBar(Arg arg) :
-   SuperClass(arg),
-   argument(arg)
-{
-     // no member initialization here!
-}
-@endverbatim
+.. code-block:: c++
 
-@subsection wns_coding_guidelines_controlstructures Control structures (if, while, for)
+  template <typename FOO, typename BAR>
+  class FooBar :
+      public virtual SuperClassA
+      private SuperClassB
+  {
+  public:
+      // Public stuff first (most interesting)
+  protected:
+      // Then protected stuff (only interesting if deriving)
+  private:
+      // Last private stuff (internal realization)
+  };
 
-@verbatim
-if (this->empty() == true)
-{
-    // some code here
-}
-else
-{
-    // some code here
-}
 
-while (this->empty() == false)
-{
-    // some code here
-}
+Methods
+'''''''
 
-for (int ii = 0; ii < 4; ++ii)
-{
-    // some code here
-}
-@endverbatim
+.. code-block:: c++
 
-@subsection wns_coding_guidelines_typemodifiers Type modifiers
+  // of course a virtual template method is impossible
+  // but the keywords should be placed like this
+  template <typename FOO, typename BAR>
+  virtual const BAR&
+  scheduleFooBar(const FOO& foo) const
+  {
+      // some code
+  }
 
-\c * and \c & belong to the type.
 
-@verbatim
-int* a = new a;   // NOT: int *a = new a; or int * a = new a;
-int& b = c;       // NOT: int &b = c; or int & b = c;
-@endverbatim
+Constructors
+''''''''''''
 
-@subsection wns_coding_guidelines_comments Comments
+.. code-block:: c++
+
+  // in case you have only one argument don't forget to add
+  // explicit keyword to avoid automatic type cast
+  explicit
+  FooBar::FooBar(Arg arg) :
+     SuperClass(arg),
+     argument(arg)
+  {
+       // no member initialization here!
+  }
+
+
+Control structures (if, while, for)
+'''''''''''''''''''''''''''''''''''
+
+.. code-block:: c++
+
+  if (this->empty() == true)
+  {
+      // some code here
+  }
+  else
+  {
+      // some code here
+  }
+
+  while (this->empty() == false)
+  {
+      // some code here
+  }
+
+  for (int ii = 0; ii < 4; ++ii)
+  {
+      // some code here
+  }
+
+
+Type modifiers
+''''''''''''''
+
+``*`` and ``&`` belong to the type.
+
+.. code-block:: c++
+
+  int* a = new a;   // NOT: int *a = new a; or int * a = new a;
+  int& b = c;       // NOT: int &b = c; or int & b = c;
+
+
+Comments
+''''''''
 
 Comments are placed above the code block to be commented. Usage of trailing comments is explictly discouraged:
-@verbatim
-// Yes:
-// Make sure the station got registered
-if(std::find(stationContainer.begin(), stationContainer.end(), station))
-{
-    station->move();
-}
 
-// No:
-if(std::find(stationContainer.begin(), stationContainer.end(), station)) // Make sure the station got registered
-{
-    station->move();
-}
-@endverbatim
+.. code-block:: c++
+
+  // Yes:
+  // Make sure the station got registered
+  if(std::find(stationContainer.begin(), stationContainer.end(), station))
+  {
+      station->move();
+  }
+
+  // No:
+  if(std::find(stationContainer.begin(), stationContainer.end(), station)) // Make sure the station got registered
+  {
+      station->move();
+  }
+
 
 Don't write comments that just repeat the code. They will likely get out of sync.
-@verbatim
-// No:
-if(!container.empty()) // true if container not empty
-{
-   container.clear();
-}
-@endverbatim
+
+.. code-block:: c++
+
+  // No:
+  if(!container.empty()) // true if container not empty
+  {
+     container.clear();
+  }
+
 
 Naming Conventions
 ------------------
 
-Names are always written in CamelCase style. <b>Not</b> in underscore_style. The only exceptions are defines (include guards / macros).
+Names are always written in ``CamelCase`` style. **Not** in ``underscore_style``. The only exceptions are defines (include guards / macros).
 
-@subsection wns_coding_guidelines_localvariables Local variables
+Local variables
+'''''''''''''''
+
 Variables start lower case, even if they start with an acronym. The acronym is all written in lower case then:
-@verbatim
-void
-someMethod()
-{
-    double someVariable;
-    Station umtsStation;
-}
-@endverbatim
 
-@subsection wns_coding_guidelines_naming_methods Methods
+.. code-block:: c++
+
+  void
+  someMethod()
+  {
+      double someVariable;
+      Station umtsStation;
+  }
+
+
+Methods
+'''''''
+
 Methods start lower case. They describe an action. Therefore, they should contain a verb:
-@verbatim
-void
-sendData(const PDU& pdu)
-{
-}
-@endverbatim
 
-For non-virtual interfaces (NVI)s the method to actually dispatch the request is prefixed with @c do:
-@verbatim
-void
-sendData(const PDU& pdu)
-{
-    this->doSendData(pdu);
-}
+.. code-block:: c++
 
-virtual void
-doSendData(const PDU& pdu) = 0;
-@endverbatim
+  void
+  sendData(const PDU& pdu)
+  {
+  }
 
-Methods, that represent (asynchronous) event-based interfaces are prefixed @c on:
-@verbatim
-void
-onConnectionEstablished()
-{
-}
-@endverbatim
+
+For non-virtual interfaces (NVI)s the method to actually dispatch the request is prefixed with ``do``:
+
+.. code-block:: c++
+
+  void
+  sendData(const PDU& pdu)
+  {
+      this->doSendData(pdu);
+  }
+
+  virtual void
+  doSendData(const PDU& pdu) = 0;
+
+
+Methods, that represent (asynchronous) event-based interfaces are prefixed ``on``:
+
+.. code-block:: c++
+
+  void
+  onConnectionEstablished()
+  {
+  }
+
 
 And for an event-based NVI:
-@verbatim
-void
-onConnectionEstablished()
-{
-    this->doOnConnectionEstablished();
-}
-virtual void
-doOnConnectionEstablished() = 0;
-@endverbatim
+
+.. code-block:: c++
+
+  void
+  onConnectionEstablished()
+  {
+      this->doOnConnectionEstablished();
+  }
+  virtual void
+  doOnConnectionEstablished() = 0;
 
 
-@subsection wns_coding_guidelines_naming_classes Classes
+
+Classes
+'''''''
+
 Classes start with an upper case letter and are written in CamelCase:
-@verbatim
-class PositionProvider
-{
-};
-@endverbatim
+
+.. code-block:: c++
+
+  class PositionProvider
+  {
+  };
+
 
 If a part of the name is an acronym, the acronym is written in upper case letters (or in mixed case if this is the normal way of spelling it):
-@verbatim
-class UMTSTransmitter
-{
-};
 
-class WiMAXReceiver
-{
-};
-@endverbatim
+.. code-block:: c++
 
-@subsection wns_coding_guidelines_naming_interfaces Interfaces
-Interfaces start with an @c I. This avoids name collisions as it is quite common to have IFoo and a class named Foo that implements IFoo.
-@verbatim
-class IComponent
-{
-public:
-    virtual void
-    connect() = 0;
-};
-@endverbatim
+  class UMTSTransmitter
+  {
+  };
 
-@subsection wns_coding_guidelines_naming_classmembers Class Members
+  class WiMAXReceiver
+  {
+  };
+
+
+Interfaces
+''''''''''
+
+Interfaces start with an ``I``. This avoids name collisions as it is quite common to have ``IFoo`` and a class named ``Foo`` that implements ``IFoo``.
+
+.. code-block:: c++
+
+  class IComponent
+  {
+  public:
+      virtual void
+      connect() = 0;
+  };
+
+
+Class Members
+'''''''''''''
+
 Scope identification of a variable is important. Is it a local scratch variable or a class member. For easy identification of class members a underscore at the end of the member is used, regardless if the member is private, protected or public:
-@verbatim
-class Foo
-{
-private:
-    int bar_;
-};
-@endverbatim
 
-@subsection wns_coding_guidelines_naming_namespaces Namespaces
+.. code-block:: c++
+
+  class Foo
+  {
+  private:
+      int bar_;
+  };
+
+
+Namespaces
+''''''''''
+
 Namespace are written all in lowercase letters:
 
-@verbatim
-namespace wns { namespace simulator {
-}
-}
+.. code-block:: c++
 
-using namespace wns::simulator;
-@endverbatim
+  namespace wns { namespace simulator {
+  }
+  }
 
-@subsection wns_coding_guidelines_naming_templateparameters Template Parameters
+  using namespace wns::simulator;
+
+
+Template Parameters
+'''''''''''''''''''
+
 Template parameters are written in upper case letters:
-@verbatim
-template <typename KEY, typename VALUE>
-class Registry
-{
-}
-@endverbatim
 
-@subsection wns_coding_guidelines_naming_macros Macros
-Marcos are written in upper case letters. Underscores should be used for better readability. The name should always begin with @c WNS_ to avoid collisions with other macros (e.g. REF and DEREF of Qt).
-@verbatim
-#define WNS_ADD(x, y) (x)+(y)
-@endverbatim
+.. code-block:: c++
 
-@subsection wns_coding_guidelines_naming_includingguards Include Guards
+  template <typename KEY, typename VALUE>
+  class Registry
+  {
+  }
+
+
+Macros
+''''''
+
+Marcos are written in upper case letters. Underscores should be used for better readability. The name should always begin with ``WNS_`` to avoid collisions with other macros (e.g. REF and DEREF of Qt).
+
+.. code-block:: c++
+
+  #define WNS_ADD(x, y) (x)+(y)
+
+
+Include Guards
+''''''''''''''
+
 Include guards, like Macros, are written in upper case letters with underscores to enhance readability. To avoid name clashes here the following rule must be followed when choosing a name for an include guard:
 
-@c MODULE_DIR_SUBDIR_SUBSUBDIR_FILE
+``MODULE_DIR_SUBDIR_SUBSUBDIR_FILE``
 
-Hence, if the file is placed in the TCP module in @c src/congestion/Tahoe.hpp the include guard is:
-@verbatim
-#ifndef TCP_CONGESTION_TAHOE_HPP
-#define TCP_CONGESTION_TAHOE_HPP
-// some code
-#endif // NOT defined TCP_CONGESTION_TAHOE_HPP
-@endverbatim
+Hence, if the file is placed in the TCP module in ``src/congestion/Tahoe.hpp`` the include guard is:
 
-At the closing #endif you should state what is (not) defined here.
+.. code-block:: c++
+
+  #ifndef TCP_CONGESTION_TAHOE_HPP
+  #define TCP_CONGESTION_TAHOE_HPP
+  // some code
+  #endif // NOT defined TCP_CONGESTION_TAHOE_HPP
+
+
+At the closing ``#endif`` you should state what is (not) defined here.
 
 Programming recommendations
 ---------------------------
 
-@subsection wns_coding_guidelines_programming_rec_namespaces Namespaces
+Namespaces
+''''''''''
 
 Some rules:
-1. Never use @c using @c namespace @c xyz in header files
-2. For an implementation: Only use @c using @c namespace @c xyz for the corresponding class definition
-3. You should omit the additional namespace qualifiers if you are already in that namespace (e.g. in a class definition)
-4. You should always use the full namespace qualifier for any out-of-current-namespace-scope types
+#. Never use ``using namespace xyz`` in header files
+#. For an implementation: Only use ``using namespace xyz`` for the corresponding class definition
+#. You should omit the additional namespace qualifiers if you are already in that namespace (e.g. in a class definition)
+#. You should always use the full namespace qualifier for any out-of-current-namespace-scope types
 
-@verbatim
-namespace foo {
-    class Bar
-    {
-        void
-        clone(Bar*);
-    };
-}
+.. code-block:: c++
 
-// NOT
-namespace foo {
-    class Bar
-    {
-        void
-        clone(foo::Bar*);
-    };
-}
-@endverbatim
+  namespace foo {
+      class Bar
+      {
+	  void
+	  clone(Bar*);
+      };
+  }
 
-@subsection wns_coding_guidelines_programming_rec_comparison Comparison
+  // NOT
+  namespace foo {
+      class Bar
+      {
+	  void
+	  clone(foo::Bar*);
+      };
+  }
+
+
+Comparison
+''''''''''
 
 When testing for something (e.g. in an if-statement), always be explicit about what you expect:
 
-@verbatim
-// No
+.. code-block:: c++
 
-if (foo)
+  // No
 
-// Yes (because it can be any of these)
+  if (foo)
 
-// in case of bool
-if (foo == true)
+  // Yes (because it can be any of these)
 
-// in case of pointer
-if (foo != NULL)
+  // in case of bool
+  if (foo == true)
 
-// in case of integer
-if (foo != 0)
-@endverbatim
+  // in case of pointer
+  if (foo != NULL)
 
-@subsection wns_coding_guidelines_programming_rec_callbyvalueref Call-by-value, call-by-reference
+  // in case of integer
+  if (foo != 0)
+
+
+Call-by-value, call-by-reference
+''''''''''''''''''''''''''''''''
 
 Use call by reference (const) where possible for complex data types, but always call-by-value for Plain Old Data Types (PODs):
 
-@verbatim
-// YES
-void
-foo(const Bar& bar)
+.. code-block:: c++
 
-// NO
-void
-foo(Bar bar)
+  // YES
+  void
+  foo(const Bar& bar)
 
-// NO, only use if you need to modify bar inside foo! and even then with care!
-void
-foo(Bar& bar)
+  // NO
+  void
+  foo(Bar bar)
 
-// NO, only use if you need polymorphism
-void
-foo(Bar* bar)
+  // NO, only use if you need to modify bar inside foo! and even then with care!
+  void
+  foo(Bar& bar)
 
-// YES
-void
-foo(double x)
+  // NO, only use if you need polymorphism
+  void
+  foo(Bar* bar)
 
-// NO
-void
-foo(const double& x)
+  // YES
+  void
+  foo(double x)
 
-@endverbatim
+  // NO
+  void
+  foo(const double& x)
+
+
 
 License Statement
 -----------------

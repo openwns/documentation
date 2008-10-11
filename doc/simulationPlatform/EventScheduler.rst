@@ -1,4 +1,4 @@
-.. highlight:: c
+.. highlight:: c++
 
 The Event Scheduler
 ===================

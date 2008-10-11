@@ -4,23 +4,57 @@ Coding Guidelines Reference Card
 
 Layout Rules
 ------------
-<table><tr>
-<td><b>Indenting</b></td><td> 4 spaces, no tabs</td></tr><tr>
-<td><b>Maximum line length</b></td><td> not fixed (although above 100 is considered long)</td></tr>
-</table>
+
+===================  =================================================
+Topic                Rule
+===================  =================================================
+Indenting            spaces, not tabs
+Maximum line length  not fixed (although above 100 is considered long)
+===================  =================================================
+
 Naming Conventions
 ------------------
+
 Names are always written in CamelCase style. Not in underscore_style. The only exceptions are defines (include guards / macros).
-<table><tr>
-<td><b>Local variables</b></td><td> Variables start lower case, even if they start with an acronym. </td><td> @c double @c someVariable<br/>@cStation @cumtsStation</td></tr><tr>
-<td><b>Methods</b></td><td>Methods start lower case. They describe an action. Therefore, they should contain a verb. NVI is prefixed with @c do, event-based interface with @c on</td><td>@c void @c sendData()<br/>@c void @c doSendData()<br/>@c void @c onData()</td></tr><tr>
-<td><b>Classes</b></td><td>Classes start with an upper case letter and are written in CamelCase</td><td>@c class @c PositionProvider<br/>@c class @c UMTSTransmitter<br/>@c class @c WiMAXReceiver</td></tr><tr>
-<td><b>Interfaces</b></td><td>Interfaces start with an I</td><td>@c class @c IComponent</td></tr><tr>
-<td><b>Class members</b></td><td>End with an underscore</td><td>@c int @c bar_</td></tr><tr>
-<td><b>Namespaces</b></td><td>Namespace are written all in lowercase letters</td><td>@c namespace @c wns<br/>@c using @c namespace @c wns::simulator</td></tr><tr>
-<td><b>Template Parameters</b></td><td>Template parameters are written in upper case letters</td><td>@c template @c <typename @cKEY, @ctypename @c VALUE></td></tr><tr>
-<td><b>Macros</b></td><td>Marcos are written in upper case letters. Underscores should be used for better readability.</td><td>@c #define @c WNS_ADD(x, y) @c (x)+(y)</td></tr><tr>
-<td><b>Include Guards</b></td><td>Include guards, like Macros, are written in upper case letters with underscores to enhance readability</td><td>@c MODULE_DIR_SUBDIR_SUBSUBDIR_FILE<br/>@c #ifndef @c TCP_CONGESTION_TAHOE_HPP</td></tr>
-</table>
+
+=============== ======================================  ===================
+Topic           Rule                                    Example
+=============== ======================================  ===================
+Local variables Variables start lower case, even if     ``double someVariable``
+                they start with an acronym.             
+                                                        ``Station umtsStation``
+--------------- --------------------------------------  -------------------
+Methods         Methods start lower case. They          ``void sendData()``
+                describe an action. Therefore, they     
+                should contain a verb. NVI is prefixed  ``void doSendData()``
+                with ``do``, event-based interface 
+                with ``on``                             ``void onData()``
+--------------- --------------------------------------  -------------------
+Classes         Classes start with an upper case        ``class PositionProvider``
+                letter and are written in CamelCase     
+--------------- --------------------------------------  -------------------
+Interfaces      Interfaces start with an I              ``class IComponent``
+--------------- --------------------------------------  -------------------
+Class members   End with an underscore                  ``int bar_``
+--------------- --------------------------------------  -------------------
+Namespaces      Namespace are written all in lowercase  ``namespace wns``
+                letters                                 
+                                                        ``using namespace wns::simulator``
+--------------- --------------------------------------  -------------------
+Template        Template parameters are written in      ``template <typename KEY, typename VALUE>``
+Parameters      upper case letters
+--------------- --------------------------------------  -------------------
+Macros          Marcos are written in upper case        ``#define WNS_ADD(x, y) (x)+(y)``
+                letters. Underscores should be used 
+                for better readability.
+--------------- --------------------------------------  -------------------
+Include Guards  Include guards, like Macros, are        ``MODULE_DIR_SUBDIR_SUBSUBDIR_FILE``
+                written in upper case letters with      
+                underscores to enhance readability      ``#ifndef CP_CONGESTION_TAHOE_HPP``
+=============== ======================================  ===================
+
+
+
+
 
 

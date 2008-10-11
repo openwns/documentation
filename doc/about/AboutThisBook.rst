@@ -27,6 +27,7 @@ Execute the follwoing comamnd :command:`./playground.py createmanuals --release`
 .. graphviz::
 
    strict digraph finite_state_machine {
+    size="2,2";
     node [shape = circle, fontname=Helvetica, fontsize=12 ]; Day Night LampOn;
     rankdir=LR;
     Day -> Night [ label = "dark", fontname=Helvetica, fontsize=9 ]

@@ -68,6 +68,7 @@ how to define this in your configuration by using the openwns evaluation framewo
 
 .. graphviz::
   digraph overview {
+  size="8,10"
   mac1 [label = "MAC_Id == 1"]
   mac2 [label = "MAC_Id == 2"]
   AssociationEvents -> mac1
@@ -150,6 +151,7 @@ a NodeTreeSet will use the generator to create new nodes for each TreeNode in th
 
 .. graphviz::
   digraph overview {
+  size="8,10"
   f [shape=plaintext, label = "Filename:"]
   s [shape=plaintext, label = "SINR"]
   m [shape=plaintext, label = "MAC_ID%d"]
