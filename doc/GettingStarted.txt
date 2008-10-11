@@ -1,9 +1,0 @@
-/**
-
-@page gettingstarted Getting Started
-  -# @subpage prerequisites
-  -# @subpage download	
-  -# @subpage installation
-  -# @subpage SDKLayout	
-
-*/

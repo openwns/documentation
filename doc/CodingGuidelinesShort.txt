@@ -1,12 +1,12 @@
 /**
 @page wns_documentation_codingguidelines_short Coding Guidelines Reference Card
  
-@section wns_coding_guidelines_short_layout Layout
+@section wns_coding_guidelines_short_layout Layout Rules
 <table><tr>
 <td><b>Indenting</b></td><td> 4 spaces, no tabs</td></tr><tr>
 <td><b>Maximum line length</b></td><td> not fixed (although above 100 is considered long)</td></tr>
 </table>
-@section wns_coding_guidelines_short_naming Naming
+@section wns_coding_guidelines_short_naming Naming Conventions
 Names are always written in CamelCase style. Not in underscore_style. The only exceptions are defines (include guards / macros).
 <table><tr>
 <td><b>Local variables</b></td><td> Variables start lower case, even if they start with an acronym. </td><td> @c double @c someVariable<br/>@cStation @cumtsStation</td></tr><tr>

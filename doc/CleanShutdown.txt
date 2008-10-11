@@ -1,6 +1,6 @@
 /**
 
-@page wns_documentation_clean shutdown Clean Shutdown (avoid memory leaks)
+@page wns_documentation_clean_shutdown Avoid Memory Leaks (Clean Shutdown)
 
 @todo Update, cleanup
 

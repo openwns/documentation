@@ -13,11 +13,11 @@ download should not take more than 5 minutes (time for downloading not
 included).
 
 <b> Short version</b>:
-@verbatim
+@code
 bzr branch http://launchpad.net/~comnets/openwns-sdk/sdk--main--1.0 myOpenWNS
 cd myOpenWNS
 ./playground.py upgrade --noAsk
-@endverbatim
+@endcode
 
 @section download_configuring_tla Configuring Bazaar
 
@@ -31,17 +31,17 @@ href="http://bazaar-vcs.org/Download">here</a>.
 To see if Bazaar is installed on your system and to check that you have
 an up to date version you can try:
 
-@verbatim
+@code
 $ bzr --version
 Bazaar (bzr) 0.92.0
 ...
-@endverbatim
+@endcode
 
 If you haven't used Bazaar before you need to make yourself known to the system:
 
-@verbatim
+@code
 $ bzr whoami "Joe Average <joe@average.com>"
-@endverbatim
+@endcode
 
 Your id should be your name, followed by your email address in angle
 brackets. @c Bazaar records your id in the log messages for your
@@ -56,11 +56,11 @@ Now it's time to retrieve a copy of openWNS. The following command will
 checkout the current version of openWNS to 'myOpenWNS'. Choose
 whatever you want as name. A good name is 'openWNS-sdk--main--1.0' ;-).
 
-@verbatim
+@code
 $ bzr branch http://launchpad.net/~comnets/openwns-sdk/sdk--main--1.0 myOpenWNS
 Branched 70 revision(s).
 $ cd myOpenWNS
-@endverbatim
+@endcode
 
 Now you have a local copy of openWNS. Well, not really. What you have
 is rather an empty house. If you inspect all the sub-directories of @c
@@ -69,11 +69,11 @@ all empty. Apart from some bash and Python scripts there is not much
 to see. Especially no C++ source code below the directory @c
 framework.
 
-@verbatim
+@code
 $ cd myLocalDirectory
 $ ls framework/
 
-@endverbatim
+@endcode
 
 So let's furnish this house! openWNS is designed to be a highly
 modular simulation framework. Hence, it is made up of a number of
@@ -85,7 +85,7 @@ task (and other task as you will learn). It is called @c
 playground.py. So to fetch all modules and necessary other data simply
 enter:
 
-@verbatim
+@code
 $ ./playground.py upgrade
 Warning: According to 'config/projects.py' the following directories are missing:
   ./tests/unit (from URL: http://launchpad.net/~comnets/openwns-unittests/unittest--main--1.0)
@@ -96,7 +96,7 @@ Warning: According to 'config/projects.py' the following directories are missing
   ./framework/application (from URL: http://launchpad.net/~comnets/openwns-application/application--main--1.0)
   ./framework/pywns (from URL: http://launchpad.net/~comnets/openwns-pywns/pywns--main--1.0)
 Try fetch the according projects? (Y/n) y
-@endverbatim
+@endcode
 
 Just answer @c 'y' to this question and all necessary projects will be
 fetched. Depending on your link speed and the current size of openWNS this
@@ -106,12 +106,12 @@ After the download has finished you have all pieces available to
 proceed with the @ref installation of openWNS. Now there should be the
 framework available:
 
-@verbatim
+@code
 $ ls framework/*
 buildSupport
 library/
 application/
 pywns/
-@endverbatim
+@endcode
 
 */

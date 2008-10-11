@@ -1,7 +1,8 @@
-/**
-@page wns_documentation_performancetips Performance Tips
+Performance Tips
+================
 
-@section distributed_compiling Distributed Compiling
+Distributed Compiling
+---------------------
 
 The first compilation of openWNS after a fresh checkout can be very
 time consuming if it is performed on a single computer. Building a
@@ -13,25 +14,26 @@ indentically) and ICECC is available on these computers (see
 http://en.opensuse.org/Icecream) openWNS can be compiled distributed.
 
 To enable distributed compilation the following options may be set in
-@c config/private.py:
+``config/private.py``:
 
-@verbatim
-privateEnv.Replace(ICECC='icecc')
-privateEnv.configureCompiler(cc='/usr/bin/gcc', cxx='/usr/bin/g++')
-@endverbatim
+.. code-block:: python
 
-@note The statements must occur in this order. Otherwise icecc will
-not be used.
+  privateEnv.Replace(ICECC='icecc')
+  privateEnv.configureCompiler(cc='/usr/bin/gcc', cxx='/usr/bin/g++')
+
+.. note::
+
+   The statements must occur in this order. Otherwise icecc will not be used.
 
 In order to visualize the distributed compiling, open the ICECC monitor
 on any computer that is part of the network, e.g., on 'myHost':
 
-@verbatim
-$[me@myHost] ~: icemon &
-@endverbatim
+.. code-block:: bash
 
+  $ icemon &
 
-@section object_files Object Files
+Object Files
+------------
 
 openWNS provides a way to put all object files into a separate
 directory. It is a good idea to put this directory onto another
@@ -41,19 +43,21 @@ where the SDK resides.
 
 To enable this feature do the following:
 
-@verbatim
-$> mkdir pathToExternalObjDirOnOtherHardDisk
-@endverbatim
+.. code-block:: bash
 
-After this simply edit your @c config/private.py to contain the
+   $ mkdir pathToExternalObjDirOnOtherHardDisk
+
+After this simply edit your ``config/private.py`` to contain the
 following line:
 
-@verbatim
-privateEnv.setExternalObjDir("pathToExternalExternalObjDirOnOtherHardDisk")
-@endverbatim
+.. code-block:: python
+
+   privateEnv.setExternalObjDir("pathToExternalExternalObjDirOnOtherHardDisk")
 
 That's it. All object files will be written and read from there.
 
-@note This can also be used in case the left space on a partition is getting low.
+.. note::
+   
+   This can also be used in case the left space on a partition is getting low.
 
-*/
+
