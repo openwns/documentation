@@ -2,6 +2,8 @@
 
 .. index:: scheduler, event scheduler, events
 
+.. _simulationPlatformEventScheduler:
+
 The Event Scheduler
 ===================
 

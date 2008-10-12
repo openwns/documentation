@@ -1,3 +1,5 @@
+.. _simulationPlatformEvaluationFramework:
+
 Evaluation Framework
 ====================
 
