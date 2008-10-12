@@ -14,6 +14,7 @@ Contents:
    gettingStarted/GettingStarted
    sdk/SoftwareDevelopersKit
    simulationPlatform/SimulationPlatform
+   writingCode/WritingCode
    codingGuidelines/CodingGuidelines
    codingGuidelines/CodingGuidelinesShort
 
