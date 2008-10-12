@@ -1,5 +1,7 @@
 .. highlight:: c++
 
+.. index:: scheduler, event scheduler, events
+
 The Event Scheduler
 ===================
 

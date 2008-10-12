@@ -1,5 +1,7 @@
 .. highlight:: c++
 
+.. index:: finite state machine, FSM, state machine
+
 How to write a Finite State Machine
 ===================================
 
