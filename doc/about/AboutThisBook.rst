@@ -20,27 +20,8 @@ Within your openWNS SDK execute:
 
 .. code-block:: bash
 
-   > ./playground.py createmanuals --release
+   > ./playground.py createmanuals 
 
-Execute the follwoing comamnd :command:`./playground.py createmanuals --release`
-
-.. graphviz::
-
-   strict digraph finite_state_machine {
-    size="2,2";
-    node [shape = circle, fontname=Helvetica, fontsize=12 ]; Day Night LampOn;
-    rankdir=LR;
-    Day -> Night [ label = "dark", fontname=Helvetica, fontsize=9 ]
-    Day -> Day [ label = "movementDetcted", fontname=Helvetica, fontsize=9 ]
-    Day -> Day [ label = "light", fontname=Helvetica, fontsize=9 ]
-    Night -> Night [ label = "dark", fontname=Helvetica, fontsize=9 ]
-    Night -> Day [ label = "light", fontname=Helvetica, fontsize=9 ]
-    Night -> LampOn [ label = "movementDetcted", fontname=Helvetica, fontsize=9 ]
-    LampOn -> Night [ label = "timerElapsed", fontname=Helvetica, fontsize=9 ]
-    LampOn -> Day [ label = "light", fontname=Helvetica, fontsize=9 ]
-    LampOn -> LampOn [ label = "movementDetcted", fontname=Helvetica, fontsize=9 ]
-    LampOn -> LampOn [ label = "dark", fontname=Helvetica, fontsize=9 ]
-    }
 
 
 

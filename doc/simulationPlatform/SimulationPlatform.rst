@@ -8,6 +8,7 @@ The Simulation Platform
    EventScheduler
    RandomNumberDistributions
    MeasurementSources
+   ContextCollector
    EvaluationFramework
    FiniteStateMachines
 
