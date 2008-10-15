@@ -5,7 +5,16 @@
 Welcome to openWNS's documentation!
 ===================================
 
-Contents:
+.. ifconfig:: builder=='html'
+
+   Welcome to the new openWNS documentation. If you are looking for the *old* API documentation, it can be found at here_.
+   The documentation you see here is also available downloaded as PDF_.
+
+   .. _here: /api/
+   .. _PDF: openWNS.pdf
+
+
+   **Table of Contents**
 
 .. toctree::
    :maxdepth: 2
