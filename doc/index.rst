@@ -10,7 +10,7 @@ Welcome to openWNS's documentation!
    Welcome to the new openWNS documentation. If you are looking for the *old* API documentation, it can be found at here_.
    The documentation you see here is also available downloaded as PDF_.
 
-   .. _here: /api/
+   .. _here: ./api/
    .. _PDF: openWNS.pdf
 
 
