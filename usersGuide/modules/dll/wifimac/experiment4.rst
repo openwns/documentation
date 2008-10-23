@@ -81,7 +81,7 @@ changed according to the following steps:
 #. The creation of one AP and one STA can be done in a for loop, where
    only the y-coordinate changes:
 
-  .. literalinclude:: ../../../../../.createManualsWorkingDir/wifimac.tutorial.experiment4.config.NodeCreation.ForLoop
+   .. literalinclude:: ../../../../../.createManualsWorkingDir/wifimac.tutorial.experiment4.config.NodeCreation.ForLoop
       :language: python
 
 #. The virtual path selection server requires as input the number of
