@@ -17,7 +17,7 @@ band) and at most 3 non-overlapping channels are available at the
 
 In the following, we will change the string-topology scenario from
 experiment 5 to a dual-transceiver mesh. To assign a BSS frequency
-during the creation, we have to adapt the specialized configuration
+during the creation, we have to adapt the specialised configuration
 class so that the frequency can be given a parameter during the
 creation. Furthermore, the STA configuration needs to know the
 possible BSS frequencies so that it can scan in the beginning for
@@ -48,7 +48,7 @@ The problem how to assign the BSS frequencies in an optimal way to the
 MPs and APs is discussed in the literature; here, we will use a very
 simple approach: We have an array of the three non-overlapping
 frequencies ``bssFrequencies = [2400, 2440, 2480]``. When creating the
-AP and MPs, we use a counter ``bssCount`` and assing the frequencies
+AP and MPs, we use a counter ``bssCount`` and assign the frequencies
 in a round-robin fashion. Hence, the creation e.g. of the MPs is done
 as follows:
 
@@ -70,7 +70,7 @@ As no new parameters have been created, the same
    simulation parameters as in experiment 5?
 
 #. The spectral efficiency of the system can be defined as saturation
-   throughput devided by bandwidth [b/s/Hz]. Compare the spectral
+   throughput divided by bandwidth [b/s/Hz]. Compare the spectral
    efficiency of the dual-transceiver mesh, using 4 channels, with the
    single-channel mesh from experiment 1.
 

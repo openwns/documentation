@@ -7,7 +7,7 @@ configuration language. The main goal of this experiment is to setup
 the scenario shown in the following figure: One AP is situated in the
 center, all STAs surround the AP on a circle with a variable radius
 r. The number of STAs n can be changed, but the positioning of the
-STAs on the cirlce shall always be equidistantly.
+STAs on the circle shall always be equidistantly.
 
 .. figure:: experiment3.*
    :align: center
@@ -40,7 +40,7 @@ experiments, we can re-use the ``config.py`` and the
 ``Experiment3``. The following description will use those two files.
 
 ***************************
-Specializing the STA-config
+Specialising the STA-config
 ***************************
 
 The ``config.py`` file from the first experiments required several
@@ -65,7 +65,7 @@ from the basic STA-Transceiver class
 This class inherits the default configuration; this default values can
 the be changed. Additionally, the creator function
 ``__init__`` can be changed to the meet requirements of the
-scenario. In detail, the new specialized class works in the following way:
+scenario. In detail, the new specialised class works in the following way:
 
 * A new ``__init__`` function requires only the STA position as parameter.
 

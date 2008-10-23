@@ -1,4 +1,4 @@
-########################################
+x########################################
 Experiment 4: Shadowing and Interference
 ########################################
 
@@ -69,14 +69,14 @@ changed according to the following steps:
    times to avoid unrealistic results from beacon collisions at the
    STAs. Beside the position, the remaining configuration shall be
    identical to the configuration in experiment 1. Therefore, similar
-   to the third experiment, a specialized class ``MyAPTransceiver``
+   to the third experiment, a specialised class ``MyAPTransceiver``
    shall be used to create the AP configuration. The creation of the
    AP is therefore reduced to
 
    .. literalinclude:: ../../../../../.createManualsWorkingDir/wifimac.tutorial.experiment4.config.NodeCreation.AP
       :language: python
 
-   Write the neccessary class ``MyAPTransceiver``.
+   Write the necessary class ``MyAPTransceiver``.
 
 #. The creation of one AP and one STA can be done in a for loop, where
    only the y-coordinate changes:

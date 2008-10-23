@@ -27,7 +27,7 @@ config.py
 *********
 
 To complete the campaign, a configuration file ``config.py`` is
-required that cofigures the scenario, nodes and the evaluation. For
+required that configures the scenario, nodes and the evaluation. For
 the first experiment, a config.py can be found in
 ``openWNS/tests/system/WiFiMAC-Tests--main--1.0/PyConfig/experiment1``,
 this file needs to be copied into the simulations directory.
@@ -139,8 +139,8 @@ Node Creation
 
 After we have defined the scenario and the radio environment, nodes
 can be created using the node creator, which is contained in the
-``wifimac.support`` package or in the resepective IP-packages. We
-distinguis between two types of nodes:
+``wifimac.support`` package or in the respective IP-packages. We
+distinguish between two types of nodes:
 
 Virtual nodes
    are nodes that do not have a position (and mobility) and
@@ -253,7 +253,7 @@ lines.
    An example ``campaignConfiguration.py`` can be found in
    ``openWNS/tests/system/WiFiMAC-Tests--main--1.0/PyConfig/experiment1``
 
-First, we import the neccessary package to handle the generation of
+First, we import the necessary package to handle the generation of
 simulation scenarios:
 
 .. literalinclude:: ../../../../../.createManualsWorkingDir/wifimac.tutorial.experiment1.campaignConfiguration.import
@@ -273,7 +273,7 @@ Next, an instance with the same name as in the ``config.py`` is created:
 Then, the parameters in ``params`` can be populated with different
 values. Each time the ``write()`` member function (inherited from the
 class ``Parameters``) is called, the current values are fixed and
-represend one simulation:
+represent one simulation:
 
 .. literalinclude:: ../../../../../.createManualsWorkingDir/wifimac.tutorial.experiment1.campaignConfiguration.population
    :language: python
@@ -363,7 +363,7 @@ is stared by calling
 
 In the menu File are the different options to read the generated
 simulation data, we select ``Open Campaign Database`` and then under
-the appropriate user the campaign with the choosen name.
+the appropriate user the campaign with the chosen name.
 
 Next, we can draw the graph of offered traffic versus throughput as
 measured by the IP-Layer in the RANG. As the offered traffic is a
@@ -383,13 +383,13 @@ the STA.
        has left the RANG and has reached its final destination.
 
 ************
-Experiements
+Experiments
 ************
 
 #. Find the saturation throughput by editing the
    ``campaignConfiguration.py`` and enlarging the offered traffic
    until a point where the traffic cannot be carried completely. It is
-   not neccessary to delete existing scenarios, ``simcontrol.py`` will
+   not necessary to delete existing scenarios, ``simcontrol.py`` will
    automatically identify the missing simulations and create them when
    told so.
 

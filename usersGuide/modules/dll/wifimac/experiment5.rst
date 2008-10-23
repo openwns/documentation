@@ -2,7 +2,7 @@
 Experiment 5: Mesh Networking
 #############################
 
-The fith experiemtn adds a new class of nodes to the known AP and STA
+The fifth experiment adds a new class of nodes to the known AP and STA
 node: Mesh Points (MPs). In contrast to APs and STAs, MPs can neither
 be source nor sink of a traffic flow. In fact, MPs do not have an IP
 layer, but use a layer 2 path selection protocol to find the optimal
@@ -32,7 +32,7 @@ Creating mesh points
 ********************
 
 The transceiver configuration of an MP is the same as the
-configuration for an AP; hence, the same specialized configuration
+configuration for an AP; hence, the same specialised configuration
 class from experiment 4 can be used; we choose to rename it to ``MyMeshTransceiver``:
 
 .. literalinclude:: ../../../../../.createManualsWorkingDir/wifimac.tutorial.experiment5.nodeConfig.AP
@@ -55,7 +55,7 @@ Remaining scenario configuration
 
 The rest of the scenario configuration resembles the setting of the
 experiment 1: Only one AP and one STA has to be created; this time,
-the specialized configuration classes should be used for convenience.
+the specialised configuration classes should be used for convenience.
 
 Other changes to the configuration file are:
 
@@ -77,7 +77,7 @@ Experiments
 For the experiments, the ``campaignConfiguration`` of experiment 2 can
 be used; only the new parameter ``numHops`` has to be added. In the
 following, the nodes shall be separated by a distance so that the
-neighbors can communicate with each other, but the neigbor's neighbors
+neighbours can communicate with each other, but the neighbor's neighbors
 cannot. Hence, the 2-hop neighborhood shall be hidden nodes.
 
 #. Determine the saturation throughput of the string with at least 2

@@ -11,7 +11,7 @@ restricted to setting e.g.
 * the rtsctsThreshold: ``layer2.rtsctsThreshold``
 
 In this experiment, we will explore the complete configuration
-structure of the WiFiMAC, which allows the fine-tuning of mulitple
+structure of the WiFiMAC, which allows the fine-tuning of multiple
 parameters of the IEEE 802.11 protocol. As a goal of this experiment,
 the configuration from experiment 5 shall be changed so that 3x3
 Multiple Input / Multiple Output (MIMO) transmissions between the APs
@@ -89,13 +89,13 @@ whether the long- or the short retry counter limit is applied.
 .. literalinclude:: ../../../../../.createManualsWorkingDir/wifimac.pyconfig.layer2.config.multiusevariables
    :language: python
 
-In the ``__init__`` functino, the several sub-configuration classes
-are initialized with their default sub-configurations:
+In the ``__init__`` function, the several sub-configuration classes
+are initialised with their default sub-configurations:
 
 .. literalinclude:: ../../../../../.createManualsWorkingDir/wifimac.pyconfig.layer2.config.init
    :language: python
 
-The remaining part of the function then controls the initialization of
+The remaining part of the function then controls the initialisation of
 the variables which are used in multiple FUs.
 
 Therefore, a configuration variable is either found on this level of
@@ -103,12 +103,12 @@ the configuration tree (e.g. ``bufferSize`` or ``sifsDuration``), or
 in one the sub-configurations. Especially interesting is the variable
 ``mode``, which can either have the setting ``basic`` for the legacy
 IEEE 802.11 protocol, or ``DraftN`` to enable the MAC enhancements of
-the "n" ammendment.
+the "n" amendment.
 
 The file structure where the sub-configuration classes can be found
 can easily be derived from the name of the class: For example, the
 configuration for the beacon, stored in ``self.beacon``, is
-initialized with ``wifimac.management.BeaconConfig()``. Hence, it can
+initialised with ``wifimac.management.BeaconConfig()``. Hence, it can
 be found in the file
 
 .. code-block:: bash
@@ -130,7 +130,7 @@ As we can see from the configuration below, it is possible to change
 * the PHY mode id with which the beacons are transmitted.
 
 ************
-Experiements
+Experiments
 ************
 
 #. Create a "Configuration Tree": Starting from the configuration
@@ -138,7 +138,7 @@ Experiements
    and display them in a tree-like structure.
 
 #. Selecting the "DraftN" for the variable ``layer2.mode`` activates
-   the MAC enhancements of the ammendment IEEE 802.11n. How are the
+   the MAC enhancements of the amendment IEEE 802.11n. How are the
    following parameters changed:
 
    #. Maximum number of frames in an aggregated frame

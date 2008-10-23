@@ -13,7 +13,7 @@ Experiment 2: Efficient Search for the Saturation Point
 With the help of the database, the search for the saturation point can
 be done in a much more efficient way than be selecting "random" values
 for the offered traffic and simulating until the point is found. A
-typicall offered traffic vs. throughput curve will allways be a
+typical offered traffic vs. throughput curve will always be a
 bisector in the beginning, reach the saturation point and then,
 depending on the type of system under simulation, flatten out or fall
 down. Therefore, this saturation point can be found efficiently using
@@ -26,7 +26,7 @@ found, and the binary search continues with the mean value of the
 upper- and the lower bound. This procedure continues until the upper-
 and lower bound have converged.
 
-As this search for the saturation throughput is needed frequientally,
+As this search for the saturation throughput is needed often,
 it is directly encapsulated into the parameter generation process as
 described in the previous experiment.
 
@@ -45,10 +45,10 @@ changed to implement the binary search. An example implementation can be
 found in the directory
 ``openWNS/tests/system/WiFiMAC-Tests--main--1.0/PyConfig/experiment2``
 
-Paramter Class
-==============
+Parameter Class
+===============
 
-The parameter class recognizes the scenario parameters by a new
+The parameter class recognises the scenario parameters by a new
 parameter ``parameterRange``; only one parameter (the input parameter)
 must be without this parameterRange, but with the default
 (i.e. starting value) instead. Hence, the parameter class from the
@@ -155,7 +155,7 @@ saturation point can be evaluated automatically up to a predefined
 exactness.
 
 ************
-Experiements
+Experiments
 ************
 
 #. Calculate (roughly) the maximum distance for which a reception is possible using

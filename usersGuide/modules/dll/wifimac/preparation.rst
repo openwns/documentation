@@ -48,7 +48,7 @@ created. After some moments, the script requests the following user input:
 If the directory ``PATH`` already contains a valid simulation campaign, the script offers two options:
 
 #. To update the content of the ``sandbox`` directory with the current version of the openWNS.
-#. To add a new sub-campaign in a new simulation directoy.
+#. To add a new sub-campaign in a new simulation directory.
 
 For the different experiments, we suggest to use different
 sub-campaigns, e.g. with names Experiment1, Experiment2, etc.
