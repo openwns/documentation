@@ -80,7 +80,7 @@ scenario. In detail, the new specialised class works in the following way:
   #. The transmission power is set to 20 dBm
 
   #. This time, the rate adaptation strategy is set to
-   ``ConstantLow``, i.e. BPSK 1/2 for every transmitted frame.
+     ``ConstantLow``, i.e. BPSK 1/2 for every transmitted frame.
 
   #. Finally, the threshold to precede every frame transaction with an
      RTS/CTS is set to a high value, i.e. RTS/CTS is switched off.
@@ -125,9 +125,13 @@ Experiments - Part 1
 #. Simulate the scenario with the following parameters:
 
    * 2 STAs
+
    * a radius of 25m
+
    * 100% uplink traffic
+
    * packet size of 1480 Bytes
+
    * an offered traffic between 1 and 4 Mb/s.
 
   Where is approximately the saturation point?
