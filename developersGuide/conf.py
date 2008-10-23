@@ -156,7 +156,7 @@ htmlhelp_basename = 'openWNSdoc'
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, document class [howto/manual]).
 latex_documents = [
-  ('index', 'openWNS.tex', u'Developers Guide',
+  ('index', 'openWNS-DevelopersGuide.tex', u'Developers Guide',
    u'Daniel Bültmann', 'manual'),
 ]
 

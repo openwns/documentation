@@ -2,16 +2,19 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to openWNS's documentation!
-===================================
+Welcome to openWNS Developers Guide!
+====================================
 
 .. ifconfig:: builder=='html'
 
    Welcome to the new openWNS documentation. If you are looking for the *old* API documentation, it can be found at here_.
    The documentation you see here is also available downloaded as PDF_.
 
+   Beginners should start reading the UsersGuide_.
+
    .. _here: ./api/
-   .. _PDF: openWNS.pdf
+   .. _PDF: openWNS-DevelopersGuide.pdf
+   .. _UsersGuide: ./usersGuide
 
 
    **Table of Contents**

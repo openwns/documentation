@@ -1,3 +1,5 @@
 warn.log
 config/pushMailRecipients.py
-build
+buildDevelopersGuide/
+buildUsersGuide/
+
