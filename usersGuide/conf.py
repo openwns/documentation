@@ -71,7 +71,7 @@ exclude_trees = []
 
 # If true, sectionauthor and moduleauthor directives will be shown in the
 # output. They are ignored by default.
-#show_authors = False
+show_authors = True
 
 # The name of the Pygments (syntax highlighting) style to use.
 pygments_style = 'sphinx'
@@ -157,7 +157,7 @@ htmlhelp_basename = 'openWNSdoc'
 # (source start file, target name, title, author, document class [howto/manual]).
 latex_documents = [
   ('index', 'openWNS-UsersGuide.tex', u'Users Guide',
-   u'ComNets', 'manual'),
+   u'Department of Communication Networks (ComNets), RWTH Aachen University', 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
