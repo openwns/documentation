@@ -12,7 +12,7 @@
   backgroundcolor=\color{CodeLightGray},
   basicstyle=\ttfamily \footnotesize,
   breaklines=true,
-  prebreak=/}
+  prebreak=\textbackslash}
 
 \pagestyle{fancyplain}
 % Change fonts
@@ -31,9 +31,14 @@
 \lstnewenvironment{DocInclude}
     {\lstset{language=c++}}
     {}
-\newenvironment{Code}
-{\footnotesize}
-{\normalsize}
+
+\lstnewenvironment{Code}
+    {\lstset{language=}}
+    {}
+
+%\newenvironment{Code}
+%{\footnotesize}
+%{\normalsize}
 \newcommand{\doxyref}[3]{\textbf{#1} (\textnormal{#2}\,\pageref{#3})}
 %\newenvironment{DocInclude}
 %{\footnotesize}
