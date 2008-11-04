@@ -84,7 +84,7 @@ the class is really an interface (does not contain any variables, is
 stateless). The States classes will be derived from this
 interface later. The interface for our signals looks like this:
 
-.. literalinclude:: ../../../.doxydocExamples/FSM::LightControlSignals.example
+.. literalinclude:: ../../../.createManualsWorkingDir/FSM::LightControlSignals.example
 
 .. note::
 
@@ -104,7 +104,7 @@ will be used by the wns::fsm::FSM template later. For simplicity our example
 assumes the class definig the variables is called "Lamp" and contains only
 one variable called "on":
 
-.. literalinclude:: ../../../.doxydocExamples/FSM::Lamp.example
+.. literalinclude:: ../../../.createManualsWorkingDir/FSM::Lamp.example
 
 An interface for the FSM "Light Control"
 ----------------------------------------
@@ -117,7 +117,7 @@ the final finite state machine. To have a handy alias create a typedef to
 this interface with the signal interface from above ("LightControlSignals")
 and the variables that characterize the finite state machine ("Lamp"):
 
-.. literalinclude:: ../../../.doxydocExamples/FSM::LightControlInterface.example
+.. literalinclude:: ../../../.createManualsWorkingDir/FSM::LightControlInterface.example
 
 Implementation of the finite state machine
 ------------------------------------------
@@ -129,12 +129,12 @@ We're going to use the previously introduced typedef defining our FSM to
 derive a real implementation of this FSM. All methods of the signal
 interface ("LightControlSignals") need to be defined here:
 
-.. literalinclude:: ../../../.doxydocExamples/FSM::LightControl.example
+.. literalinclude:: ../../../.createManualsWorkingDir/FSM::LightControl.example
 
 The implementation of the methods forward the method call simply to the
 current state object:
 
-.. literalinclude:: ../../../.doxydocExamples/FSM::LightControlMethods.example
+.. literalinclude:: ../../../.createManualsWorkingDir/FSM::LightControlMethods.example
 
 .. note::
 
@@ -155,9 +155,9 @@ Each state is represented by a different class. These classes will be
 instantiated and deleted by the FSM. Here the definition of the states (Day,
 Night and LampOn) are presented:
 
-.. literalinclude:: ../../../.doxydocExamples/FSM::Day.example
-.. literalinclude:: ../../../.doxydocExamples/FSM::Night.example
-.. literalinclude:: ../../../.doxydocExamples/FSM::LampOn.example
+.. literalinclude:: ../../../.createManualsWorkingDir/FSM::Day.example
+.. literalinclude:: ../../../.createManualsWorkingDir/FSM::Night.example
+.. literalinclude:: ../../../.createManualsWorkingDir/FSM::LampOn.example
 
 .. note::
 
@@ -174,9 +174,9 @@ Night and LampOn) are presented:
 
 The implementation of the methods of these classes looks like this:
 
-.. literalinclude:: ../../../.doxydocExamples/FSM::DayMethods.example
-.. literalinclude:: ../../../.doxydocExamples/FSM::NightMethods.example
-.. literalinclude:: ../../../.doxydocExamples/FSM::LampOnMethods.example
+.. literalinclude:: ../../../.createManualsWorkingDir/FSM::DayMethods.example
+.. literalinclude:: ../../../.createManualsWorkingDir/FSM::NightMethods.example
+.. literalinclude:: ../../../.createManualsWorkingDir/FSM::LampOnMethods.example
 
 .. note::
 

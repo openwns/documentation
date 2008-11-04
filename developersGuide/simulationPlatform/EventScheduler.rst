@@ -21,13 +21,13 @@ function freeFunction within your simulation and you want to schedule calls
 to this function at later points in time.  The example function we use here
 looks like this:
 
-.. literalinclude:: ../../../.doxydocExamples/wns.events.scheduler.bestpractices.freeFunction.example
+.. literalinclude:: ../../../.createManualsWorkingDir/wns.events.scheduler.bestpractices.freeFunction.example
 
 Every time it is called it sets a global variable to the value 101. To
 schedule a call to this function at some later point in (simulation) time
 you could simply do:
 
-.. literalinclude:: ../../../.doxydocExamples/wns.events.scheduler.bestpractices.bindFreeFunction.example
+.. literalinclude:: ../../../.createManualsWorkingDir/wns.events.scheduler.bestpractices.bindFreeFunction.example
 
 This tells the scheduler to call the function freeFunction after 10 seconds
 of simulation time have passed. The argument you pass to the scheduleDelay
@@ -42,7 +42,7 @@ an instance of an object. This is when you want to use boost::bind. Let us
 just stick with the last example for a short moment and see how you could use
 boost::bind to create a Callable for freeFunction.
 
-.. literalinclude:: ../../../.doxydocExamples/wns.events.scheduler.bestpractices.boostBindFreeFunction.example
+.. literalinclude:: ../../../.createManualsWorkingDir/wns.events.scheduler.bestpractices.boostBindFreeFunction.example
 
 Pretty simple to do that. Simply call boost::bind() and pass the function
 pointer as the argument. This creates an object that is compatible with
@@ -55,7 +55,7 @@ Scheduling Member Functions
 So let us have a look at member functions now. Suppose you have the following
 class:
 
-.. literalinclude:: ../../../.doxydocExamples/wns.events.scheduler.bestpractices.classWithCallabck.example
+.. literalinclude:: ../../../.createManualsWorkingDir/wns.events.scheduler.bestpractices.classWithCallabck.example
 
 The behaviour of ClassWithCallback::callback is pretty much the same as the
 freeFunction of our last example, but now the scope is not global but limited
@@ -69,7 +69,7 @@ does not necessarily yield the expected results if you pass your arguments
 by value (see next section). To schedule a member function of an object where
 you have a pointer to can be done like this:
 
-.. literalinclude:: ../../../.doxydocExamples/wns.events.scheduler.bestpractices.boostBindMemberFunction.example
+.. literalinclude:: ../../../.createManualsWorkingDir/wns.events.scheduler.bestpractices.boostBindMemberFunction.example
 
 Scheduling Member Functions by Value
 ------------------------------------
@@ -81,7 +81,7 @@ copied but not the reference itself. You could also have simply taken the
 address (& operator) of your callback object and pass it to boost::bind to
 enforce pointer semantics.
 
-.. literalinclude:: ../../../.doxydocExamples/wns.events.scheduler.bestpractices.boostBindMemberFunctionRef.example
+.. literalinclude:: ../../../.createManualsWorkingDir/wns.events.scheduler.bestpractices.boostBindMemberFunctionRef.example
 
 Scheduling functions that take arguments
 ----------------------------------------
@@ -92,7 +92,7 @@ too. If you bind all parameters in an boost::bind expression, the result is
 a nullary function object that you can the pass the the scheduler. The follwing
 example illustrates this:
 
-.. literalinclude:: ../../../.doxydocExamples/wns.events.scheduler.bestpractices.boostBindMemberFunctionParam.example
+.. literalinclude:: ../../../.createManualsWorkingDir/wns.events.scheduler.bestpractices.boostBindMemberFunctionParam.example
 
 This concludes the scheduler best practices lesson.
 
@@ -104,5 +104,5 @@ method of the eventschdeduler these methods return an instance of ``IEventPtr`` 
 is a handle for your scheduled event and can be used to remove it from the scheduler
 queue again. This is demonstrated in the next example.
 
-.. literalinclude:: ../../../.doxydocExamples/wns.events.scheduler.bestpractices.unittest.cancel.example
+.. literalinclude:: ../../../.createManualsWorkingDir/wns.events.scheduler.bestpractices.unittest.cancel.example
 
