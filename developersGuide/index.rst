@@ -29,6 +29,7 @@ Welcome to openWNS Developers Guide!
    writingCode/WritingCode
    codingGuidelines/CodingGuidelines
    codingGuidelines/CodingGuidelinesShort
+   todolist
 
 Indices and tables
 ==================

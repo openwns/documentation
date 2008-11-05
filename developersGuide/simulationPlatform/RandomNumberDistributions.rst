@@ -2,6 +2,6 @@
 Random Number Distributions
 ===========================
 
-.. note::
+.. todo::
 
   To be written
