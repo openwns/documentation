@@ -19,6 +19,8 @@ Welcome to the openWNS Users Guide!
 
    about/AboutThisBook
 
+   modules/dll/wifimac/WiFiMAC
+
 Indices and tables
 ==================
 
