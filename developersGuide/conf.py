@@ -178,4 +178,4 @@ latex_logo = "../images/logo.png"
 #latex_use_modindex = True
 
 # Set to True if you want to include todos
-todo=True
+include_todos=True
