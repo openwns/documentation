@@ -6,7 +6,7 @@ The fourth experiment increases the realism of the scenario by
 introducing shadowing, i.e. attenuation of the radio signal by
 objects. The scenario to be evaluated is shown in the following figure.
 
-.. figure:: experiment4.*
+.. figure:: images/experiment4.*
    :align: center
 
    Scenario of experiment 4

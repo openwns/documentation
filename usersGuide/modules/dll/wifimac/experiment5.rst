@@ -18,7 +18,7 @@ and the STA. The distance between the nodes in the line can be varied;
 furthermore, the number of hops (and thus the number of MPs) can be
 changed.
 
-.. figure:: experiment5.*
+.. figure:: images/experiment5.*
    :align: center
 
    Scenario of experiment 5

@@ -9,7 +9,7 @@ center, all STAs surround the AP on a circle with a variable radius
 r. The number of STAs n can be changed, but the positioning of the
 STAs on the circle shall always be equidistantly.
 
-.. figure:: experiment3.*
+.. figure:: images/experiment3.*
    :align: center
 
    Scenario of experiment 3

@@ -37,9 +37,11 @@ file and explain the different steps that are required to setup a IEEE
 802.11-based wireless network scenario. To concentrate on the
 simulation process, the first scenario is kept as simple as possible:
 One Access Point (AP) transmits data to a Station (STA), within a
-distance d.
+distance d, see :ref:`figure-wifimac-experiment1`
 
-.. figure:: experiment1.*
+.. _figure-wifimac-experiment1:
+
+.. figure:: images/experiment1.*
    :align: center
 
    Scenario of experiment 1

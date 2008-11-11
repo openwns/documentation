@@ -631,9 +631,9 @@ class BuildEnvironment:
                 for filename in glob(path.join(self.srcdir, imgpath)):
                     relname = relative_path(self.srcdir, filename)
                     if filename.lower().endswith('.pdf'):
-                        candidates['application/pdf'] = path.join(docdir, relname)
+                        candidates['application/pdf'] = relname #path.join(docdir, relname)
                     elif filename.lower().endswith('.svg'):
-                        candidates['image/svg+xml'] = path.join(docdir, relname)
+                        candidates['image/svg+xml'] = relname #path.join(docdir, relname)
                     else:
                         try:
                             f = open(filename, 'rb')
@@ -644,7 +644,7 @@ class BuildEnvironment:
                         except (OSError, IOError):
                             self.warn(docname, 'Image file %s not readable' % filename)
                         if imgtype:
-                            candidates['image/' + imgtype] = path.join(docdir, relname)
+                            candidates['image/' + imgtype] = relname #path.join(docdir, relname)
             else:
                 candidates['*'] = imgpath
             for imgpath in candidates.itervalues():
