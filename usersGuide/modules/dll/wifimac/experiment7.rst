@@ -66,7 +66,7 @@ default configuration of ``wifimac.Layer2.Config``, which can be found in the fi
 
    sandbox/opt/lib/PyConfig/wifimac/Layer2.py
 
-In the beginning of the file, the creation of the FUNs for stations,
+At the beginning of the file, the creation of the FUNs for stations,
 MPs and APs is encapsulated in different functions. At the end, the
 class ``Config`` is defined. In the first part, variables are
 declared that will hold the configurations for different FUs:

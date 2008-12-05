@@ -29,7 +29,7 @@ config.py
 To complete the campaign, a configuration file ``config.py`` is
 required that configures the scenario, nodes and the evaluation. For
 the first experiment, a config.py can be found in
-``openWNS/tests/system/WiFiMAC-Tests--main--1.0/PyConfig/experiment1``,
+``openWNS/tests/system/WiFiMAC-Tests--main--1.0/PyConfig/experiment1/``,
 this file needs to be copied into the simulations directory.
 
 In the following, we will go step-by-step through this configuration
@@ -87,10 +87,10 @@ automatic generation of scenarios in the campaign: the object
 ``params`` contains member variables for every parameter that will be
 changed in the campaign. In this case, it is
 
-#. the simulation time,
-#. the distance between the AP and the STA,
-#. the offered traffic and
-#. the ratio of uplink to downlink traffic.
+#. the simulation time (simTime),
+#. the distance between the AP and the STA (distance),
+#. the offered traffic (offeredTraffic) and
+#. the ratio of uplink to downlink traffic (ulRatio).
 
 Besides these parameters, this section also sets the simulation's
 settling time, the logger level for the logger output, the packet
@@ -107,7 +107,7 @@ is used by the core module of the openWNS:
    :language: python
 
 The output strategy ``delete`` assures that old simulation output is
-deleted prior to the simulation, and the write interval of the
+deleted prior to the simulation. The write interval of the
 status-report and the probes is set.
 
 Scenario and Pathloss
@@ -164,7 +164,7 @@ radio access network gateway (RANG) is created.
 .. literalinclude:: ../../../../../.createManualsWorkingDir/wifimac.tutorial.experiment1.config.NodeCreation.Virtual
    :language: python
 
-The RANG is represents the portal to the Internet to which all APs in
+The RANG represents the portal to the Internet to which all APs in
 the network must be connected. Therefore, the RANG also contains a
 listener for all uplink-traffic of the STAs.
 
@@ -192,7 +192,7 @@ configuration with mainly default values, stored in
 ``wifimac.support.Transceiver.Mesh``. In the configuration file, only
 the values for the transmission power, the beacon start delay, the
 rate adaptation strategy and the threshold for the RTS/CTS
-transmission is set.
+transmission are set.
 
 For the creation of the AP, the function ``createAP`` of the node
 creator is used::
@@ -200,7 +200,7 @@ creator is used::
   ap = nc.createAP(idGen, managerPool, apConfig)
 
 Then, the ap object is added to the nodes, its id and the MAC
-addresses (only one in this case) is stored and the AP is made known
+addresses (only one in this case) are stored and the AP is made known
 to the RANG.
 
 Station
@@ -303,7 +303,7 @@ are written to the database. Then, the command
 
   ./simcontrol.py --create-scenarios
 
-reads the database and creates the for every scenario a sub-directory.
+reads the database and creates a sub-directory for every scenario.
 This can be validated by calling
 
 .. code-block:: bash

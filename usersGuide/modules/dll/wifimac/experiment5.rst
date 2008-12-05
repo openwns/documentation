@@ -31,7 +31,7 @@ the ``config.py`` and the ``campaignConfiguration.py`` from experiment
 Creating mesh points
 ********************
 
-The transceiver configuration of an MP is the same as the
+The transceiver configuration of a MP is the same as the
 configuration for an AP; hence, the same specialised configuration
 class from experiment 4 can be used; we choose to rename it to ``MyMeshTransceiver``:
 
@@ -81,7 +81,7 @@ neighbours can communicate with each other, but the neighbor's neighbors
 cannot. Hence, the 2-hop neighborhood shall be hidden nodes.
 
 #. Determine the saturation throughput of the string with at least 2
-   hops if only unidirectional traffic (e.g. only downlink) ist used.
+   hops if only unidirectional traffic (e.g. only downlink) is used.
 
 #. Mesh networks often have the problem that the "boundary" nodes have
    much less neighbors as the central nodes; Hence, they see the

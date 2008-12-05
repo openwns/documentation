@@ -67,15 +67,15 @@ a defined signature and return value:
 .. literalinclude:: ../../../../../.createManualsWorkingDir/wifimac.tutorial.experiment2.db.campaignConfiguration.GetTotalThroughput
    :language: python
 
-This function works in the following way: As input, it gets
+This function works in the following way: As input, it gets::
 
-paramsString
+* paramsString
   A string containing an SQL-ready enumeration of the parameters which define a specific scenario
 
-inputName
+* inputName
   The name of the input variable in the database
 
-cursor
+* cursor
   A cursor object to access the database
 
 This input is used to start two queries: The first one gets a list of
@@ -148,7 +148,7 @@ search will use the existing scenarios and continue the binary search
 at the most suitable point.
 
 The execution of several rounds can be automated by the parameter
-``--intervall=TIME``: It causes the simcontrol.py repeat the creation
+``--interval=TIME``: It causes the simcontrol.py repeat the creation
 of new scenarios. If the simulations are executed locally, the
 parameter ``TIME`` can be set to 1 (second). In this way, the
 saturation point can be evaluated automatically up to a predefined

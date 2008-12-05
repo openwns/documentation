@@ -9,8 +9,8 @@ dual-transceiver MPs and APs is not any problem: Instead of adding one
 transceiver to the configuration, we can add two (or even more than
 two, if needed).
 
-It is then a matter of the configuration to assign useful frequencies
-to the different transceivers. In the dual-transceiver mode, a single
+It is then a matter of configuration to assign useful frequencies
+to different transceivers. In dual-transceiver mode, a single
 frequency is required for the mesh network (usually from the 5.5GHz
 band) and at most 3 non-overlapping channels are available at the
 2.4GHz ISM-band.
@@ -46,7 +46,7 @@ Whereas the ``MySTATransceiver`` is changed to have
 
 The problem how to assign the BSS frequencies in an optimal way to the
 MPs and APs is discussed in the literature; here, we will use a very
-simple approach: We have an array of the three non-overlapping
+simple approach: We have an array of three non-overlapping
 frequencies ``bssFrequencies = [2400, 2440, 2480]``. When creating the
 AP and MPs, we use a counter ``bssCount`` and assign the frequencies
 in a round-robin fashion. Hence, the creation e.g. of the MPs is done

@@ -7,7 +7,7 @@ configuration language. The main goal of this experiment is to setup
 the scenario shown in the following figure: One AP is situated in the
 center, all STAs surround the AP on a circle with a variable radius
 r. The number of STAs n can be changed, but the positioning of the
-STAs on the circle shall always be equidistantly.
+STAs on the circle shall always be equidistant.
 
 .. figure:: images/experiment3.*
    :align: center
@@ -71,7 +71,7 @@ scenario. In detail, the new specialised class works in the following way:
 
 * Upon being called (which happens every time an instance of this
   class is created), the ``__init__`` function first calls the
-  ``__init__`` function of its superclass, which requires the known
+  ``__init__`` function of its superclass, which requires known
   parameters (start frequency, position, frequencies for scanning,
   scanDuration).
 
@@ -137,7 +137,7 @@ Experiments - Part 1
   Where is approximately the saturation point?
 
 #. Increase the number of STAs to 20. Where is the expected saturation
-   point? Validate the expectation with simulations.
+   point? Validate the expectation with simulation results.
 
 *****************************************
 Efficient Search for the Saturation Point
