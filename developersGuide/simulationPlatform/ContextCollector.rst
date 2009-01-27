@@ -23,15 +23,43 @@ Context Collector
 	to ``forwardMeasurement``. You only need to provide the measurement
 	value.
 
-Implementing a Measurement Source
----------------------------------
+Simple use of the Context Collector
+-----------------------------------
 
 First of all we need to include the ContextCollector's header file.
 
+.. literalinclude:: ../../../.createManualsWorkingDir/wns.probe.bus.tests.DevelopersGuideTestSimpleCollector.include.example
+
+Ok. This was not so hard. We will leave the ``Job`` class unchanged, but derive it from ``wns::RefCountable``. This is needed because we will use ``wns::SmartPointer`` to do the memory management for all ``Job`` instances.
+
+.. literalinclude:: ../../../.createManualsWorkingDir/wns.probe.bus.tests.DevelopersGuideTestSimpleCollector.job.example
+
+We add a ``ContextCollector`` as private member to the ``Processor`` class. The ``ContextCollector`` simplifies collecting
+measurements. It takes care of filling the context and also take care to pass the current simulation time to the underlying ``ProbeBus``.
+
+.. literalinclude:: ../../../.createManualsWorkingDir/wns.probe.bus.tests.DevelopersGuideTestSimpleCollector.processor.example
+
+The constructor of a the ``ContextCollector`` takes the name of the measurement source as a parameter. There is a more
+complex constructor that is described in the second part of this chapter.
+
+.. literalinclude:: ../../../.createManualsWorkingDir/wns.probe.bus.tests.DevelopersGuideTestSimpleCollector.constructor.example
+
+If you want to publish a measurement you simply use the ``put`` method of the ``ContextCollector``. The first argument is the measurement value. If you want to provide some additional context you can pass a ``boost::tuple`` (see boosttuple_) as second parameter. Here we use ``boost::make_tuple`` to construct a tuple. The entries with odd indices (starting at 1) of the tuple are the keys and must always be of type ``std::string`` the even ones are the values and can either be of type ``int`` or ``std::string``.
+
+.. literalinclude:: ../../../.createManualsWorkingDir/wns.probe.bus.tests.DevelopersGuideTestSimpleCollector.stopJob.example
+
+If you compare this to the ``Processor::onJobEnded`` method of the last example, you can see that you basically need two lines of code where you previously needed around 10.
+
+.. _boosttuple: http://www.boost.org/doc/libs/1_37_0/libs/tuple/doc/tuple_users_guide.html
+
+Using and Implementing Context Providers
+----------------------------------------
+
+If you want to add context from other locations in your simulator without introducing thight coupling between the entity that provides the context and the entity that provides the measurement you should make use of ``ContextProviders``. A ``ContextProvider`` encapsulates the provisioning of context entries in a separate class. This section shows you how to implement a ``ContextProvider`` and add it to a ``ContextProviderCollection`` which defines the ``Context`` of a ``ContextCollector``. So lets get started. Again, we first need to include the ContextCollector's header file.
+
 .. literalinclude:: ../../../.createManualsWorkingDir/wns.probe.bus.tests.DevelopersGuideTestCollector.include.example
 
-Ok. This was not so hard. We will leave the ``Job`` class unchanged, but derive it from ``wns::osi::PDU``. openWNS
-is a system level simulation tool that focusses on protocol behaviour. The ``ContextCollector`` expects jobs to be PDUs.
+Ok. This was not so hard. We will leave the ``Job`` class unchanged, but derive it from ``wns::osi::PDU`` instead of ``wns::RefCountable?``. openWNS is a system level simulation tool that focusses on protocol behaviour. The ``ContextCollector`` expects jobs to be PDUs.
 So it this is a reasonable approach.
 
 .. literalinclude:: ../../../.createManualsWorkingDir/wns.probe.bus.tests.DevelopersGuideTestCollector.job.example
