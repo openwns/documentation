@@ -43,7 +43,7 @@ Input parameter
 In the following, the existing file ``campaignConfiguration.py`` is
 changed to implement the binary search. An example implementation can be
 found in the directory
-``openWNS/tests/system/WiFiMAC-Tests--main--1.0/PyConfig/experiment2``
+``openWNS/tests/system/wifimac-tests/PyConfig/experiment2``
 
 Parameter Class
 ===============
@@ -67,7 +67,7 @@ a defined signature and return value:
 .. literalinclude:: ../../../../../.createManualsWorkingDir/wifimac.tutorial.experiment2.db.campaignConfiguration.GetTotalThroughput
    :language: python
 
-This function works in the following way: As input, it gets::
+This function works in the following way: As input, it gets
 
 * paramsString
   A string containing an SQL-ready enumeration of the parameters which define a specific scenario

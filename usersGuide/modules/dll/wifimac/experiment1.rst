@@ -29,7 +29,7 @@ config.py
 To complete the campaign, a configuration file ``config.py`` is
 required that configures the scenario, nodes and the evaluation. For
 the first experiment, a config.py can be found in
-``openWNS/tests/system/WiFiMAC-Tests--main--1.0/PyConfig/experiment1/``,
+``openWNS/tests/system/wifimac-tests/PyConfig/experiment1/``,
 this file needs to be copied into the simulations directory.
 
 In the following, we will go step-by-step through this configuration
@@ -59,14 +59,14 @@ Namely, we import
 
 * The random number generator
 
-* The simulator core ``wns.WNS``, plus classes to define dB, dBm and an interval.
+* The simulator core ``openwns``, plus classes to define dB, dBm and an interval.
 
-* The traffic generator ``Constanze``.
+* The traffic generator ``constanze``.
 
 * A virtual ARP and DNS server for the IP-Layer.
 
 * From wifimac:
-  * The support package that allows the generation of nodes.
+  * The support package that allows the generation of nodes and transceivers for the nodes.
   * The pathselection package (used for mesh networking, but required in all scenarios as every AP registers itself and its associated STAs)
   * The management information base
   * The evaluation structure for the wifimac and the ip layer
@@ -100,8 +100,7 @@ frequency.
 WNS Core Configuration
 ======================
 
-The next section creates one instance of the WNS configuration, which
-is used by the core module of the openWNS:
+The next section creates one instance of the openWNS:
 
 .. literalinclude:: ../../../../../.createManualsWorkingDir/wifimac.tutorial.experiment1.config.WNS
    :language: python
@@ -115,7 +114,7 @@ Scenario and Pathloss
 
 The creation of the scenario instance is done by using the rise
 module; additionally the default riseConfig and ofdmaPhyConfig is
-instantiated. Furthermore, a managerPool is created which may be used to
+instantiated. Furthermore, a managerPool is created which is able to
 manage different orthogonal radio channels.
 
 
@@ -154,6 +153,12 @@ Virtual nodes
 Real nodes
    that simulate entities from the real world.
 
+After the creation and configuration of a node, it is appended to the
+array of nodes in the simulation mode using the line::
+
+  WNS.simulationModel.nodes.append(node)
+
+
 Virtual Nodes
 -------------
 
@@ -183,7 +188,7 @@ The creation requires two steps:
 
 #. Generation of a transceiver configuration and
 
-#. Creation of the AP node and addition to ``WNS.nodes``
+#. Creation of the AP node and addition to ``WNS.simulationModel.nodes``
 
 These two steps are required because an AP can have potentially more
 than one transceiver, each with a different configuration
@@ -253,7 +258,7 @@ lines.
 .. note::
 
    An example ``campaignConfiguration.py`` can be found in
-   ``openWNS/tests/system/WiFiMAC-Tests--main--1.0/PyConfig/experiment1``
+   ``openWNS/tests/system/wifimac-tests/PyConfig/experiment1``
 
 First, we import the necessary package to handle the generation of
 simulation scenarios:
@@ -361,7 +366,7 @@ is stared by calling
 
 .. code-block:: bash
 
-   openWNS/framework/Wrowser--main--0.9/wrowser
+   openWNS/framework/wrowser/wrowser
 
 In the menu File are the different options to read the generated
 simulation data, we select ``Open Campaign Database`` and then under

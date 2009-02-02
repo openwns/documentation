@@ -94,4 +94,4 @@ cannot. Hence, the 2-hop neighborhood shall be hidden nodes.
 .. note::
 
    An example ``config.py`` and ``campaignConfiguration.py`` can be found in
-   ``openWNS/tests/system/WiFiMAC-Tests--main--1.0/PyConfig/experiment5``.
+   ``openWNS/tests/system/wifimac-tests/PyConfig/experiment5``.

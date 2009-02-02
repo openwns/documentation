@@ -101,9 +101,12 @@ the variables which are used in multiple FUs.
 Therefore, a configuration variable is either found on this level of
 the configuration tree (e.g. ``bufferSize`` or ``sifsDuration``), or
 in one the sub-configurations. Especially interesting is the variable
-``mode``, which can either have the setting ``basic`` for the legacy
-IEEE 802.11 protocol, or ``DraftN`` to enable the MAC enhancements of
-the "n" amendment.
+``funTemplate``, which is a pointer to a class that is able to
+generate the functional unit network of the node. Its default value,
+``wifimac.FUNModes.Basic``, represents the class that creates a FUN
+for the basic operation of IEEE 802.11. To enable the enhancements of
+the "n" amendement, it has to be set to ``wifimac.FUNModes.DraftN``.
+
 
 The file structure where the sub-configuration classes can be found
 can easily be derived from the name of the class: For example, the
@@ -137,9 +140,9 @@ Experiments
    class in ``Layer2.py``, collect all settings in the sub-configuration
    and display them in a tree-like structure.
 
-#. Selecting the "DraftN" for the variable ``layer2.mode`` activates
-   the MAC enhancements of the amendment IEEE 802.11n. How are the
-   following parameters changed:
+#. Selecting the class ``wifimac.FUNModes.DraftN`` for the variable
+   ``funTemplate`` activates the MAC enhancements of the amendment
+   IEEE 802.11n. How are the following parameters changed:
 
    #. Maximum number of frames in an aggregated frame
 
