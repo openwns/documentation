@@ -214,7 +214,6 @@ means the directory is a sub project):
  - ``openWNS-sdk/config/private.py`` : user defined compilation settings
  - ``openWNS-sdk/config/pushMailRecipients.py`` : list of recipients for mail on 'bzr push'
  - ``openWNS-sdk/config/valgrind.supp`` : openWNS-specific valgrind suppressions
- - ``openWNS-sdk/config/wnsrc.py`` : support to determine the location of current SDK
  - ``openWNS-sdk/documentation/`` : the documentation project
  - ``openWNS-sdk/framework/`` : core part (lib, simulator application) of openWNS
  - ``openWNS-sdk/framework/application/`` : core application project

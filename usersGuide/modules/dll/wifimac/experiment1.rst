@@ -73,6 +73,12 @@ Namely, we import
 
 * The scenario package to define the radio environment.
 
+.. warning::
+
+   In each ``campaignConfiguration.py`` file there is some additional code even before the import statements. This code 
+   is used to find and set the proper import paths within your openwns-sdk. If you create new ``campaignConfiguration.py`` files you should copy this code and include it in your file.
+
+
 Simulation Parameters
 =====================
 
