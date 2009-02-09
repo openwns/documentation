@@ -21,6 +21,8 @@ Welcome to the openWNS Users Guide!
 
    modules/dll/wifimac/WiFiMAC
 
+   PyTree
+
 Indices and tables
 ==================
 
