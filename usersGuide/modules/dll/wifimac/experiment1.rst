@@ -30,7 +30,7 @@ To complete the campaign, a configuration file ``config.py`` is
 required that configures the scenario, nodes and the evaluation. For
 the first experiment, a config.py can be found in
 ``openWNS/tests/system/wifimac-tests/PyConfig/experiment1/``,
-this file needs to be copied into the simulations directory.
+this file needs to be copied into the simulations directory (``myFirstCampaign/Experiment1``).
 
 In the following, we will go step-by-step through this configuration
 file and explain the different steps that are required to setup a IEEE
@@ -329,7 +329,7 @@ running
 
 .. code-block:: bash
 
-   ./wns-core-dbg
+   ./openwns-dbg
 
 If everything works right, the logging output of the simulation is
 printed (consisting of the simulation time, the module, the FU and the
@@ -404,7 +404,9 @@ Experiments
    until a point where the traffic cannot be carried completely. It is
    not necessary to delete existing scenarios, ``simcontrol.py`` will
    automatically identify the missing simulations and create them when
-   told so.
+   told so. Everytime you modify the campaign parameters, first call ``simcontrol.py --create-database``
+   to add entries to the database and ``simcontrol.py --create-scenarios`` to
+   create the simulation directories accordingly.
 
 #. How does the mean end-to-end delay react on increasing the offered
    traffic? How does the 99-percentile react?

@@ -28,7 +28,7 @@ which is then used for all the following experiments. A simulation
 campaign consists of
 
 #. a sub-directory ``sandbox`` that contains all necessary libraries
-   and the wns-core. After creation of the campaign, the directory
+   and the openwns executable. After creation of the campaign, the directory
    will be changed to read-only mode in order to secure its content.
 #. a directory to store simulations; this tutorial will use 
    ``Experiment1``, ``Experiment2``, ..., ``Experiment7`` for different problems.
