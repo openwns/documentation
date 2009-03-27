@@ -51,7 +51,7 @@ Download
   your system has all the necessary software to install and run openWNS: see
   :ref:`gettingStartedPrerequisites`.
 
-.. note:: 
+.. note::
   This download instructions are a little bit longer than
   others (e.g. where you just need to download a .tgz-file). But it pays
   off as soon as you want to retrieve your first update. In the end the
@@ -62,9 +62,9 @@ Download
 
 .. code-block:: bash
 
-   bzr branch http://launchpad.net/~comnets/openwns-sdk/sdk--main--1.0 myOpenWNS
-   cd myOpenWNS
-   ./playground.py upgrade --noAsk
+   $ bzr branch http://launchpad.net/~comnets/openwns-sdk/sdk--main--1.0 myOpenWNS
+   $ cd myOpenWNS
+   $ ./playground.py upgrade --noAsk
 
 
 Configuring Bazaar
@@ -111,7 +111,7 @@ whatever you want as name. A good name is 'openWNS-sdk--main--1.0' ;-).
 .. code-block:: bash
 
    $ bzr branch http://launchpad.net/~comnets/openwns-sdk/sdk--main--1.0 myOpenWNS
-   Branched 70 revision(s).
+   Branched 42 revision(s).
    $ cd myOpenWNS
 
 Now you have a local copy of openWNS. Well, not really. What you have
@@ -238,3 +238,71 @@ directory ;-).
    When openwns-sdk is initial download the sub projects are not
    contained in the SDK. See @ref download for further instructions on how to
    fetch the missing parts.
+
+Installing The Wrowser
+----------------------
+
+The Wrowser (an acronym for Wireless network simulator Result brOWSER)
+supports with a graphical interface the collection of results,
+extraction of measurements and creation of parameter
+plots. Furthermore, the Wrowser helps to create simulation campaigns
+with large parameter spaces. The Wrowser is a project separated from
+the openWNS and thus has to be installed independently.
+
+.. todo:
+   Check prerequisites (qt, etc.)
+
+* Installation
+
+Similar to the openWNS installation, the Wrowser can be obtained and
+updated using Bazaar. The following command will checkout the current
+version of the Wrowser into the directory 'wrowser'. Choose whatever
+you want as name.
+
+.. code-block:: bash
+
+   $ bzr branch http://launchpad.net/~comnets/openwns-wrowser wrowser
+   Branched 27 revision(s).
+   $ cd wrowser
+   $ scons
+
+* Adding the wrowser-plugin into playground.py
+
+The Wrowser comes with a plugin for the playground.py that supports
+the setup of simulation campaigns, i.e., a compiled version of the
+openWNS together with a configuration and a set of parameters that
+shall be simulated. Each simulation campaign also provides a tool to
+start, stop and query the status of the simulations.
+
+The playground.py script of your openWNS installation gathers these
+plugins in all directories specified in the file
+``playground.config``, which is located in the directory ``.wns`` in
+your home folder. Open this file with an editor and add the following
+two lines:
+
+.. code-block:: bash
+
+   [AdditionalPluginPaths]
+   path1 = [path to the wrowser]/wrowser/playgroundPlugins
+
+Of course, you must replace ``[path to the wrowser]`` with the
+directory where you have installed the Wrowser in the previous step.
+
+Then, go into your openWNS - directory created during the installation
+of the openWNS and call playground.py. If everything went right, you
+should see the new command ``preparecampaign``:
+
+.. code-block:: bash
+
+  $ ./playground.py
+  [...]
+  preparecampaign :  Prepare a simulation campaign.
+  [...]
+
+Now both the Wrowser and the simulation campaign plugin are ready to
+be used in the following experiments!
+
+
+
+
+
