@@ -18,7 +18,7 @@ Welcome to the openWNS Users Guide!
    :maxdepth: 2
 
    about/AboutThisBook
-
+   gettingStarted/GettingStarted
    modules/dll/wifimac/WiFiMAC
 
    PyTree
