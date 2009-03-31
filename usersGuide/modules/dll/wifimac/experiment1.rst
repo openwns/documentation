@@ -7,14 +7,15 @@ simulation campaign, run the simulations and evaluate the results.
 
 In the following, we will assume that ``myFirstCampaign`` is the root
 directory of the simulation campaign, created as described in the
-previous section, and ``myFirstCampaign/Experiment1`` is the directory
+previous section, and ``myFirstCampaign/simulations`` is the directory
 where the simulations are stored.
 
 In the beginning, this directory contains only the following files:
 
-   campaignConfiguration.py
+.. code-block:: bash
 
-   simcontrol.py
+   $ ls
+   campaignConfiguration.py   simcontrol.py
 
 ``simcontrol.py`` is used to manage the simulation, i.e. creating the
 scenarios, executing the simulations (either locally or in a
