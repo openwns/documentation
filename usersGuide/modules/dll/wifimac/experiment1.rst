@@ -262,7 +262,7 @@ the appropriate user the campaign with the chosen name, see :ref:`figure-wifimac
 
 .. _figure-wifimac-experiment1-wrowser-selectCampaign:
 
-.. figure:: images/wrowser-selectCampaign.*
+.. figure:: images/experiment1-wrowser-selectCampaign.*
    :align: center
 
    Campaign selection
@@ -273,7 +273,7 @@ Wrowser will display all possible parameter combinations, see
 
 .. _figure-wifimac-experiment1-wrowser-parameter:
 
-.. figure:: images/wrowser-parameter.*
+.. figure:: images/experiment1-wrowser-parameter.*
    :align: center
 
    Parameter selection
@@ -297,7 +297,7 @@ select ``Draw`` in the bottom to see a figure as in :ref:`figure-wifimac-experim
 
 .. _figure-wifimac-experiment1-wrowser-graph:
 
-.. figure:: images/wrowser-graph.*
+.. figure:: images/experiment1-wrowser-graph.*
    :align: center
 
    Throughput plot
@@ -317,7 +317,7 @@ as the offered traffic increases, see
 
 .. _figure-wifimac-experiment1-wrowser-delay:
 
-.. figure:: images/wrowser-delay.*
+.. figure:: images/experiment1-wrowser-delay.*
    :align: center
 
    Delay plot
@@ -393,10 +393,11 @@ Namely, we import
 * A virtual ARP and DNS server for the IP-Layer.
 
 * From wifimac:
-  * The support package that allows the generation of nodes and transceivers for the nodes.
-  * The pathselection package (used for mesh networking, but required in all scenarios as every AP registers itself and its associated STAs)
-  * The management information base
-  * The evaluation structure for the wifimac and the ip layer
+
+  - The support package that allows the generation of nodes and transceivers for the nodes.
+  - The pathselection package (used for mesh networking, but required in all scenarios as every AP registers itself and its associated STAs)
+  - The management information base
+  - The evaluation structure for the wifimac and the ip layer
 
 * The scenario package to define the radio environment.
 
@@ -548,59 +549,6 @@ for the WiFiMAC hop-to-hop and the IP end-to-end layer:
 
 .. literalinclude:: ../../../../../.createManualsWorkingDir/wifimac.tutorial.experiment1.config.Probing
    :language: python
-
-
-************************
-campaignConfiguration.py
-************************
-
-.. warning::
-
-   In each ``campaignConfiguration.py`` file there is some additional
-   code even before the import statements. This code is used to find
-   and set the proper import paths within your openwns-sdk. If you
-   create new ``campaignConfiguration.py`` files you should copy this
-   code and include it in your file.
-
-
-After the simulation configuration is completed, we can set the
-simulations parameters in the file ``campaignConfiguration.py``. The
-contents of this file can be deleted and replaced with the following
-lines.
-
-.. note::
-
-   An example ``campaignConfiguration.py`` can be found in
-   ``openWNS/tests/system/wifimac-tests/PyConfig/experiment1``
-
-First, we import the necessary package to handle the generation of
-simulation scenarios:
-
-.. literalinclude:: ../../../../../.createManualsWorkingDir/wifimac.tutorial.experiment1.campaignConfiguration.import
-   :language: python
-
-
-Then, we setup a class ``Set`` that contains all simulation parameters that are used in ``config.py``:
-
-.. literalinclude:: ../../../../../.createManualsWorkingDir/wifimac.tutorial.experiment1.campaignConfiguration.Set
-   :language: python
-
-Next, an instance with the same name as in the ``config.py`` is created:
-
-.. literalinclude:: ../../../../../.createManualsWorkingDir/wifimac.tutorial.experiment1.campaignConfiguration.params
-   :language: python
-
-Then, the parameters in ``params`` can be populated with different
-values. Each time the ``write()`` member function (inherited from the
-class ``Parameters``) is called, the current values are fixed and
-represent one simulation:
-
-.. literalinclude:: ../../../../../.createManualsWorkingDir/wifimac.tutorial.experiment1.campaignConfiguration.population
-   :language: python
-
-With this setup, 10 simulations are created, differentiated by the
-offered downlink traffic between 1 and 10 Mb/s. This concludes the
-file ``campaignConfiguration.py``.
 
 ************
 Experiments

@@ -102,8 +102,10 @@ PostgreSQL manual for further information.
 
    .. important::
       The script assigns a default password to the created
-      user account, which is ``foobar``. You can change this password by
-      editing the variable ``password`` in the script before running.
+      user account, which is ``foobar``. You can change this password
+      by editing the variable ``password`` in the script before
+      running. Do not use your default user password - the database
+      user account password is not stored secure!
 
 Now, a account is created on the database which can be used to store
 the simulation results.

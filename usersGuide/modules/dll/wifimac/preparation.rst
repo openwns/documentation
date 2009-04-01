@@ -109,4 +109,4 @@ the script will ask (after the database-question):
        Type 'e' to exit (u/c/e) [e]:
 
 Use ``c`` to create the sub-campaign and select a useful name for the
-directory, e.g. ``experiment2``.
+directory.

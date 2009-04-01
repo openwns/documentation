@@ -87,6 +87,15 @@ two lines:
 Of course, you must replace ``[path to the wrowser]`` with the
 directory where you have installed the Wrowser in the previous step.
 
+The plugin itself needs to be able to import further python modules
+which are included in the Wrowser installation. To be able to find
+them, the Wrowser directory should be added to the ``PYTHONPATH``
+environment variable, e.g., by appending the following line to your ``~/.bashrc``:
+
+.. code-block:: bash
+
+   export PYTHONPATH=${PYTHONPATH}:[path to the wrowser]
+
 Then, go into your openWNS - directory created during the installation
 of the openWNS and call playground.py. If everything went right, you
 should see the new command ``preparecampaign``:
