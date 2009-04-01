@@ -1,3 +1,5 @@
+.. _gettingStartedPostgreSQL:
+
 ----------------------------------
 Installing the PostgreSQL database
 ----------------------------------

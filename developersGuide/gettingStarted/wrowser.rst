@@ -1,3 +1,5 @@
+.. _gettingStartedWrowser:
+
 ----------------------
 Installing the Wrowser
 ----------------------
