@@ -14,12 +14,10 @@ Third party libraries
 
  * CppUnit_ (>=1.10) The basic unit testing framework
  * Python_ (>=2.4) Used by almost everything starting from the build framework to configuration
- * SciPy_ Pythons open-source software for mathematics, science, and engineering
  * Boost_ Mainly used to have the TR1 implementations of the upcoming C++ standard available
 
 .. _CppUnit: http://cppunit.sourceforge.net/
 .. _Python: http://www.python.org
-.. _SciPy: http://www.scipy.org/
 .. _Boost: http://www.boost.org/
 
 Build framework
