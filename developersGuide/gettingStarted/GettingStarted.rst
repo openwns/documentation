@@ -14,4 +14,5 @@ Getting Started
    sdklayout
    wrowser
    postgresql
+   cygwin
 
