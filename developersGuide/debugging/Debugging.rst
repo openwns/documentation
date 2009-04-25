@@ -37,3 +37,8 @@ If you have cyclic SmartPtrs you probably want to make use of the SmartPtr debug
 
 At the end of the simulation run all SmartPtrs that were not properly deleted are shown. Each occurrence is accompanied by the call stack that led to its construction.
 
+.. note::
+
+   Please note that it is possible that openwns quits with a SIGSEGV at the simulation end.
+   This is due to the undeterministic destruction sequence of static variables and the
+   way SmartPtr debugging works.
