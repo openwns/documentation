@@ -7,19 +7,22 @@ Experiment 2: Efficient Search for the Saturation Point
    Experiment 2 re-uses the campaign (and also existing simulations)
    from experiment 1; Especially, the same ``config.py`` is
    used. Therefore, we recommend to continue the experiment in the
-   directory ``myFirstCampaign/Experiment1``, and not to create a new
-   sub-campaign using ``./playground.py preparecampaign PATH``.
+   directory ``myFirstCampaign/experiment1``, and not to create a new
+   sub-campaign using ``./playground.py preparecampaign ../myFirstCampaign``.
+
+We have seen during Experiment 1 that a manual search for the
+saturation point by selecting different offered traffic values can
+take some time, depending on the initial estimation of the user.
 
 With the help of the database, the search for the saturation point can
-be done in a much more efficient way than be selecting "random" values
+be done in a much more efficient way than by selecting "random" values
 for the offered traffic and simulating until the point is found. A
-typical offered traffic vs. throughput curve will always be a
-bisector in the beginning, reach the saturation point and then,
-depending on the type of system under simulation, flatten out or fall
-down. Therefore, this saturation point can be found efficiently using
-binary search: Starting with a small offered traffic as initial value,
-simulations are run sequentially, doubling the offered traffic every
-time.
+typical offered traffic vs. throughput curve will always be a bisector
+in the beginning, reach the saturation point and then, depending on
+the type of system under simulation, flatten or decrease. Therefore,
+this saturation point can be found efficiently using binary search:
+Starting with a small offered traffic as initial value, simulations
+are run sequentially, doubling the offered traffic every time.
 
 If the throughput is less than the offered traffic, the upper bound is
 found, and the binary search continues with the mean value of the
@@ -141,18 +144,80 @@ when populating the database with new scenarios:
 
 .. code-block:: bash
 
-   ./simcontrol.py --create-database
+   $ ./simcontrol.py --create-database
+   {'packetSize': 11840} : waiting for output
+   {'packetSize': 640} : initial simulation
+   1 new / 1 waiting / 0 finished simulations
+   Scenarios successfully created.
+   Executing scenario with id: 11
+   Executing scenario with id: 12
+   Database entries successfully created.
 
 Without deleting the previous results of the experiment, the binary
 search will use the existing scenarios and continue the binary search
-at the most suitable point.
+at the most suitable point. Another call to the ``simcontrol.py`` will
+compute the next round of the binary search for both packet sizes:
 
-The execution of several rounds can be automated by the parameter
-``--interval=TIME``: It causes the simcontrol.py repeat the creation
-of new scenarios. If the simulations are executed locally, the
-parameter ``TIME`` can be set to 1 (second). In this way, the
+.. code-block:: bash
+
+   $ ./simcontrol.py --create-database
+   {'packetSize': 11840} : 100000 ... 200000 --> newValue 200000
+   {'packetSize': 640} : 100000 ... 200000 --> newValue 200000
+   2 new / 0 waiting / 0 finished simulations
+   Skipping /home/wns/myFirstCampaign/experiemt1/11, it already exists (consider --force switch)
+   Skipping /home/wns/myFirstCampaign/experiemt1/12, it already exists (consider --force switch)
+   Scenarios successfully created.
+   Executing scenario with id: 13
+   Executing scenario with id: 14
+   Database entries successfully created.
+
+The binary search has collected the information that, for both packet
+sizes, the saturation point was not reached at 0.1Mb/s. Thus, the
+next two simulations with 0.2Mb/s are created and executed.
+
+The iterative execution of several rounds can be automated by the
+parameter ``--interval=TIME``: It causes the simcontrol.py repeat the
+creation of new scenarios. If the simulations are executed locally,
+the parameter ``TIME`` can be set to 1 (second). In this way, the
 saturation point can be evaluated automatically up to a predefined
-exactness.
+exactness:
+
+.. code-block:: bash
+
+  $ ./simcontrol.py --create-database --interval=1
+  Running command ...
+  {'packetSize': 11840} : 200000 ... 400000 --> newValue 400000
+  {'packetSize': 640} : 200000 ... 400000 --> newValue 400000
+  2 new / 0 waiting / 0 finished simulations
+  Skipping /home/wns/myFirstCampaign/experiemt1/11, it already exists (consider --force switch)
+  Skipping /home/wns/myFirstCampaign/experiemt1/12, it already exists (consider --force switch)
+  Skipping /home/wns/myFirstCampaign/experiemt1/13, it already exists (consider --force switch)
+  Skipping /home/wns/myFirstCampaign/experiemt1/14, it already exists (consider --force switch)
+  Scenarios successfully created.
+  Executing scenario with id: 15
+  Executing scenario with id: 16
+  Database entries successfully created.
+  Sleeping until 15:54 2009-4-1...
+  Running command ...
+  [...]
+  {'packetSize': 11840} : 18400000 ... 19200000 --> Exactness < 0.05 , stop!
+  {'packetSize': 640} : 3000000 ... 3100000 --> Exactness < 0.05 , stop!
+  0 new / 0 waiting / 2 finished simulations
+
+Finally, for both packet sizes the saturation point has been found up
+to the configured exactness: Between 18.4 and 19.2 Mb/s for a packet
+size of 1480B and between 3 and 3.1 Mb/s for the smaller packet size
+80B (minus 10% error margin for each). Using the wrowser, it is
+possible to plot this, see :ref:`figure-wifimac-experiment2-wrowser-throughput`.
+
+.. _figure-wifimac-experiment2-wrowser-throughput:
+
+.. figure:: images/experiment2-wrowser-throughput.*
+   :align: center
+
+   Throughput plot
+
+
 
 ************
 Experiments

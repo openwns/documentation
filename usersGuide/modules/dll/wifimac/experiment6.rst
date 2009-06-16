@@ -3,11 +3,11 @@ Experiment 6: Dual Transceiver Mesh Networking
 ##############################################
 
 Second generation mesh networks support dual transceivers, so that the
-last link can be separated from the remaining mesh backbone. With the
-flexible configuration provided by the WiFiMAC, the setup of
-dual-transceiver MPs and APs is not any problem: Instead of adding one
-transceiver to the configuration, we can add two (or even more than
-two, if needed).
+last link to and from the STAs can be separated from the remaining
+mesh backbone. With the flexible configuration provided by the
+WiFiMAC, the setup of dual-transceiver MPs and APs is not any problem:
+Instead of adding one transceiver to the configuration, we can add two
+(or even more than two, if needed).
 
 It is then a matter of configuration to assign useful frequencies
 to different transceivers. In dual-transceiver mode, a single

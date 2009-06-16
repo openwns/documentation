@@ -3,53 +3,110 @@ Preparation
 ===========
 
 In the following, it is assumed that the openWNS source code is
-situated in the directory ``openWNS``.
+situated in the directory ``myOpenWNS``.
 
 Make sure that the following points are met within your openWNS
 installation:
 
-* Running ``./playground.py`` from ``openWNS`` should give no error or
+* Running ``./playground.py`` from ``myOpenWNS`` should give no error or
   warning message, but the standard help output.
 
 * The installation of both the debug as well as the opt version of
-  openWNS, from the source code to the ``openWNS/sandbox`` directory,
-  works without problems. Installation is started with the commands::
+  openWNS, from the source code to the ``myOpenWNS/sandbox`` directory,
+  works without problems. Installation is started with the commands
 
- 	./playground.py install
-	./playground.py install  --flavour=opt
+  .. code-block:: bash
+
+     $ ./playground.py install
+     $ ./playground.py install  --flavour=opt
 
 * All system and unit tests should run without errors. Tests are
-  started with the command::
+  started with the command
 
-  	./playground.py runtests
+  .. code-block:: bash
+
+     $ ./playground.py runtests
+
+* The command to create simulation campaigns, ``preparecampaign``, is
+  available when running ``./playground.py``.
+
+* The database to store simulation results is installed according to
+  :ref:`gettingStartedPostgreSQL`.
 
 If all these steps succeed, you can create a new simulation campaign
-which is then used for all the following experiments. A simulation
-campaign consists of
+which is used for all the following experiments. A simulation campaign
+consists of
 
-#. a sub-directory ``sandbox`` that contains all necessary libraries
-   and the openwns executable. After creation of the campaign, the directory
-   will be changed to read-only mode in order to secure its content.
-#. a directory to store simulations; this tutorial will use 
-   ``Experiment1``, ``Experiment2``, ..., ``Experiment7`` for different problems.
+#. A sub-directory ``sandbox`` that contains all necessary libraries
+   and the openwns executable. After creation of the campaign, the
+   directory will be changed to read-only mode in order to avoid
+   changes to its content.
 
-With the command ``./playground.py preparecampaign PATH``, with
-``PATH`` as the root directory of the campaign, the campaign is created 
-(e.g. running ./playground preparecampaign ../myFirstCampaign will create a campaign directory above openWNS/). 
-After some moments, the script requests the following user input:
+#. One or more directories to store the simulation configuration(s)
+   and the results in. When the simulation campaign is initially
+   created, this directory is named ``simulations``.
 
-#. Use the database to store simulation parameters and results? For
-   fast and efficient evaluation of the generated results, it is
-   recommended to use the database.
-#. Name of the directory to store
-   simulations; e.g. ``Experiment1``.
-#. Name of the campaign.
-#. Description of the campaign.
+#. Optinally, a set of tables in the simulation database to store
+   * The parameters used to create the simulations and
+   * The results of each simulation
+   By combining the simulation parameters with the results, it becomes
+   possible to data-mine the effects of different parameters to the
+   measurements. We will use in the experiments this methodology,
+   supported by the help of the openWNS Wrowser, which allows
+   aggregation, slicing and dicing of simulation results together with
+   the plotting of presentation-quality graphs.
 
-If the directory ``PATH`` already contains a valid simulation campaign, the script offers two options:
+To create the simulation campaign, use the ``preparecampaign``-command
+in the following way:
 
-#. To update the content of the ``sandbox`` directory with the current version of the openWNS.
-#. To add a new sub-campaign in a new simulation directory (e.g. ``Experiment2``).
+.. code-block:: bash
 
-For the different experiments, we suggest to use different
-sub-campaigns, e.g. with names Experiment1, Experiment2, etc.
+   $ ./playground.py preparecampaign ../myFirstCampaign
+   Preparing simulation campaign. Please wait...
+
+This will create the directory ``../myFirstCampaign``, including the
+neccessary sub-directories. After some moments, the script requests
+the following user input:
+
+#. ``Do you want to use the database server for storing simulation
+   campaign related data?``
+
+   Please answer with ``y``.
+
+#. ``Please enter the name of the directory the simulations shall be
+   stored in:``
+
+   For each experiment, we suggest to use a different simulation
+   directory (or "sub-campaign"). In this way, all experiments use the
+   same version of the openWNS, but have different configuration
+   files. Hence, the first experiment should get the name
+   ``experiment1``.
+
+#. ``Please enter a name for the campaign:``
+
+   This name will be used to identify and select the campaign in the
+   openWNS Wrowser.
+
+#. ``Please enter a short description of the campaign:``
+
+   This description will also be shown in the openWNS Wrowser.
+
+Then, the installation procedure will start. For the other
+experiments, it is suggested to create sub-campaigns. To do this, call
+the ``preparecampaign`` command again with a directory of an existing
+campaign:
+
+.. code-block:: bash
+
+   $ ./playground.py preparecampaign ../myFirstCampaign
+
+the script will ask (after the database-question):
+
+.. code-block:: bash
+
+   Found simulation campaign in directory /home/wns/myFirstCampaign.
+   Shall I try to (U)pdate the sandbox or do you want to (C)reate a new sub campaign?
+       Type 'e' to exit (u/c/e) [e]:
+
+Use ``c`` to create the sub-campaign and select a useful name for the
+directory.

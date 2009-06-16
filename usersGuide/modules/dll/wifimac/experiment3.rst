@@ -110,7 +110,7 @@ and the addition to ``WNS.nodes`` must be inside this loop.
 
   The resulting ``config.py`` with the described changes is also
   available in the directory
-  ``openWNS/tests/system/wifimac-tests/PyConfig/experiment3``
+  ``myOpenWNS/tests/system/wifimac-tests/PyConfig/experiment3``
 
 ********************
 Experiments - Part 1
@@ -159,7 +159,7 @@ retrieval of f(input) = output from the database, we have to
 This is done by the following ``getTotalThroughputPerSTA`` function,
 which can be found in the ``campaignConfiguration.py`` prepared in the
 directory
-``openWNS/tests/system/wifimac-tests/PyConfig/experiment3``:
+``myOpenWNS/tests/system/wifimac-tests/PyConfig/experiment3``:
 
 .. literalinclude:: ../../../../../.createManualsWorkingDir/wifimac.tutorial.experiment3.campaignConfiguration.GetTotalThroughputPerSTA
    :language: python

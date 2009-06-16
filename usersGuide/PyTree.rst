@@ -1,10 +1,15 @@
+.. _PyTree:
+
 ==============================================
 Using the openWNS Configuration Browser PyTree
 ==============================================
 
-PyTree is the openWNS configuration browser. It's main purpose is to help
-you understand and debug simulation configurations. Here is a screenshot
-of the tool:
+PyTree is the openWNS configuration browser. It's main purpose is to
+help you understand and debug simulation configurations. The Figure
+:ref:`figure-PyTreeScreenshot` shows a small example of the PyTree.
+
+
+.. _figure-PyTreeScreenshot:
 
 .. figure:: pics/PyTreeScreenshot.*
    :align: center
@@ -54,7 +59,7 @@ Navigating openWNS Configurations
 ---------------------------------
 
 Most of the simulation configurations have a common structure. PyTree inserts
-a tree node ``FAVOURITES``at the top of the tree view. This entry is not actually a part
+a tree node ``FAVOURITES`` at the top of the tree view. This entry is not actually a part
 of your configuration but gives you some quicklinks to some commonly used information.
 It contains the following entries:
 

@@ -18,6 +18,12 @@ Multiple Input / Multiple Output (MIMO) transmissions between the APs
 and the MPs are used; furthermore, the efficiency of the MAC protocol
 is increased by A-MPDU aggregation and block acknowledgement.
 
+.. note:
+
+   In addition to the process described here, it is also possible to
+   view the complete configuration of a scenario (including the
+   configuration of all nodes) :ref:`PyTree`.
+
 *******************************
 WiFiMAC Configuration Structure
 *******************************
@@ -136,9 +142,11 @@ As we can see from the configuration below, it is possible to change
 Experiments
 ************
 
-#. Create a "Configuration Tree": Starting from the configuration
-   class in ``Layer2.py``, collect all settings in the sub-configuration
-   and display them in a tree-like structure.
+#. Draw a "Configuration Tree": Starting from the configuration class
+   in ``Layer2.py``, collect all settings in the sub-configuration and
+   display them in a tree-like structure. Alternatively, see
+   :ref:`PyTree`, e.g. for the configuration file of experiment 1,
+   search for the AP-node and then for its Layer2 configuration.
 
 #. Selecting the class ``wifimac.FUNModes.DraftN`` for the variable
    ``funTemplate`` activates the MAC enhancements of the amendment
@@ -166,14 +174,10 @@ Experiments
    Additionally, the mesh transceivers shall use the rate adaptation
    strategy ``SINRwithMIMO`` to enable the transmission of multiple
    spatial streams; STAs shall use the rate adaptation strategy
-   ``Opportunistic``.
+   ``OpportunisticwithMIMO``.
 
 #. Evaluate the saturation throughput of the scenario in experiment 5 using
 
    #. Different number of hops (e.g. from one to three)
 
    #. Different packet sizes
-
-
-
-

@@ -7,37 +7,29 @@ simulation campaign, run the simulations and evaluate the results.
 
 In the following, we will assume that ``myFirstCampaign`` is the root
 directory of the simulation campaign, created as described in the
-previous section, and ``myFirstCampaign/Experiment1`` is the directory
+previous section, and ``myFirstCampaign/experiment1`` is the directory
 where the simulations are stored.
 
 In the beginning, this directory contains only the following files:
 
-   campaignConfiguration.py
+.. code-block:: bash
 
-   simcontrol.py
+   $ ls
+   campaignConfiguration.py   simcontrol.py
 
-``simcontrol.py`` is used to manage the simulation, i.e. creating the
-scenarios, executing the simulations (either locally or in a
+``simcontrol.py`` is used to manage the simulation, i.e. to create the
+scenarios, execute the simulations (either locally or in a
 distributed grid, if available) and presenting information about the
 current status. ``campaignConfiguration.py`` contains the parameters
 which shall be simulated.
 
-*********
-config.py
-*********
+********************
+The First Simulation
+********************
 
-To complete the campaign, a configuration file ``config.py`` is
-required that configures the scenario, nodes and the evaluation. For
-the first experiment, a config.py can be found in
-``openWNS/tests/system/wifimac-tests/PyConfig/experiment1/``,
-this file needs to be copied into the simulations directory (``myFirstCampaign/Experiment1``).
-
-In the following, we will go step-by-step through this configuration
-file and explain the different steps that are required to setup a IEEE
-802.11-based wireless network scenario. To concentrate on the
-simulation process, the first scenario is kept as simple as possible:
+The first scenario is kept as simple as possible:
 One Access Point (AP) transmits data to a Station (STA), within a
-distance d, see :ref:`figure-wifimac-experiment1`
+distance d, see :ref:`figure-wifimac-experiment1`.
 
 .. _figure-wifimac-experiment1:
 
@@ -46,44 +38,322 @@ distance d, see :ref:`figure-wifimac-experiment1`
 
    Scenario of experiment 1
 
-Import Statements
-=================
+In this simulation, we would like to measure the maximum throughput
+from the access point to the station. For this, we need to create a
+set of simulations with increasing offered traffic and plot the
+offered traffic versus the throughput.
 
-The file ``config.py`` for this scenario begins, as every python file,
-with import statements.
+Each simulation campaign, independent of its complexity, follows four
+basic steps:
 
-.. literalinclude:: ../../../../../.createManualsWorkingDir/wifimac.tutorial.experiment1.config.imports
+ * Create the simulation configuration file,
+   :ref:`experiment1FirstConfig` - this one is the same for all
+   simulations.
+
+ * Create the parameter file, :ref:`experiment1FirstCampaignConfig` - this
+   one contains the parameters that differentiate the simulations from
+   each other, i.e. the different offered traffic in our case.
+
+ * Run the simulations using :ref:`experiment1FirstSimcontrol`.
+
+ * View results using the :ref:`experiment1FirstWrowser`.
+
+
+.. _experiment1FirstConfig:
+
+Config.py
+---------
+
+To complete the campaign, a configuration file ``config.py`` is
+required that configures the scenario, nodes and the evaluation. For
+the first experiment, a config.py can be found in
+``myOpenWNS/tests/system/wifimac-tests/PyConfig/experiment1/``, this
+file needs to be copied into the simulations directory
+(``myFirstCampaign/experiment1``):
+
+.. code-block:: bash
+
+   $ cp ../../myOpenWNS/tests/system/wifimac/PyConfig/experiment1/config.py .
+
+Take a look at the first lines of the configuration file ``config.py``
+and you can see how to adjust the parameters of this scenario:
+
+.. literalinclude:: ../../../../../.createManualsWorkingDir/wifimac.tutorial.experiment1.config.simulationParameter
    :language: python
 
-Namely, we import
+The most important statement is the first one:
 
-* The random number generator
+.. code-block:: python
 
-* The simulator core ``openwns``, plus classes to define dB, dBm and an interval.
+   from SimConfig import params
 
-* The traffic generator ``constanze``.
+Here, a parameter class ``params`` is imported. It is required for the
+automatic generation of scenarios in the campaign: the object
+``params`` contains member variables for every parameter that will be
+changed in the campaign. In this case, it is
 
-* A virtual ARP and DNS server for the IP-Layer.
+#. the simulation time (simTime),
+#. the distance between the AP and the STA (distance),
+#. the offered traffic (offeredTraffic) and
+#. the ratio of uplink to downlink traffic (ulRatio).
 
-* From wifimac:
-  * The support package that allows the generation of nodes and transceivers for the nodes.
-  * The pathselection package (used for mesh networking, but required in all scenarios as every AP registers itself and its associated STAs)
-  * The management information base
-  * The evaluation structure for the wifimac and the ip layer
+Besides these parameters, this section also sets the simulation's
+settling time, the logger level for the logger output, the packet
+size, the start delay of the uplink and downlink and the network
+frequency.
 
-* The scenario package to define the radio environment.
 
-.. warning::
+.. _experiment1FirstCampaignConfig:
 
-   In each ``campaignConfiguration.py`` file there is some additional code even before the import statements. This code 
-   is used to find and set the proper import paths within your openwns-sdk. If you create new ``campaignConfiguration.py`` files you should copy this code and include it in your file.
+campaignConfiguration.py
+------------------------
 
+To set the values for the parameters, a second file besides the
+``config.py`` is neccessary: the ``campaignConfiguration.py``.
+For the first experiment, a prepared ``campaignConfiguration.py`` can be found in
+``myOpenWNS/tests/system/wifimac-tests/PyConfig/experiment1/``, this
+file needs to be copied into the simulations directory, overwriting the existing one:
+
+.. code-block:: bash
+
+   $ cp ../../myOpenWNS/tests/system/wifimac/PyConfig/experiment1/campaignConfiguratin.py .
+
+Two sections in this files are especially interesting for the
+simulation: First, the parameter class ``Set`` is defined that
+contains all simulation parameters that are used in ``config.py``:
+
+.. literalinclude:: ../../../../../.createManualsWorkingDir/wifimac.tutorial.experiment1.campaignConfiguration.Set
+   :language: python
+
+Next, an instance with the same name as in the ``config.py`` is created:
+
+.. literalinclude:: ../../../../../.createManualsWorkingDir/wifimac.tutorial.experiment1.campaignConfiguration.params
+   :language: python
+
+Then, the parameters in ``params`` can be populated with different
+values. Each time the ``write()`` member function (inherited from the
+class ``Parameters``) is called, the current values are fixed and
+represent one simulation:
+
+.. literalinclude:: ../../../../../.createManualsWorkingDir/wifimac.tutorial.experiment1.campaignConfiguration.population
+   :language: python
+
+With this setup, 10 simulations are created, differentiated by the
+offered downlink traffic between 1 and 10 Mb/s. This concludes the
+file ``campaignConfiguration.py``.
+
+.. _experiment1FirstSimcontrol:
+
+simcontrol.py
+-------------
+
+We are now ready to create the simulations and let them run.  As
+mentioned earlier, simulation execution is controlled by the script
+``simcontrol.py``. With the command
+
+.. code-block:: bash
+
+   $ ./simcontrol.py --create-database
+
+The ``campaignConfiguration.py`` is executed and the parameter values
+are written to the database. Then, the command
+
+.. code-block:: bash
+
+  $ ./simcontrol.py --create-scenarios
+
+reads the database and creates a sub-directory for every scenario.
+This can be validated by calling
+
+.. code-block:: bash
+
+   $ ./simcontrol.py -i
+     id    state        [...]  distance  offeredTraffic  simTime  ulRatio
+        1  NotQueued              25.0       1000000        5.0      0.0
+        2  NotQueued              25.0       2000000        5.0      0.0
+        3  NotQueued              25.0       3000000        5.0      0.0
+        4  NotQueued              25.0       4000000        5.0      0.0
+        5  NotQueued              25.0       5000000        5.0      0.0
+        6  NotQueued              25.0       6000000        5.0      0.0
+        7  NotQueued              25.0       7000000        5.0      0.0
+        8  NotQueued              25.0       8000000        5.0      0.0
+        9  NotQueued              25.0       9000000        5.0      0.0
+       10  NotQueued              25.0       10000000       5.0      0.0
+
+Before running all simulations, a single one can be tested (e.g. for
+typos in ``config.py``) by changing into one of the new created
+directories and running
+
+.. code-block:: bash
+
+   $ ./openwns-dbg
+
+If everything works right, the logging output of the simulation is
+printed (consisting of the simulation time, the module, the FU and the
+output), until the simulation time reaches 5 seconds and the simulation ends with
+
+.. code-block:: bash
+
+   wns::simulator::Application: shutdown complete
+
+After this test, the simulations can be run one-by-one using the ``simcontrol.py`` script:
+
+.. code-block:: bash
+
+   $ ./simcontrol --execute-locally-with-state=NotQueued
+   Executing scenario with id: 1
+   Executing scenario with id: 2
+   Executing scenario with id: 3
+   Executing scenario with id: 4
+   Executing scenario with id: 5
+   Executing scenario with id: 6
+   Executing scenario with id: 7
+   Executing scenario with id: 8
+   Executing scenario with id: 9
+   Executing scenario with id: 10
+
+This starts the serial execution of all defined scenarios. In a
+"production" environment, a grid engine could be used to queue all
+simulations and run them in parallel; the script is configured to work
+together with the SunGridEngine_. The installation and configuration
+of this grid is out of the scope of this tutorial.
+
+.. _SunGridEngine: http://gridengine.sunsource.net/
+
+After some time, all 10 simulations should be finished, which can be controlled again with
+
+.. code-block:: bash
+
+   $ ./simcontrol.py -i
+    id    state  [...]  simTime prog   sgeId host distance  offeredTraffic  simTime  ulRatio
+    1   Finished         5.00s  100.00%               25.0       1000000        5.0      0.0
+    2   Finished         5.00s  100.00%               25.0       2000000        5.0      0.0
+    3   Finished         5.00s  100.00%               25.0       3000000        5.0      0.0
+    4   Finished         5.00s  100.00%               25.0       4000000        5.0      0.0
+    5   Finished         5.00s  100.00%               25.0       5000000        5.0      0.0
+    6   Finished         5.00s  100.00%               25.0       6000000        5.0      0.0
+    7   Finished         5.00s  100.00%               25.0       7000000        5.0      0.0
+    8   Finished         5.00s  100.00%               25.0       8000000        5.0      0.0
+    9   Finished         5.00s  100.00%               25.0       9000000        5.0      0.0
+    10  Finished         5.00s  100.00%               25.0       10000000       5.0      0.0
+
+Each simulation directory now contains a directory ``output``, where
+all probe output is stored in text files. Additionally, the output is
+stored in the database, which can be accessed much more user-friendly
+than viewing text files.
+
+.. _experiment1FirstWrowser:
+
+Wrowser
+-------
+
+The Wrowser ("Wireless network simulator Result brOWSER") is the
+openWNS graphical user interface to browse, i.e. plot, simulation
+results in a fast and convenient way. We assume that the Wrowser is
+installed according to :ref:`gettingStartedWrowser`. Thus, the Wrowser is started by calling
+
+.. code-block:: bash
+
+   $ ~/wrowser/bin/wrowser
+
+In the menu File are the different options to read the generated
+simulation data, we select ``Open Campaign Database`` and then under
+the appropriate user the campaign with the chosen name, see :ref:`figure-wifimac-experiment1-wrowser-selectCampaign`.
+
+.. _figure-wifimac-experiment1-wrowser-selectCampaign:
+
+.. figure:: images/experiment1-wrowser-selectCampaign.*
+   :align: center
+
+   Campaign selection
+
+After reading in the simulation parameters from the database, the
+Wrowser will display all possible parameter combinations, see
+:ref:`figure-wifimac-experiment1-wrowser-parameter`.
+
+.. _figure-wifimac-experiment1-wrowser-parameter:
+
+.. figure:: images/experiment1-wrowser-parameter.*
+   :align: center
+
+   Parameter selection
+
+We do not want to deselect any of the simulations, but draw the graph
+of the offered traffic versus the obtained throughput measured by the
+IP-Layer. Thus, the Wrowser needs get, for all ten simulations, the
+throughput, combine it with the offered traffic parameter and draw
+this to a graph. This type of combination plot is named "Parameter
+Plot" in the Wrowser. We select Figure -> New -> Parameter. In the new
+window, the simulation parameter has to be set to ``offeredTraffic``,
+this will be displayed in the x-axis. For the y-axis, we select
+``ip.endToEnd.window.aggregated.bitThroughput_Moments`` [#]_ and
+select ``Draw`` in the bottom to see a figure as in :ref:`figure-wifimac-experiment1-wrowser-graph`.
+
+.. rubric:: Footnotes
+
+.. [#] The aggregated bit throughput probe shows the aggregated traffic which
+       has left the AP and has reached its final destination.
+
+
+.. _figure-wifimac-experiment1-wrowser-graph:
+
+.. figure:: images/experiment1-wrowser-graph.*
+   :align: center
+
+   Throughput plot
+
+In the new figure, we should see that the traffic has not yet reached
+the saturation point, i.e. even at 10 Mb/s all offered traffic reached
+the STA.
+
+Another interesting figure is the relation of offered traffic versus
+the packet delay, evaluated as a probability function. This can be
+done by choosing a ``PDF/CDF/CCDF`` graph in the ``Figure`` menu and
+plotting the probe ``ip.endToEnd.packet.outgoing.delay_Node1_PDF``. By
+zooming into the resulting graph (using the magnifying glass below the
+graph), we can see that the probability for a higher delay increases
+as the offered traffic increases, see
+:ref:`figure-wifimac-experiment1-wrowser-delay`.
+
+.. _figure-wifimac-experiment1-wrowser-delay:
+
+.. figure:: images/experiment1-wrowser-delay.*
+   :align: center
+
+   Delay plot
+
+Experiments
+-----------
+
+#. Find the saturation throughput by editing the
+   ``campaignConfiguration.py`` and enlarging the offered traffic
+   until a point where the traffic cannot be carried completely. It is
+   not necessary to delete existing scenarios, ``simcontrol.py`` will
+   automatically identify the missing simulations and create them when
+   told so. Everytime you modify the campaign parameters, first call ``simcontrol.py --create-database``
+   to add entries to the database and ``simcontrol.py --create-scenarios`` to
+   create the simulation directories accordingly.
+
+#. How does the mean end-to-end delay react on increasing the offered
+   traffic? How does the 99-percentile react?
+
+
+*******
+Details
+*******
+
+So far, we have just used the prepared ``config.py``, without the
+knowledge how it generates the simulation scenario. In the following
+sections, we will go step by step through the different parts of the
+``config.py`` and learn what is neccessary to setup the scenario shown
+in Figure :ref:`figure-wifimac-experiment1`.
 
 Simulation Parameters
-=====================
+---------------------
 
-The next lines bundle the simulation parameters to allow for a better
-overview and an easy change of parameters.
+The file ``config.py`` for this scenario begins with the simulation
+parameters to allow for a better overview and an easy change of
+parameters.
 
 .. literalinclude:: ../../../../../.createManualsWorkingDir/wifimac.tutorial.experiment1.config.simulationParameter
    :language: python
@@ -103,8 +373,37 @@ settling time, the logger level for the logger output, the packet
 size, the start delay of the uplink and downlink and the network
 frequency.
 
+
+Import Statements
+-----------------
+
+Then the Python code that generates the scenario starts. First, several modules are imported:
+
+.. literalinclude:: ../../../../../.createManualsWorkingDir/wifimac.tutorial.experiment1.config.imports
+   :language: python
+
+Namely, we import
+
+* The random number generator
+
+* The simulator core ``openwns``, plus classes to define dB, dBm and an interval.
+
+* The traffic generator ``constanze``.
+
+* A virtual ARP and DNS server for the IP-Layer.
+
+* From wifimac:
+
+  - The support package that allows the generation of nodes and transceivers for the nodes.
+  - The pathselection package (used for mesh networking, but required in all scenarios as every AP registers itself and its associated STAs)
+  - The management information base
+  - The evaluation structure for the wifimac and the ip layer
+
+* The scenario package to define the radio environment.
+
+
 WNS Core Configuration
-======================
+----------------------
 
 The next section creates one instance of the openWNS:
 
@@ -116,7 +415,7 @@ deleted prior to the simulation. The write interval of the
 status-report and the probes is set.
 
 Scenario and Pathloss
-=====================
+---------------------
 
 The creation of the scenario instance is done by using the rise
 module; additionally the default riseConfig and ofdmaPhyConfig is
@@ -142,7 +441,7 @@ As we can see, shadowing and fast fading are switched off, whereas the pathloss 
    pathloss = offset + freqFactor * log_10(frequency) + distFactor * log_10(distance)
 
 Node Creation
-=============
+-------------
 
 After we have defined the scenario and the radio environment, nodes
 can be created using the node creator, which is contained in the
@@ -166,7 +465,7 @@ array of nodes in the simulation mode using the line::
 
 
 Virtual Nodes
--------------
+*************
 
 In the first step, we set up virtual nodes for the ARP, DNS,
 pathselection and the management information base; additionally, the
@@ -183,7 +482,7 @@ The virtual path selection server requires as input the number of
 transceivers in the IEEE 802.11 network.
 
 Access Point
-------------
+************
 
 After some preparation to generate and store the node-ids, the AP is created:
 
@@ -215,7 +514,7 @@ addresses (only one in this case) are stored and the AP is made known
 to the RANG.
 
 Station
--------
+*******
 
 The first two steps are very similar to the creation of the AP:
 
@@ -243,7 +542,7 @@ Finally, the configured STA node can be added to ``WNS.nodes`` and to the ``staI
    :language: python
 
 Evaluation
-==========
+----------
 
 In the final lines, the evaluation is installed, creating probe output
 for the WiFiMAC hop-to-hop and the IP end-to-end layer:
@@ -251,165 +550,9 @@ for the WiFiMAC hop-to-hop and the IP end-to-end layer:
 .. literalinclude:: ../../../../../.createManualsWorkingDir/wifimac.tutorial.experiment1.config.Probing
    :language: python
 
-
-************************
-campaignConfiguration.py
-************************
-
-After the simulation configuration is completed, we can set the
-simulations parameters in the file ``campaignConfiguration.py``. The
-contents of this file can be deleted and replaced with the following
-lines.
-
-.. note::
-
-   An example ``campaignConfiguration.py`` can be found in
-   ``openWNS/tests/system/wifimac-tests/PyConfig/experiment1``
-
-First, we import the necessary package to handle the generation of
-simulation scenarios:
-
-.. literalinclude:: ../../../../../.createManualsWorkingDir/wifimac.tutorial.experiment1.campaignConfiguration.import
-   :language: python
-
-
-Then, we setup a class ``Set`` that contains all simulation parameters that are used in ``config.py``:
-
-.. literalinclude:: ../../../../../.createManualsWorkingDir/wifimac.tutorial.experiment1.campaignConfiguration.Set
-   :language: python
-
-Next, an instance with the same name as in the ``config.py`` is created:
-
-.. literalinclude:: ../../../../../.createManualsWorkingDir/wifimac.tutorial.experiment1.campaignConfiguration.params
-   :language: python
-
-Then, the parameters in ``params`` can be populated with different
-values. Each time the ``write()`` member function (inherited from the
-class ``Parameters``) is called, the current values are fixed and
-represent one simulation:
-
-.. literalinclude:: ../../../../../.createManualsWorkingDir/wifimac.tutorial.experiment1.campaignConfiguration.population
-   :language: python
-
-With this setup, 10 simulations are created, differentiated by the
-offered downlink traffic between 1 and 10 Mb/s. This concludes the
-file ``campaignConfiguration.py``.
-
-********************************
-Creating and Running Simulations
-********************************
-
-We are now ready to create the simulations and let them run locally.
-As mentioned earlier, simulation execution is controlled by the script
-``simcontrol.py``. With the command
-
-.. code-block:: bash
-
-   ./simcontrol.py --create-database
-
-The ``campaignConfiguration.py`` is executed and the parameter values
-are written to the database. Then, the command
-
-.. code-block:: bash
-
-  ./simcontrol.py --create-scenarios
-
-reads the database and creates a sub-directory for every scenario.
-This can be validated by calling
-
-.. code-block:: bash
-
-   ./simcontrol.py -i
-
-which should present the ten simulations, all in state ``NotQueued``
-and the different simulation parameters. Before running all
-simulations, a single one can be tested (e.g. for typos in
-``config.py``) by changing into one of the new created directories and
-running
-
-.. code-block:: bash
-
-   ./openwns-dbg
-
-If everything works right, the logging output of the simulation is
-printed (consisting of the simulation time, the module, the FU and the
-output), until the simulation time reaches 5 seconds and the simulation ends with
-
-.. code-block:: bash
-
-   wns::simulator::Application: shutdown complete
-
-After this test, the simulations can be run one-by-one using the ``simcontrol.py`` script:
-
-.. code-block:: bash
-
-   ./simcontrol --execute-locally-with-state=NotQueued
-
-This starts the serial execution of all defined scenarios. In a
-"production" environment, a grid engine would be used to queue all
-simulations and run them in parallel; the script is configured to work
-together with the Sun Grid Engine. The installation and configuration
-of this grid is out of the scope of this tutorial.
-
-After some time, all 10 simulations should be finished, which can be controlled again with
-
-.. code-block:: bash
-
-   ./simcontrol.py -i
-
-Each simulation directory now contains a directory ``output``, where
-all probe output is stored in text files. Additionally, the output is
-stored in the database, which can be accessed much more user-friendly
-than browsing through text files.
-
-*****************
-Using the Wrowser
-*****************
-
-The Wrowser ("WNS Browser") is the openWNS graphical user interface to
-browse, i.e. plot, simulation results in a fast and convenient way. It
-is stared by calling
-
-.. code-block:: bash
-
-   openWNS/framework/wrowser/wrowser
-
-In the menu File are the different options to read the generated
-simulation data, we select ``Open Campaign Database`` and then under
-the appropriate user the campaign with the chosen name.
-
-Next, we can draw the graph of offered traffic versus throughput as
-measured by the IP-Layer in the RANG. As the offered traffic is a
-simulation parameter, we select Figure -> New -> Parameter. In the new
-window, the simulation parameter has to be set to ``offeredTraffic``,
-this will be displayed in the x-axis. For the y-axis, we select
-``ip.endToEnd.window.aggregated.bitThroughput_Moments`` [#]_ and select
-``Draw`` in the bottom.
-
-In the new figure, we should see that the traffic has not yet reached
-the saturation point, i.e. even at 10 Mb/s all offered traffic reached
-the STA.
-
-.. rubric:: Footnotes
-
-.. [#] The aggregated bit throughput probe shows the aggregated traffic which
-       has left the RANG and has reached its final destination.
-
 ************
 Experiments
 ************
-
-#. Find the saturation throughput by editing the
-   ``campaignConfiguration.py`` and enlarging the offered traffic
-   until a point where the traffic cannot be carried completely. It is
-   not necessary to delete existing scenarios, ``simcontrol.py`` will
-   automatically identify the missing simulations and create them when
-   told so. Everytime you modify the campaign parameters, first call ``simcontrol.py --create-database``
-   to add entries to the database and ``simcontrol.py --create-scenarios`` to
-   create the simulation directories accordingly.
-
-#. How does the mean end-to-end delay react on increasing the offered
-   traffic? How does the 99-percentile react?
 
 #. Now, we want to add another parameter ``packetSize`` to select a
    packet size of 1480 and 80 Bytes.

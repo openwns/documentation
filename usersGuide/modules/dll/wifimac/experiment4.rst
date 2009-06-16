@@ -97,7 +97,7 @@ account for the two STAs.
 .. note::
 
    An example ``campaignConfiguration.py`` can be found in
-   ``openWNS/tests/system/wifimac-tests/PyConfig/experiment4``. Additionally,
+   ``myOpenWNS/tests/system/wifimac-tests/PyConfig/experiment4``. Additionally,
    an example ``config.py`` is also located there.
 
 #. Evaluate the saturation throughput for a wall length of 0.0, 10.0
