@@ -76,7 +76,7 @@ changed according to the following steps:
    .. literalinclude:: ../../../../../.createManualsWorkingDir/wifimac.tutorial.experiment4.config.NodeCreation.AP
       :language: python
 
-   Write the necessary class ``MyAPTransceiver``.
+   Write the necessary class ``MyAPTransceiver`` by copying the class ``MySTATranceiver`` and editing it respectively.
 
 #. The creation of one AP and one STA can be done in a for loop, where
    only the y-coordinate changes:

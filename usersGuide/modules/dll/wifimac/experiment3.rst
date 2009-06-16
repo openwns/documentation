@@ -29,7 +29,7 @@ Preparation
 ***********
 
 Using ``./playground.py preparecampaign PATH`` with the same ``PATH``
-as in the preparation for experiment 1, we can create a sub-campaign
+as in the preparation for experiment 1 (namely ``../myFirstCampaign`` if you did follow the chapter "Preparations" before Experiment 1), we can create a sub-campaign
 that uses the same sandbox, but a differed directory to store the
 simulations. When prompted by ``./playground.py``, please select
 ``(C)reate a sub-campaign`` and choose as name e.g. ``Experiment3``.

@@ -142,7 +142,7 @@ As we can see from the configuration below, it is possible to change
 Experiments
 ************
 
-#. Draw a "Configuration Tree": Starting from the configuration class
+#. Draw a "Configuration Tree" (with pencil & paper): Starting from the configuration class
    in ``Layer2.py``, collect all settings in the sub-configuration and
    display them in a tree-like structure. Alternatively, see
    :ref:`PyTree`, e.g. for the configuration file of experiment 1,
@@ -150,7 +150,7 @@ Experiments
 
 #. Selecting the class ``wifimac.FUNModes.DraftN`` for the variable
    ``funTemplate`` activates the MAC enhancements of the amendment
-   IEEE 802.11n. How are the following parameters changed:
+   IEEE 802.11n. This is done by adding an appropriate Line to the classes ``MyMeshTransceiver`` and ``mySTATransceiver``. How are the following parameters changed:
 
    #. Maximum number of frames in an aggregated frame
 
