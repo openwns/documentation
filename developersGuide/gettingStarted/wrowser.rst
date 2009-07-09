@@ -94,7 +94,7 @@ environment variable, e.g., by appending the following line to your ``~/.bashrc`
 
 .. code-block:: bash
 
-   export PYTHONPATH=${PYTHONPATH}:[path to the wrowser]
+   export PYTHONPATH=${PYTHONPATH}:[path to the wrowser]/wrowser
 
 Then, go into your openWNS - directory created during the installation
 of the openWNS and call playground.py. If everything went right, you

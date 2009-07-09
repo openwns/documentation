@@ -116,7 +116,7 @@ file needs to be copied into the simulations directory, overwriting the existing
 
 .. code-block:: bash
 
-   $ cp ../../myOpenWNS/tests/system/wifimac/PyConfig/experiment1/campaignConfiguratin.py .
+   $ cp ../../myOpenWNS/tests/system/wifimac/PyConfig/experiment1/campaignConfiguration.py .
 
 Two sections in this files are especially interesting for the
 simulation: First, the parameter class ``Set`` is defined that
@@ -557,7 +557,7 @@ Experiments
 #. Now, we want to add another parameter ``packetSize`` to select a
    packet size of 1480 and 80 Bytes.
 
-   #. Change the static setting in ``config.py`` to a variable parameter.
+   #. Change the static setting in ``config.py`` to a variable parameter that gets its value from the imported instance ``params``.
 
    #. Add the parameter ``packetSize`` to the class ``Set`` in the
       ``campaignConfiguration.py``. As existing simulations do not
