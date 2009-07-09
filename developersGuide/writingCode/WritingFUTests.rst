@@ -89,7 +89,10 @@ test. Within your test declare a class as follows:
 .. literalinclude:: ../../../.createManualsWorkingDir/wns.ldk.tools.PERProviderStub.example
 
 It is a good idea to derive it from ``wns::ldk::tools::StubBase`` which provides control over accepting/wakeup functionality
-and records received and sent compounds.
+and records received and sent compounds. If this is used you need to implement the calculateSizes member method in your stub. Here
+is a minimal implementation.
+
+.. literalinclude:: ../../../.createManualsWorkingDir/wns.ldk.tools.PERProviderStub.calculateSizes.example
 
 Sending Compounds
 =================
