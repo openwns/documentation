@@ -64,6 +64,12 @@ in the following way:
    $ ./playground.py preparecampaign ../myFirstCampaign
    Preparing simulation campaign. Please wait...
 
+.. note::
+
+  The ``preparecampaign`` command will only be available if you have
+  properly installed Wrowser and its plugins for playground.py. Please
+  refer to :ref:`gettingStartedWrowser`.
+
 This will create the directory ``../myFirstCampaign``, including the
 neccessary sub-directories. After some moments, the script requests
 the following user input:
