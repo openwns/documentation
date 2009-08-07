@@ -13,8 +13,12 @@ Third party libraries
 ---------------------
 
  * CppUnit_ (>=1.10) The basic unit testing framework
- * Python_ (>=2.4) Used by almost everything starting from the build framework to configuration
+ * Python_ (>=2.5) Used by almost everything starting from the build framework to configuration
+ 
+   - Numpy Python package used for channel models implemented in Python
  * Boost_ Mainly used to have the TR1 implementations of the upcoming C++ standard available
+ 
+   - Besides basic Boost files Boost libraries Signals, Filesystem, Date-Time and Program-Options are required
 
 .. _CppUnit: http://cppunit.sourceforge.net/
 .. _Python: http://www.python.org
@@ -42,3 +46,9 @@ Optional for build framework
 .. _Graphviz: http://www.graphviz.org/
 .. _Icecream: http://wiki.kde.org/icecream
 
+Ubuntu Linux
+------------
+
+Ubuntu Linux 8.04 & 8.10 are currently the default development and testing platform for openWNS. All required packages can ge easily downloaded using the command:
+.. code-block:: bash
+    $ sudo apt-get install build-essential scons libboost-dev libboost-program-options-dev libboost-date-time libboost-filesystem-dev libboost-signals bzr libcppunit-dev python2.5-dev python-numpy
