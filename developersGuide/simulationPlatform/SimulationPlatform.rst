@@ -10,5 +10,6 @@ The Simulation Platform
    MeasurementSources
    ContextCollector
    EvaluationFramework
+   SmartPointers
    FiniteStateMachines
 
