@@ -21,7 +21,7 @@ Bazaar and its Separation of Commit, Push and Pull Operation
 
 Bazaar is a distributed version control system. The most important difference to CVS or
 to subversion is that it separates the procedure of making commits and the procedure
-of publication (called *push* in Bazaar) and retrieval (*pull*) patchtes to/from  a remote location.
+of publication (called *push* in Bazaar) and retrieval (*pull*) patches to/from  a remote location.
 A commit is always made locally to your copy of the branch (if you created a branch). If you want
 to publish your modifications you need to @em push it somewhere.
 

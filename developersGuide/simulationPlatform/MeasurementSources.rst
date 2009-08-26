@@ -85,7 +85,7 @@ class. The ``Processor`` class may look like this:
 The class has two methods ``startJob()`` and ``onJobEnded``. It has 
 a distribution member variable to draw randomly distributed processing
 delays. To generate measurements we need a pointer to a
-``wns::probe::bus::ProbeBus``. This is your connection poit to the
+``wns::probe::bus::ProbeBus``. This is your connection point to the
 evaluation framework. Let's have a look at the constructor of
 ``Processor``.
 

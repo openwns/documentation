@@ -58,7 +58,7 @@ If you haven't used Bazaar before you need to make yourself known to the system:
 Your id should be your name, followed by your email address in angle
 brackets. Bazaar records your id in the log messages for your
 commits. This information will @em not be used at any point when
-you're just downloading openWNS (like now). For futher information on
+you're just downloading openWNS (like now). For further information on
 Bazaar you can have a look at http://bazaar-vcs.org .
 
 Retrieve a copy of openWNS
@@ -113,8 +113,10 @@ framework available:
 .. code-block:: bash
 
   $ ls framework/*
-  buildSupport
-  library/
+  
   application/
+  dllbase/
+  library/
   pywns/
+  rise/
 

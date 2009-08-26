@@ -25,7 +25,8 @@ openWNS-sdk/ [openwns-sdk]  ................................. master project
     framework/ ........... core part (lib, simulator application) of openWNS
         application/ [openwns-application] ........ core application project
         library/ [openwns-library]  ................... core library project
-	buildSupport/ [openwns-buildsupport] .......... build system project
+        rise/[openwns-rise] .................... Layer 1 and channel library
+        dllbase/[openwns-dllbase] .......................... Layer 2 library
         pywns/ [openwns-pywns] ..... post processing, system tests in python
 
     modules/ ....................................... reserved for future use

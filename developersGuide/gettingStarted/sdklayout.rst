@@ -18,7 +18,8 @@ means the directory is a sub project):
  - ``openWNS-sdk/framework/`` : core part (lib, simulator application) of openWNS
  - ``openWNS-sdk/framework/application/`` : core application project
  - ``openWNS-sdk/framework/library/`` : core library project
- - ``openWNS-sdk/framework/buildSupport/`` : build system project
+ - ``openWNS-sdk/framework/rise/`` : Layer 1 and channel library
+ - ``openWNS-sdk/framework/dllbase/`` : Layer 2 library
  - ``openWNS-sdk/framework/pywns/`` : post processing, system tests in python
 
  - ``openWNS-sdk/modules/`` : Modules for different entities in the ISO/OSI protocol stack 
