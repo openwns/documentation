@@ -50,5 +50,7 @@ Ubuntu Linux
 ------------
 
 Ubuntu Linux 8.04 & 8.10 are currently the default development and testing platform for openWNS. All required packages can ge easily downloaded using the command:
+
 .. code-block:: bash
-    $ sudo apt-get install build-essential scons libboost-dev libboost-program-options-dev libboost-date-time libboost-filesystem-dev libboost-signals bzr libcppunit-dev python2.5-dev python-numpy
+
+    $ sudo apt-get install build-essential scons libboost-dev libboost-program-options-dev libboost-date-time-dev libboost-filesystem-dev libboost-signals-dev bzr libcppunit-dev python2.5-dev python-numpy
