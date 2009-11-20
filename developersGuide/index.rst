@@ -12,9 +12,9 @@ Welcome to openWNS Developers Guide!
 
    Beginners should start reading the UsersGuide_.
 
-   .. _here: ./api/
+   .. _here: api/
    .. _PDF: openWNS-DevelopersGuide.pdf
-   .. _UsersGuide: ./usersGuide
+   .. _UsersGuide: usersGuide/
 
 
    **Table of Contents**
