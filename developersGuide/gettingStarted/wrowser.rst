@@ -30,6 +30,7 @@ available.
  * python-matplotlib_ A python 2D plotting library which produces publication quality figures in a variety of hardcopy formats and interactive environments across platforms.
  * python-tk_ Python's de-facto standard GUI (Graphical User Interface) package.
  * python-scipy_ Python library for mathematics, science, and engineering
+ * pyqt4-dev-tools Various support tools for PyQt4 developers
 
 .. _python-qt4: http://wiki.python.org/moin/PyQt
 .. _python-matplotlib: http://matplotlib.sourceforge.net/
@@ -40,7 +41,7 @@ Use the following command to install them in Ubuntu Linux:
 
 .. code-block:: bash
 
-    $ sudo apt-get install python-qt4 python-qt4-dev python-matplotlib python-tk python-scipy
+    $ sudo apt-get install python-qt4 python-qt4-dev python-matplotlib python-tk python-scipy pyqt4-dev-tools
 
 Installation
 ------------
