@@ -199,6 +199,32 @@ the SINR statistics for each station (i.e. for each MAC_ID).
    SINR_MAC_ID3_Log.dat
    SINR_MAC_ID4_Log.dat
 
+Memory and CPU time probing
+'''''''''''''''''''''''''''
+
+The simulation library provides probing output of memory consumption and ratio of simulation time to real time. Following must be added to the configuration to write the output of those probes:
+
+.. code-block:: python
+
+  import openwns.evaluation.default
+
+  openwns.evaluation.default.installEvaluation(openwns.simulator.getSimulator())
+
+This will create four files in the output directory:
+
+  * wns.Memory_Moments.dat
+  * wns.Memory_TimeSeries.dat
+  * wns.SimTimePerRealTime_Moments.dat
+  * wns.SimTimePerRealTime_TimeSeries.dat
+
+Moments probes contain the statistics over the whole simulation run, TimeSeries probes show the current memory consumption and current simulation time divided by total runtime of the simulator. They are updatet using the status writer. Update frequency can be adjusted by the following line in the configurtion:
+
+.. code-block:: python
+
+  openwns.simulator.getSimulator().statusWriteInterval = 30 # in seconds realTime
+
+The interval should not be chosen too low or else the simulator will be busy writing output to disk all the time.
+
 
 Writing your own Generators
 ---------------------------
