@@ -18,11 +18,19 @@ To CPU profile your program you can also use valgrind. Use this commands:
 
 .. code-block:: bash
 
-    > ./playground.py install --flavour=callgrind
+    > scons optassuremsg callgrind=True
 
     > valgrind --tool=callgrind --instr-atstart=no ROOTOFSDK/sandbox/callgrind/bin/openwns
 
     > kcachegrind callgrind.out.*
+
+Alternatively you can use gprof to perform CPU profiling.
+
+.. code-block:: bash
+
+    > scons optassuremsg profile=True
+
+Afterwards use gprof to postprocess the profiling results.
 
 SmartPtr Debugging
 ------------------
@@ -31,7 +39,7 @@ If you have cyclic SmartPtrs you probably want to make use of the SmartPtr debug
 
 .. code-block:: bash
 
-   > ./playground.py install --flavour=smartptrdbg
+   > scons dbg smartPtrDBG=True
 
    > ROOTOFSDK/sandbox/smartptrdbg/openwns
 

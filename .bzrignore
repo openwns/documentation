@@ -3,3 +3,4 @@ config/pushMailRecipients.py
 buildDevelopersGuide/
 buildUsersGuide/
 
+buildWinprostGuide
