@@ -200,7 +200,7 @@ After this test, the simulations can be run one-by-one using the ``simcontrol.py
 
 .. code-block:: bash
 
-   $ ./simcontrol --execute-locally-with-state=NotQueued
+   $ ./simcontrol --execute-locally --restrict-state=NotQueued
    Executing scenario with id: 1
    Executing scenario with id: 2
    Executing scenario with id: 3
