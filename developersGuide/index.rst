@@ -14,7 +14,7 @@ Welcome to openWNS Developers Guide!
 
    .. _here: api/
    .. _PDF: openWNS-DevelopersGuide.pdf
-   .. _UsersGuide: usersGuide/
+   .. _UsersGuide: UsersGuide/
 
 
    **Table of Contents**
