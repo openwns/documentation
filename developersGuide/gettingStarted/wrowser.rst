@@ -49,20 +49,20 @@ Installation
 Similar to the openWNS installation, the Wrowser can be obtained and
 updated using Bazaar. The following command will checkout the current
 version of the Wrowser into the directory 'wrowser'. Choose whatever
-you want as name.
+you want as name. Note that for the last step the root password is required.
 
 .. code-block:: bash
 
    $ bzr branch lp:openwns-wrowser wrowser
    Branched 27 revision(s).
    $ cd wrowser
-   $ scons
+   $ sudo python setup.py install
 
 You should now be able to start the Wrowser using
 
 .. code-block:: bash
 
-   $ bin/wrowser
+   $ wrowser
 
 It will open an empty window, see :ref:`figure-gettingstarted-wrowser`.
 
@@ -91,19 +91,9 @@ two lines:
 .. code-block:: bash
 
    [AdditionalPluginPaths]
-   path1 = [path to the wrowser]/wrowser/wrowser/playgroundPlugins
+   path1 = /usr/lib/python[version]/site-packages/openwns/wrowser/playgroundPlugins/
 
-Of course, you must replace ``[path to the wrowser]`` with the
-directory where you have installed the Wrowser in the previous step.
-
-The plugin itself needs to be able to import further python modules
-which are included in the Wrowser installation. To be able to find
-them, the Wrowser directory should be added to the ``PYTHONPATH``
-environment variable, e.g., by appending the following line to your ``~/.bashrc``:
-
-.. code-block:: bash
-
-   export PYTHONPATH=${PYTHONPATH}:[path to the wrowser]/wrowser
+Of course, you must replace ``[version]`` with the version of your python interpreter.
 
 Then, go into your openWNS - directory created during the installation
 of the openWNS and call playground.py. If everything went right, you
