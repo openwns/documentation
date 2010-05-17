@@ -200,7 +200,7 @@ After this test, the simulations can be run one-by-one using the ``simcontrol.py
 
 .. code-block:: bash
 
-   $ ./simcontrol --execute-locally --restrict-state=NotQueued
+   $ ./simcontrol.py --execute-locally --restrict-state=NotQueued
    Executing scenario with id: 1
    Executing scenario with id: 2
    Executing scenario with id: 3
@@ -358,7 +358,7 @@ parameters.
 .. literalinclude:: ../../../../../.createManualsWorkingDir/wifimac.tutorial.experiment1.config.simulationParameter
    :language: python
 
-The statement ``from SimConfig import params`` is required for the
+The statement ``from openwns.wrowser.simdb.SimConfig import params`` is required for the
 automatic generation of scenarios in the campaign: the object
 ``params`` contains member variables for every parameter that will be
 changed in the campaign. In this case, it is

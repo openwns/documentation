@@ -74,11 +74,6 @@ This will create the directory ``../myFirstCampaign``, including the
 neccessary sub-directories. After some moments, the script requests
 the following user input:
 
-#. ``Do you want to use the database server for storing simulation
-   campaign related data?``
-
-   Please answer with ``y``.
-
 #. ``Please enter the name of the directory the simulations shall be
    stored in:``
 
