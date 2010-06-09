@@ -85,7 +85,7 @@ The most important statement is the first one:
 
 .. code-block:: python
 
-   from SimConfig import params
+   from openwns.wrowser.simdb.SimConfig import params
 
 Here, a parameter class ``params`` is imported. It is required for the
 automatic generation of scenarios in the campaign: the object
