@@ -20,6 +20,7 @@ Welcome to the openWNS Users Guide!
    about/AboutThisBook
    gettingStarted/GettingStarted
    modules/dll/wifimac/WiFiMAC
+   modules/dll/wimemac/WiMeMAC
    modules/dll/wimac/WiMAC
 
    PyTree
