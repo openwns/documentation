@@ -73,29 +73,10 @@ It will open an empty window, see :ref:`figure-gettingstarted-wrowser`.
 
    The initial, empty Wrowser window
 
-Adding the wrowser-plugin into playground.py
+Checking the playground.py wrowser-plugin 
 --------------------------------------------
 
-The Wrowser comes with a plugin for the playground.py that supports
-the setup of simulation campaigns, i.e., a compiled version of the
-openWNS together with a configuration and a set of parameters that
-shall be simulated. Each simulation campaign also provides a tool to
-start, stop and query the status of the simulations.
-
-The playground.py script of your openWNS installation gathers these
-plugins in all directories specified in the file
-``playground.config``, which is located in the directory ``.wns`` in
-your home folder. Open this file with an editor and add the following
-two lines:
-
-.. code-block:: bash
-
-   [AdditionalPluginPaths]
-   path1 = /usr/lib/python[version]/site-packages/openwns/wrowser/playgroundPlugins/
-
-Of course, you must replace ``[version]`` with the version of your python interpreter.
-
-Then, go into your openWNS - directory created during the installation
+Go into your openWNS - directory created during the installation
 of the openWNS and call playground.py. If everything went right, you
 should see the new command ``preparecampaign``:
 
