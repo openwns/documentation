@@ -22,6 +22,7 @@ Welcome to the openWNS Users Guide!
    modules/dll/wifimac/WiFiMAC
    modules/dll/wimac/WiMAC
 
+   CouchDB
    PyTree
    HowTos
 
