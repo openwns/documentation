@@ -3,11 +3,13 @@ Experiment 1: Saturation Throughput
 ###########################################
 
 In the first experiment, we will setup a very simple simulation campaign, run the
-simulations and evaluate the results while learning the basic parts of the WiMAC configurations.
+simulations and evaluate the results while learning the basic parts of the WiMAC
+configurations.
 
-In the following, we will assume that ``myWiMAXCampaign`` is the root directory 
-of the simulation campaign, created as described in the previous section, and 
-``myWiMAXCampaign/experiment1`` is the directory where the simulations are stored.
+In the following, we will assume that ``myWiMACCampaign`` is the root directory 
+of the simulation campaign, created as described in the wifi tutorial section 
+``preperation``, and ``myWiMACCampaign/experiment1`` is the directory where the 
+simulations are stored.
 
 In the beginning, this directory contains only the following files:
 
@@ -62,11 +64,11 @@ configures the scenario, stations and the evaluation. For the first experiment, 
 config.py can be found in 
 ``myOpenWNS/tests/system/WiMAC-Tests--main--1.2/PyConfig/experiment1/``, this 
 file needs to be copied into the simulations directory 
-(``myWiMAXCampaign/experiment1``):
+(``myWiMACCampaign/experiment1``):
 
 .. code-block:: bash
 
-   $ cp ../../myOpenWNS/tests/system/WiMAC-Tests--main--1.2/configTutorial/experiment1/config.py .
+   $ cp ../../myOpenWNS/tests/system/WiMAC-Tests--main--1.2/PyConfig/experiment1/config.py .
 
 Take a look at the first lines of the configuration file ``config.py`` and you 
 can see how to adjust the parameters of this scenario:
@@ -101,12 +103,12 @@ campaignConfiguration.py
 To set different values for the parameters of the simulations, a second file besides the
 ``config.py`` is neccessary: the ``campaignConfiguration.py``.
 For the first experiment, a prepared ``campaignConfiguration.py`` can be found in
-``myOpenWNS/tests/system/WiMAC-Tests--main--1.2/configTutorial/experiment1/``, this
+``myOpenWNS/tests/system/WiMAC-Tests--main--1.2/PyConfig/experiment1/``, this
 file needs to be copied into the simulations directory, overwriting the existing one:
 
 .. code-block:: bash
 
-   $ cp ../../myOpenWNS/tests/system/WiMAC-Tests--main--1.2/configTutorial/experiment1/campaignConfiguration.py .
+   $ cp ../../myOpenWNS/tests/system/WiMAC-Tests--main--1.2/PyConfig/experiment1/campaignConfiguration.py .
 
 Two sections in this files are especially interesting for the simulation: First, 
 the parameter class ``Set`` is defined that contains all simulation parameters that
