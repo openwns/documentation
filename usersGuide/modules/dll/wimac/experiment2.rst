@@ -2,6 +2,8 @@
 Experiment 2 : Packet Scheduling
 #################################
 
+.. sectionauthor:: Benedikt Wolz <bmw@comnets.rwth-aachen.de>, Department of Communication Networks (ComNets), RWTH Aachen University
+
 In this experiment we extend the previous deployment by one additional MS. In 
 the single cell scenario with one BS and two MS we will study the impact of 
 different scheduling strategies on the throughtput and fairness.
@@ -47,7 +49,6 @@ Preparation
   .. literalinclude:: ../../../../../.createManualsWorkingDir/wimac.tutorial.experiment2.evaluating.tutorialEvaluation
      :language: python
 
-
 :Update campaign:
   Using ``./playground.py preparecampaign PATH`` with the same ``PATH``
   as in the preparation for experiment 1 (namely ``../myWiMACCampaign`` according
@@ -71,7 +72,7 @@ Preparation
 
    .. code-block:: bash
 
-     $ cp ../../myOpenWNS/tests/system/WiMAC-Tests--main--1.2/configTutorial/experiment2/config.py .
+     $ cp ../../myOpenWNS/tests/system/WiMAC-Tests--main--1.2/PyConfig/experiment2/config.py .
 
 
 :Second MS:
@@ -111,7 +112,7 @@ We will again increase the offered traffic with varying schedling types namely
 
 
 *******************************************************
-Experiment 2 - packet scheduling strategies (part 2) 
+Experiment 2 - dynamic subchannel assignment (part 2) 
 *******************************************************
 
 In the second part we like to examine the impact of the DSA strategy on the frame
@@ -149,5 +150,5 @@ and ``fixed``.
         
      .. _CouchDB: http://docs.openwns.org/UsersGuide/CouchDB.html
    
-   #  How does the resource assignement differ? 
+   #.  How does the resource assignement differ? 
 

@@ -2,6 +2,8 @@
 Experiment 1: Saturation Throughput
 ###########################################
 
+.. sectionauthor:: Benedikt Wolz <bmw@comnets.rwth-aachen.de> , Department of Communication Networks (ComNets), RWTH Aachen University
+
 In the first experiment, we will setup a very simple simulation campaign, run the
 simulations and evaluate the results while learning the basic parts of the WiMAC
 configurations.
@@ -205,28 +207,22 @@ After this test, the simulations can be run one-by-one using the ``simcontrol.py
 This starts the serial execution of all defined scenarios. In a "production" 
 environment, a grid engine could be used to queue all simulations and run them
 in parallel [#]_; the script is configured to work together with the SunGridEngine_
-e.g. with the command instead ::
+e.g. with the command instead:
+
 
 .. code-block:: bash
+
    $ ./simcontrol.py --execute-scenarios --restrict-state=NotQueued
-
-
 
 .. rubric:: Footnotes
 
 .. [#] Optionally, if you use the SunGridEngine_, you can modify the ``simcontrol.py``
        in order boost the priority of our simulations by editing the ``estimated cpu time``
-       from ther default value of 100 hours to 1h in the following line::
-
-        parser.add_option('-t', '--cpu-time',
-                        type = 'int', dest = 'cpuTime', default = *1*,
-                        help = 'chose time for jobs in hours (default: 100h)', metavar = 'HOURS')
-
-
-
-The installation and configuration of this grid is out of the scope of this tutorial.
+       from the default value of 100 hours to 1h in the following lines:
 
 .. _SunGridEngine: http://gridengine.sunsource.net/
+
+The installation and configuration of this grid is out of the scope of this tutorial.
 
 After some time, all 6 simulations should be finished, which can be controlled again with
 
