@@ -20,6 +20,7 @@ Welcome to the openWNS Users Guide!
    about/AboutThisBook
    gettingStarted/GettingStarted
    modules/dll/wifimac/WiFiMAC
+   modules/dll/glue/funTutorial/funTutorial
    modules/dll/wimemac/WiMeMAC
    modules/dll/wimac/WiMAC
    modules/dll/lte/LTE
