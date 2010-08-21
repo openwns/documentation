@@ -40,7 +40,7 @@ simulator
     This is the root configuration object passed to the simulator. It includes global configurations    like simulation 
     time ``maxSimTime`` and the output directory ``outputDir``.
 
-As a first task, try browsing through the configuration: Find out what the simulation time is. What is the output directory? What is the initial seed of the random number generator? How can you reach the list of nodes through the ``simulator```entry in ``FAVORITES``?
+As a first task, try browsing through the configuration: Find out what the simulation time is. What is the output directory? What is the initial seed of the random number generator? How can you reach the list of nodes through the ``simulator`` entry in ``FAVORITES``?
 
 We now want to take a closer look at the nodes. Expand the first ``mainconfig.Station`` under ``components`` and also below you can see the four layers of the node:
 
@@ -54,7 +54,8 @@ dll (Tutorial.Experiment5)
     This is our individual data link layer ``Glue`` constructed from a custom FUN. 
 
 phy (copper.Copper.Transceiver)     
-    The physical layer is a half-duplex wired channel. It can detect collisions and report them to the  DLL. It can also use a random number distribution to draw the bit error rate for each   transmission.
+    The physical layer is a half-duplex wired channel. It can detect collisions and report them to the  DLL. It can also 
+    use a random number distribution to draw the bit error rate for each   transmission.
 
 Now further expand the ``dll`` entry and click on ``fun``. A window like the one below will pop up.
 
