@@ -168,13 +168,13 @@ This can be validated by calling
 
    $ ./simcontrol.py -i
 
-      id   state        [...]     bandwidth  distance  offeredTraffic
-        1  NotQueued                     5     100.0         1000.0
-        2  NotQueued                     5     100.0      2501000.0
-        3  NotQueued                     5     100.0      5001000.0
-        4  NotQueued                     5     100.0      7501000.0
-        5  NotQueued                     5     100.0     10001000.0
-        6  NotQueued                     5     100.0     12001000.0
+      id   state        [...]       offeredTraffic
+        1  NotQueued                      10000.0
+        2  NotQueued                    2510000.0
+        3  NotQueued                    5010000.0
+        4  NotQueued                    7510000.0
+        5  NotQueued                   10010000.0
+        6  NotQueued                   12010000.0
 
 Before running all simulations, a single one can be tested (e.g. for typos in 
 ``config.py``) by changing into one of the new created directories and running
@@ -206,19 +206,20 @@ After this test, the simulations can be run one-by-one using the ``simcontrol.py
 
 This starts the serial execution of all defined scenarios. In a "production" 
 environment, a grid engine could be used to queue all simulations and run them
-in parallel [#]_; the script is configured to work together with the SunGridEngine_
+in parallel; the script is configured to work together with the SunGridEngine_
 e.g. with the command instead:
 
 
 .. code-block:: bash
 
-   $ ./simcontrol.py --execute-scenarios --restrict-state=NotQueued
+   $ ./simcontrol.py --queue-scenarios --restrict-state=NotQueued
 
 .. rubric:: Footnotes
 
-.. [#] Optionally, if you use the SunGridEngine_, you can modify the ``simcontrol.py``
-       in order boost the priority of our simulations by editing the ``estimated cpu time``
-       from the default value of 100 hours to 1h in the following lines:
+.. Optionally, if you use the SunGridEngine_, you can modify the ``simcontrol.py``
+   in order boost the priority of our simulations by editing the ``estimated cpu time``
+   from the default value of 100 hours to 1h. Find the appropriate line by 
+   looking for 'cpu-time' or the number `100`.
 
 .. _SunGridEngine: http://gridengine.sunsource.net/
 
@@ -230,13 +231,13 @@ After some time, all 6 simulations should be finished, which can be controlled a
 
    $ ./simcontrol.py -i
 
-    id    state  [...]  simTime prog   sgeId host bandwidth distance  offeredTraffic  
-    1   Finished         1.10s  100.00%                 5     100.0          1000.0
-    2   Finished         1.10s  100.00%                 5     100.0       2501000.0 
-    3   Finished         1.10s  100.00%                 5     100.0       5001000.0
-    4   Finished         1.10s  100.00%                 5     100.0       7501000.0
-    5   Finished         1.10s  100.00%                 5     100.0      10001000.0
-    6   Finished         1.10s  100.00%                 5     100.0      12501000.0 
+    id    state  [...]  simTime prog   sgeId host   offeredTraffic  
+    1   Finished         1.10s  100.00%                   10000.0
+    2   Finished         1.10s  100.00%                 2510000.0
+    3   Finished         1.10s  100.00%                 5010000.0
+    4   Finished         1.10s  100.00%                 7510000.0
+    5   Finished         1.10s  100.00%                10010000.0
+    6   Finished         1.10s  100.00%                12510000.0
     
 Each simulation directory now contains a directory ``output``, where all probe 
 output is stored in text files. Additionally, the output is stored in the 
@@ -505,7 +506,7 @@ Experiment 1 - Bandwidth (part 2)
             for rate in [0,10,15,30,35]:
                 for params.bandwidth in [5,10,20]:
                     params.offeredTraffic = (0.001 + rate) * 1e6
-                    params.write() 
+                    params.write()
 
 
    #. It is not necessary to delete existing scenarios, ``simcontrol.py`` will
@@ -524,8 +525,8 @@ Experiment 1 - Bandwidth (part 2)
 Experiment 1 - Distance (part 3)
 ***********************************
 
-3. Now, we want to vary another parameter ``distance'' to select a
-   distance between BS and MS of 100m to 12km.
+3. Now, we want to vary another parameter ``distance`` to select a distance between 
+   BS and MS of 100m to 12km (with a bandwidth of 5 MHz).
 
    a. Change the static setting in ``config.py`` to a variable parameter that gets its value from the imported instance ``params``.
 
@@ -544,7 +545,7 @@ Experiment 1 - Distance (part 3)
 
    #. Create the simulations (in the database and the scenarios) and execute them.
 
-   #. Evaluate the impact of the frame size on the saturation point using the Wrowser.
+   #. Evaluate the impact of the ``distance`` on the saturation point using the Wrowser.
 
 
 
