@@ -147,3 +147,4 @@ local measurement. This gives the opportunity to average measured
 values with different :math:`\alpha` values.
  
 
+
