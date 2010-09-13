@@ -63,27 +63,27 @@ valid. In the outgoing data flow, all friends of a FU in a FUN have to
 be placed above. Otherwise, the friend's commands can not be retrieved
 while in control, since they are not yet activated.
 
-***
-CRC
-***
+..  ***
+    CRC
+    ***
 
-================ ====================================================
-**Module**       ``wns.ldk.CRC``
-================ ====================================================
-**Usage**
-                 ``CRC(perProvider)``
-                      Constructor
-                 ``perProvider``
-                      Name of the friend that provides the PER.
-**Parameter**
-                 ``CRCsize`` (default ``16``)
-                      Size of the checksum in bit.
-                 ``isDropping`` (default ``True``)
-                      Select between *dropping* or *marking* behavior.
-**Dependencies** A Packet Error Ratio (PER) provider to determine the
-                 probability of compound loss.
-**Dropping**     Random compounds depending on their PER.
-================ ====================================================
+    ================ ====================================================
+    **Module**       ``wns.ldk.CRC``
+    ================ ====================================================
+    **Usage**
+                    ``CRC(perProvider)``
+                        Constructor
+                    ``perProvider``
+                        Name of the friend that provides the PER.
+    **Parameter**
+                    ``CRCsize`` (default ``16``)
+                        Size of the checksum in bit.
+                    ``isDropping`` (default ``True``)
+                        Select between *dropping* or *marking* behavior.
+    **Dependencies** A Packet Error Ratio (PER) provider to determine the
+                    probability of compound loss.
+    **Dropping**     Random compounds depending on their PER.
+    ================ ====================================================
 
 As an abstract modeling of the calculation of the checksum, the Cyclic
 Redundancy Check (CRC) unit performs a random experiment based on the

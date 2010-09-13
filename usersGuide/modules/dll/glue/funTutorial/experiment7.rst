@@ -40,35 +40,35 @@ the according instance. In case of receiving a compound that has no
 available instance, yet, the flow separator creates a new instance
 using the ``UnitBuilder``.
 
-**************
-Flow Separator
-**************
+..  **************
+    Flow Separator
+    **************
 
-====================== ============================================================================
-**Module**             ``wns.ldk.FlowSeparator``
-====================== ============================================================================
-**Usage**              ``wns.ldk.FlowSeparator.FlowSeparator(prototypeName, prototype, keyBuilder)``
-                            Constructor
-                       ``prototypeName``
-                            Name to use for the prototype in the FUN.
-                       ``prototype``
-                            Configuration of the prototype FU.
-                       ``keyBuilder``
-                            Configuration of the key builder.
-                       The \code{FlowSeparator} takes care of registering
-                       the prototype at the FUN with the given name.
-**Parameter**          ``None.``
-**Provided Interface** ``typename InstanceInterface`` (default ``FunctionalUnit``)
-                            Abstract interface of the prototype. When using
-                            pure Python configuration, this is always set
-                            to ``FunctionalUnit``.
-                       ``std::size_t size() const``
-                            Return number of active instances.
-                       ``const InstanceInterface* getPrototype() const``
-                            Return the prototype instance.
-                       ``InstanceInterface* getInstance(const Key& key) const``
-                            Return the instance matching the given key.
-====================== ============================================================================
+    ====================== ============================================================================
+    **Module**             ``wns.ldk.FlowSeparator``
+    ====================== ============================================================================
+    **Usage**              ``wns.ldk.FlowSeparator.FlowSeparator(prototypeName, prototype, keyBuilder)``
+                                Constructor
+                        ``prototypeName``
+                                Name to use for the prototype in the FUN.
+                        ``prototype``
+                                Configuration of the prototype FU.
+                        ``keyBuilder``
+                                Configuration of the key builder.
+                        The \code{FlowSeparator} takes care of registering
+                        the prototype at the FUN with the given name.
+    **Parameter**          ``None.``
+    **Provided Interface** ``typename InstanceInterface`` (default ``FunctionalUnit``)
+                                Abstract interface of the prototype. When using
+                                pure Python configuration, this is always set
+                                to ``FunctionalUnit``.
+                        ``std::size_t size() const``
+                                Return number of active instances.
+                        ``const InstanceInterface* getPrototype() const``
+                                Return the prototype instance.
+                        ``InstanceInterface* getInstance(const Key& key) const``
+                                Return the instance matching the given key.
+    ====================== ============================================================================
 
 Flow separation is achieved by a ``FlowSeparator`` creating instances
 of a configurable FU for different flows, delegating requests to the
