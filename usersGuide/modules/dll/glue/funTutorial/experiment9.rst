@@ -6,6 +6,7 @@ Experiment 9: The Group FU
 
 .. figure:: images/experiment9.*
    :align: center
+   :width: 480
 
    FUN setup
 
@@ -16,5 +17,6 @@ Experiment 9: The Group FU
 
 .. figure:: images/experiment9_throughput_clients.*
    :align: center
+   :width: 480
 
    Aggregated throughput of the clients vs. load

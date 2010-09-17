@@ -110,6 +110,7 @@ instances.
 
 .. figure:: images/experiment7.*
    :align: center
+   :width: 480
 
    FUN setup
 
@@ -120,6 +121,7 @@ instances.
 
 .. figure:: images/experiment7_throughput_clients.*
    :align: center
+   :width: 560
 
    Aggregated throughput of the clients vs. load
 
@@ -127,5 +129,6 @@ instances.
 
 .. figure:: images/experiment7_throughput_ip_glue_bottom_clients.*
    :align: center
+   :width: 560
 
    Aggregated throughput of the clients vs. load at the NL and bottom of DLL

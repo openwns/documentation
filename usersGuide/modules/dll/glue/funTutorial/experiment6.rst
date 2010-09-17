@@ -86,6 +86,7 @@ the prototype pattern.
 
 .. figure:: images/experiment6.*
    :align: center
+   :width: 480
 
    FUN setup
 
@@ -96,6 +97,7 @@ the prototype pattern.
 
 .. figure:: images/experiment6_throughput_clients.*
    :align: center
+   :width: 480
 
    Aggregated throughput of the clients vs. load
 

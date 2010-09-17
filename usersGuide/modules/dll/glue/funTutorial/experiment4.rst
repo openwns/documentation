@@ -6,6 +6,7 @@ Experiment 4: The Buffer FU
 
 .. figure:: images/experiment4.*
    :align: center
+   :width: 480
 
    FUN setup
 
@@ -16,6 +17,7 @@ Experiment 4: The Buffer FU
 
 .. figure:: images/experiment4_throughput_clients.*
    :align: center
+   :width: 480
 
    Aggregated throughput of the clients vs. load
 

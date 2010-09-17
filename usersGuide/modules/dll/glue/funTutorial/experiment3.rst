@@ -101,6 +101,7 @@ simply marked defective.
 
 .. figure:: images/experiment3.*
    :align: center
+   :width: 480
 
    FUN setup
 
@@ -111,6 +112,7 @@ simply marked defective.
 
 .. figure:: images/experiment3_throughput_clients.*
    :align: center
+   :width: 480
 
    Aggregated throughput of the clients vs. load
 
