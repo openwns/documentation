@@ -23,7 +23,6 @@ and then run PyTree:
 The figure below shows the upper left part of the opened up PyTree window. Click on the triangle next to ``config5.py`` to expand the configuration tree. 
 
 .. figure:: images/experiment5_pytree.*
-   :width: 480
 
     PyTree
 
@@ -61,7 +60,6 @@ phy (copper.Copper.Transceiver)
 Now further expand the ``dll`` entry and click on ``fun``. A window like the one below will pop up.
 
 .. figure:: images/experiment5_pytree_fun.*
-   :width: 480
 
     PyTree FUN
 
@@ -71,7 +69,6 @@ Now further expand the ``dll`` entry and click on ``fun``. A window like the one
 
 .. figure:: images/experiment5.*
    :align: center
-   :width: 480
 
    FUN setup
 

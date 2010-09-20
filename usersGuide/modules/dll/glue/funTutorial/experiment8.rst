@@ -6,7 +6,6 @@ Experiment 8: The Stop-And-Wait ARQ Rich Connect FU
 
 .. figure:: images/experiment8.*
    :align: center
-   :width: 480
 
    FUN setup
 

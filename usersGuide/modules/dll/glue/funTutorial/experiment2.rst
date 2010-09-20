@@ -6,7 +6,6 @@ Experiment 2: The ALOHA FU
 
 .. figure:: images/experiment2.*
    :align: center
-   :width: 480
 
    FUN setup
 

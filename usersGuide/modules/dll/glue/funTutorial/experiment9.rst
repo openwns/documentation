@@ -6,7 +6,6 @@ Experiment 9: The Group FU
 
 .. figure:: images/experiment9.*
    :align: center
-   :width: 480
 
    FUN setup
 

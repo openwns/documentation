@@ -101,7 +101,6 @@ simply marked defective.
 
 .. figure:: images/experiment3.*
    :align: center
-   :width: 480
 
    FUN setup
 

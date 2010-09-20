@@ -110,7 +110,6 @@ instances.
 
 .. figure:: images/experiment7.*
    :align: center
-   :width: 480
 
    FUN setup
 

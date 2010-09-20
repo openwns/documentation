@@ -86,7 +86,6 @@ the prototype pattern.
 
 .. figure:: images/experiment6.*
    :align: center
-   :width: 480
 
    FUN setup
 

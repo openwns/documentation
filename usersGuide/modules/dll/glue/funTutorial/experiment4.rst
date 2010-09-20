@@ -6,7 +6,6 @@ Experiment 4: The Buffer FU
 
 .. figure:: images/experiment4.*
    :align: center
-   :width: 480
 
    FUN setup
 

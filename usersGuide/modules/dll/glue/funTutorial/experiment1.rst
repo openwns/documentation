@@ -6,7 +6,6 @@ Experiment 1: A Simple FUN
 
 .. figure:: images/experiment1.*
    :align: center
-   :width: 480
 
    FUN setup
 
