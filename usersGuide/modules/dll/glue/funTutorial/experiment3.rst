@@ -63,27 +63,27 @@ valid. In the outgoing data flow, all friends of a FU in a FUN have to
 be placed above. Otherwise, the friend's commands can not be retrieved
 while in control, since they are not yet activated.
 
-..  ***
-    CRC
-    ***
+*****************************
+Cyclic Redundance Check (CRC)
+*****************************
 
-    ================ ====================================================
-    **Module**       ``wns.ldk.CRC``
-    ================ ====================================================
-    **Usage**
-                    ``CRC(perProvider)``
-                        Constructor
-                    ``perProvider``
-                        Name of the friend that provides the PER.
-    **Parameter**
-                    ``CRCsize`` (default ``16``)
-                        Size of the checksum in bit.
-                    ``isDropping`` (default ``True``)
-                        Select between *dropping* or *marking* behavior.
-    **Dependencies** A Packet Error Ratio (PER) provider to determine the
+================ ====================================================
+**Module**       ``wns.ldk.CRC``
+================ ====================================================
+**Usage**
+                 ``CRC(perProvider)``
+                     Constructor
+                 ``perProvider``
+                     Name of the friend that provides the PER.
+**Parameter**
+                 ``CRCsize`` (default ``16``)
+                     Size of the checksum in bit.
+                 ``isDropping`` (default ``True``)
+                     Select between *dropping* or *marking* behavior.
+**Dependencies** A Packet Error Ratio (PER) provider to determine the
                     probability of compound loss.
-    **Dropping**     Random compounds depending on their PER.
-    ================ ====================================================
+**Dropping**     Random compounds depending on their PER.
+================ ====================================================
 
 As an abstract modeling of the calculation of the checksum, the Cyclic
 Redundancy Check (CRC) unit performs a random experiment based on the
@@ -96,6 +96,14 @@ and thus decide whether the compound is defective or not.
 Depending on the configuration, defective compounds get dropped or
 simply marked defective.
 
+**********
+Experiment
+**********
+
+Implement the missing CRC functional unit that evaluates whether the
+compound is erroneous or not. Use the packet error rate provider to
+get the packet error probability.
+
 
 .. _figure-funtutorial-experiment3-fun:
 
@@ -106,6 +114,9 @@ simply marked defective.
 
 .. literalinclude:: ../../../../../../.createManualsWorkingDir/glue.fun.tutorial.experiment3
    :language: python
+
+
+
 
 .. _figure-funtutorial-experiment3-results-throughput-clients:
 
