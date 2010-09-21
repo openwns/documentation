@@ -17,14 +17,12 @@ Then use following command to start Wrowser.
 
 .. code-block:: bash
 
-   $ openwns-wrowser: bin/wrowser
-   Local installation of wrowser found.
-   Prepending /home/yxn/working/openwns/openwns-wrowser to sys.path
+   $ openwns-wrowser: wrowser
 
 After wrowser started, ``sandbox path`` needs to be set up for wrowser first.
-Go to ``Extra`` menu of wrowser and open ``Preferences``. Find ``Sandbox`` tab and fill in ``Sandboxpath`` with your sandbox path like ``MY-OPENWNS/sandbox``. Then click ``OK`` to save and close this Dialog window. 
+Go to ``Extra`` menu of wrowser and open ``Preferences``. Find ``Sandbox`` tab and fill in ``Sandboxpath`` with your sandbox path like ``myOpenWNS/sandbox``. Then click ``OK`` to save and close this Dialog window. 
 
-Then goto ''File'' menu and start ''View Scenario''. In the open window find the config file. Here we use ``MY-OPENWNS/tests/system/OFDMAScanner-Tests--main--1.0/configITUInH.py`` as an example. This is an Indoor Hotspot scenario with 2 base stations.
+Then goto ''File'' menu and start ''View Scenario''. In the open window find the config file. Here we use ``~/myOpenWNS/tests/system/ofdma-tests/configITUInH.py`` as an example. This is an Indoor Hotspot scenario with 2 base stations.
 
 As show in the figure:
 
@@ -54,7 +52,7 @@ Example of OFDMA Scanner test of ITU UMa scenario
 =================================================
 
 
-Now ``configITUUMa.py`` in ``tests/system/OFDMAScanner-Tests--main--1.0`` will be taken as example.
+Now ``configITUUMa.py`` in ``~/myOpenWNS/tests/system/ofdma-tests/`` will be taken as example.
 
 .. code-block:: python
 
@@ -63,7 +61,7 @@ Now ``configITUUMa.py`` in ``tests/system/OFDMAScanner-Tests--main--1.0`` will b
    #UE Creator
    self.scanner = ofdmaphy.Station.Scanner(self, "UE" + str(self.nodeID), [ofdmaphy.Receiver.ReceiverDropIn()],  centerFrequency)
 
-The codes above are from ``nocecreators.py`` of ``OFDMAScanner-Tests--main--1.0``. In ``OFDMAScanner-Tests--main--1.0``, ``ofdmaphy.Station.Sender`` is used as base station and ``ofdmaphy.Station.Scanner`` as user terminal.
+The codes above are from ``nocecreators.py`` in ``~/myOpenWNS/tests/system/ofdma-tests/``. Here ``ofdmaphy.Station.Sender`` is used as base station and ``ofdmaphy.Station.Scanner`` as user terminal.
 
 .. code-block:: python
 
@@ -118,7 +116,7 @@ The codes above are from ``nocecreators.py`` of ``OFDMAScanner-Tests--main--1.0`
        return True
 
 
-In the codes presented above, ``scenarios.builders.CreatorPlacerBuilderUrbanMacro`` is used as creator placer builder. ``scenarios.builders.CreatorPlacerBuilderUrbanMacro`` is a child class of ``scenarios.builders.CreatorPlacerBuilder`` which is used in last chapter. Most parameters are pre-configurated according to Urban Macro (UMa) scenario model. In this scenario base station uses sectorization. We have 1 circles of base station and 0 user terminal.
+In the codes presented above, ``scenarios.builders.CreatorPlacerBuilderUrbanMacro`` is used as creator placer builder. ``scenarios.builders.CreatorPlacerBuilderUrbanMacro`` is a child class of ``scenarios.builders.CreatorPlacerBuilder`` which is used in last chapter. Most parameters are pre-configurated according to Urban Macro (UMa) scenario model. In this scenario base station uses sectorization.  One circles of base stations(totally 7 base stations: 1 in the mittle and 6 around it with a hexagonal form) and 0 user terminal, as shown below.
 
 .. _figure-scenarios-IMT-A-UMa:
 
@@ -127,5 +125,5 @@ In the codes presented above, ``scenarios.builders.CreatorPlacerBuilderUrbanMacr
 
    Station positions of a Urban Macro scenario
 
-Other pre-configurated creator placer builder of ITM-A scenarios can be found under 'framework/scenarios/PyConfig/scenarios/ituM2135'. 
+Other pre-configurated creator placer builders of ITM-A scenarios can be found under 'framework/scenarios/PyConfig/scenarios/ituM2135'.
 
