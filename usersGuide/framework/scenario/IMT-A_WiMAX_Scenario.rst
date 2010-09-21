@@ -2,7 +2,7 @@
 IMT-A WiMAX scenario
 ####################
 
-In this chapter, some predifined functions are introduced.
+In this chapter, some parameter of ``CreatorPlacerBuilder`` and predifined functions are introduced.
 
 ================================
 Introduction of other parameters
@@ -26,7 +26,15 @@ Introduction of other parameters
    ...
    ...
 
-The codes listed above are part of ``MY-OPENWNS/tests/system/WiMAC-Tests--main--1.2/configIMTA/configUMa.py``. In this test, ``wimac.support.nodecreators.WiMAXBSCreator`` is used to create base stations and ``wimac.support.nodecreators.WiMAXUECreator`` user terminals. The predefined creator placer for Urban Macro scenario is used to create a Urban Macro scenario package. This package can be found at ``MY-OPENWNS/framework/scenarios/PyConfig/scenarios/builders/creatorplacer.py``, as shown below.
+The codes listed above are part of ``myOpenWNS/tests/system/wimac-tests/configIMTA/configUMa.py``. In this test, ``wimac.support.nodecreators.WiMAXBSCreator`` is used to create base stations and ``wimac.support.nodecreators.WiMAXUECreator`` user terminals.
+
+.. code-block:: python
+
+       sectorization = True
+
+If ``sectorization`` is set to ``True``, sectorized antenna is used. Every antenna has 3 directions. In OPENWNS, when one base station uses sectorized antenna, three base stations are created in one position. Every base station has one antenna, which covers 120 degrees in one direction. All these three base stations are treated as one in simulation.
+
+The predefined creator for Urban Macro scenario is used to create a Urban Macro scenario package. This package can be found at ``myOpenWNS/framework/scenarios/PyConfig/scenarios/builders/creatorplacer.py``, as shown below.
 
 .. code-block:: python
 
@@ -44,11 +52,7 @@ The codes listed above are part of ``MY-OPENWNS/tests/system/WiMAC-Tests--main--
 
 In this package, several predifened ituM2135 Urban Macro parameters are used to setup a scenario for Urban Macro enrivoment.
 
-=================================================================
-Show the positions of base stations and user terminal with pytree
-=================================================================
-
-In ITU scenario packages, user terminals are randomized placed around base station. Here we use the ``HexagonalPlacer`` as a base station placer and ``HexagonalAreaPlacer`` as a user terminal placer for Urban Micro, Urban Macro, Rural Macro and Suburban Macro scenarios; use ``LinearPlacer`` as base station placer and ``RectangularAreaPlacer`` as user terminal placer for Indoor Hotspot scenarios. All these functions are defined in ``MY-OPENWNS/framework/scenarios/PyConfig/scenarios/placer/``. All ``AreaPlacer`` are randomized placer.
+In ITU scenario packages, user terminals are randomized placed around base station. Here the ``HexagonalPlacer`` is used as a base station placer and ``HexagonalAreaPlacer`` as a user terminal placer for Urban Micro, Urban Macro, Rural Macro and Suburban Macro scenarios; use ``LinearPlacer`` as base station placer and ``RectangularAreaPlacer`` as user terminal placer for Indoor Hotspot scenarios. All these functions are defined in ``myOpenWNS/framework/scenarios/PyConfig/scenarios/placer/``. All ``AreaPlacer`` are randomized placer.
 
 .. code-block:: python
    

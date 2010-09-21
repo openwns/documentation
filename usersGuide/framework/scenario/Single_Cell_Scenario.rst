@@ -1,11 +1,40 @@
-#####################
-Single Cell Scenarios
-#####################
-
-We start this chapter with an example for a single cell scenario, in which one central base station and 10 user terminals are defined.
+#############################
+Pytree and a simple Scenarios
+#############################
 
 
-Part of ``config.py`` under directory ``tests/system/LTER8Compliance-Tests/`` is presented as follows:
+============================
+Use pytree to show scenarios
+============================
+
+OpenWNS provides a tool named ``pytree`` to show the created scenarios and its parameters without starting simulation.
+To use ``pytree`` to open a config file, for example: ``~/myOpenWNS/tests/system/wimac-tests/configOFDMA/configMulticell.py``, you should goto your test directoty ``~/myOpenWNS/tests/system/wimac-tests/configOFDMA`` and run the following command:
+
+.. code-block:: bash
+
+   $ ~/myOpenWNS/bin/pytree.py configMulticell.py
+
+After that, a visualised program will be started.
+
+.. _figure-scenarios-pytree:
+
+.. figure:: images/pytree.*
+   :align: center
+
+   view of pytree
+
+Expand ``configMulticell.py`` at left side of this window and find ``secnario``. Click it and scroll down the right part of this window, you can find the view of positions of all the nodes created by this config file (blue points are base stations and red are user terminals).
+
+
+=====================
+A simple Scenarios
+=====================
+
+
+We start this chapter with an example of a single cell scenario, in which one central base station and 10 user terminals are defined.
+
+
+Part of ``configSingleCell.py`` under directory ``myOpenWNS/tests/system/wimac-tests/configOFDMA/`` is presented as follows:
 
 .. code-block:: python
 
@@ -15,40 +44,18 @@ Part of ``config.py`` under directory ``tests/system/LTER8Compliance-Tests/`` is
    import scenarios.traffic
    import winprost.qos
 
-   mode = "ltefdd1p4"
-   bsPlacer = scenarios.placer.HexagonalPlacer(numberOfCircles = 0, interSiteDistance = 100.0, rotate=0.3)
-   uePlacer = scenarios.placer.CircularPlacer(numberOfNodes = 10, radius = 50.0, rotate=0.3)
-   bsAntenna = scenarios.antenna.IsotropicAntennaCreator([0.0, 0.0, 25.0])
-   channelmodelcreator = winprost.support.WINNER.Propagation.C2NLOSChannelChannelModelCreator()
-   scenario = scenarios.builders.CreatorPlacerBuilder(
-                  nodecreators.LTEBSCreator(mode=mode, useHARQ=True), 
-                  bsPlacer, bsAntenna, 
-                  nodecreators.LTEUECreator(mode=mode, useHARQ=True), 
-                  uePlacer,channelmodelcreator)
+   # Create and place the nodes:
+   # One BS (25m omnidirectional antenna height) with two nodes, one near, one far
 
+   bsPlacer = scenarios.placer.HexagonalPlacer(numberOfCircles = 0, interSiteDistance = 100.0, rotate=0.0)
+   uePlacer = scenarios.placer.LinearPlacer(numberOfNodes = 2, positionsList = [100, 400], rotate=0.3)
+   bsAntenna = scenarios.antenna.IsotropicAntennaCreator([0.0, 0.0, 5.0])
+   bsCreator = wimac.support.nodecreators.WiMAXBSCreator(stationIDs, Config)
+   ueCreator = wimac.support.nodecreators.WiMAXUECreator(stationIDs, Config)
+   channelmodelcreator = wimac.support.helper.TestChannelModelCreator()
+   scenario = scenarios.builders.CreatorPlacerBuilder(bsCreator, bsPlacer, bsAntenna, 
+                                                   ueCreator, uePlacer, channelmodelcreator)
 
-   import openwns.simulator
-
-   openwns.simulator.getSimulator().maxSimTime = 0.2
-   openwns.simulator.getSimulator().outputStrategy = openwns.simulator.OutputStrategy.DELETE
-
-   class MyBinding:
-
-       def __init__(self, qosClass = openwns.qos.undefinedQosClass):
-           self.qosClass = qosClass
-
-       def create(self, ue):
-           rang = openwns.simulator.getSimulator().simulationModel.getNodesByProperty("Type", "RANG")[0]
-           import constanze.node
-           return constanze.node.TCPClientBinding(
-                       ue.nl.domainName,
-                       rang.nl.domainName,
-                       1024,
-                       parentLogger = ue.logger,
-                       qosClass = self.qosClass)
-
-   scenarios.traffic.addTraffic(MyBinding(qosClass = winprost.qos.conversationalQosClass),
-                               scenarios.traffic.CBR(offset = 0.05, trafficRate = 6.0e3, packetSize = 1500*8) )
 
 The scenario built by this configuration is shown as below.
 
@@ -59,7 +66,6 @@ The scenario built by this configuration is shown as below.
 
    Station positions within this single cell
 
-'The figure can be created by running ``bin/pytree config.py``. Under ``scenarios`` of pytree you can find the visualized scenarios and the cooresponding scenario parameters collected from the configuration file.
 
 =============================
 Explanation of configurations
@@ -78,72 +84,30 @@ This part imports necessary files for scenario configuration.
 
 .. code-block:: python
 
-   bsPlacer = scenarios.placer.HexagonalPlacer(numberOfCircles = 0, interSiteDistance = 100.0, rotate=0.3)
-   uePlacer = scenarios.placer.CircularPlacer(numberOfNodes = 10, radius = 50.0, rotate=0.3)
+   bsPlacer = scenarios.placer.HexagonalPlacer(numberOfCircles = 0, interSiteDistance = 100.0, rotate=0.0)
+   uePlacer = scenarios.placer.LinearPlacer(numberOfNodes = 2, positionsList = [100, 400], rotate=0.3)
 
 ``bsPlacer`` saves the locations of all base stations in a scenario, which is generated by ``scenarios.placer.HexagonalPlacer``. Since this is a single cell scenario, the numberOfCircles is set to 0.
-``uePlacer`` saves the locations of all user terminals within each cell in this scenario, which is generated by ``scenarios.placer.CircularPlacer``. Here ``uePlacer`` uses a circular placer with a radius of 50 and numberOfNodes of 10. As shown in the figure above, this circular placer places 10 user terminals average at the edge of a circle with radius of 50 meters.
+``uePlacer`` saves the locations of all user terminals within each cell in this scenario, which is generated by ``scenarios.placer.LinearPlacer``. Here ``uePlacer`` uses a linear placer with 2 nodes at position 100 and 400. .
 
 .. code-block:: python
 
-   bsAntenna = scenarios.antenna.IsotropicAntennaCreator([0.0, 0.0, 25.0])
-   channelmodelcreator = winprost.support.WINNER.Propagation.C2NLOSChannelChannelModelCreator()
+   bsAntenna = scenarios.antenna.IsotropicAntennaCreator([0.0, 0.0, 5.0])
+   channelmodelcreator = wimac.support.helper.TestChannelModelCreator()
 
-These two code lines define the antenna model and channel model respectively. The channel model uses NLOS channel model.
+These two code lines define the antenna model and channel model respectively. The channel model uses a predefined test channel model.
 
 .. code-block:: python
 
-   scenario = scenarios.builders.CreatorPlacerBuilder(
-                  nodecreators.LTEBSCreator(mode=mode, useHARQ=True), 
-                  bsPlacer, bsAntenna, 
-                  nodecreators.LTEUECreator(mode=mode, useHARQ=True), 
-                  uePlacer,channelmodelcreator)
+   bsCreator = wimac.support.nodecreators.WiMAXBSCreator(stationIDs, Config)
+   ueCreator = wimac.support.nodecreators.WiMAXUECreator(stationIDs, Config)
+
+``bsCreator`` creats base stations and ``ueCreator`` creats user terminal as well. 
+
+.. code-block:: python
+
+   scenario = scenarios.builders.CreatorPlacerBuilder(bsCreator, bsPlacer, bsAntenna, 
+                                                   ueCreator, uePlacer, channelmodelcreator)
 
 Now all the parameters introduced above will be combined and set up in the Creator Placer Builder.
-
-Through calling the CreatorPlacerBuilder, two nodecreator are also called, namely the ``nodecreators.LTEBSCreator(mode=mode, useHARQ=True)`` for base station and the ``nodecreators.LTEUECreator(mode=mode, useHARQ=True)`` for user terminal. The source codes of both node creators are defined in file ``nodecreators.py`` under the directory ``tests/system/LTER8Compliance-Tests/``, in which the properties of each type of nodes are defined.
-
-.. code-block:: python
-
-   class MyBinding:
-
-       def __init__(self, qosClass = openwns.qos.undefinedQosClass):
-           self.qosClass = qosClass
-
-       def create(self, ue):
-           rang = openwns.simulator.getSimulator().simulationModel.getNodesByProperty("Type", "RANG")[0]
-           import constanze.node
-           return constanze.node.TCPClientBinding(
-                       ue.nl.domainName,    # source node domain name
-                       rang.nl.domainName,   # destination node domain name
-                       1024,                 # port of traffic
-                       parentLogger = ue.logger,
-                       qosClass = self.qosClass)
-
-   scenarios.traffic.addTraffic(MyBinding(qosClass = winprost.qos.conversationalQosClass),
-                               scenarios.traffic.CBR(offset = 0.05, trafficRate = 6.0e3, packetSize = 1500*8) )
-
-This part of codes set up the traffic model, in which the source node ``ue.nl.domainName`` sends packets to the destination node ``rang.nl.domainName`` with a packet length of 1500*8 bits, traffic rate of 6000 bps and traffic type of CBR. This traffic starts at the simulation time of 0.05 (offset) second.
-
-============================
-Use pytree to show scenasios
-============================
-
-OpenWNS provides a tool named ``pytree`` to show the created scenarios and its parameters without starting simulation.
-To use ``pytree`` to open a config file, for example: ``tests/system/LTER8Compliance-Tests/configMulticell.py``, you should goto your test directoty ``tests/system/LTER8Compliance-Tests`` and run the following command:
-
-.. code-block:: bash
-
-   $ ../../../bin/pytree.py configMulticell.py
-
-After that, a visualised program will be started.
-
-.. _figure-scenarios-pytree:
-
-.. figure:: images/pytree.*
-   :align: center
-
-   view of pytree
-
-Expand ``configMulticell.py`` at left side of this window and find ``secnario``. Click it and scroll down the right part of this window, you can find the view of positions of all the nodes created by this config file.
 
