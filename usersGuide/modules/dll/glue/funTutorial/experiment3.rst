@@ -121,9 +121,11 @@ in an erroneous packet.
 
 
 1. Implement the missing CRC functional unit that evaluates whether
-   the compound is erroneous or not. Use the packet error rate
-   provider to get the packet error probability.
-2. include the CRC functional unit in the ``libfiles.py`` of the Glue.
+   the compound is erroneous or not in the ``src`` directory of the
+   glue module. Use the CRC template from the functional unit
+   tutorial. Use the packet error rate provider to get the packet
+   error probability.
+2. Include the CRC functional unit in the ``libfiles.py`` of the Glue.
 3. Rebuild/Update your campaign.
 4. Copy the config file into your campaign directory.
 5. Run the simulations.
