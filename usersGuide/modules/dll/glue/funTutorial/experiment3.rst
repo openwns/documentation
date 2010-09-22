@@ -96,14 +96,14 @@ and thus decide whether the compound is defective or not.
 Depending on the configuration, defective compounds get dropped or
 simply marked defective.
 
-**********
-Experiment
-**********
-
-Implement the missing CRC functional unit that evaluates whether the
-compound is erroneous or not. Use the packet error rate provider to
-get the packet error probability.
-
+****
+Task
+****
+The figure below shows the functional unit that also comprises a CRC
+functional unit. Even though the lower convergence drops collided
+compounds on the physical layer, a minimal bit error rate remains. The
+CRC's task is to check whether the remaining packet error rate results
+in an erroneous packet.
 
 .. _figure-funtutorial-experiment3-fun:
 
@@ -111,6 +111,17 @@ get the packet error probability.
    :align: center
 
    FUN setup
+
+
+1. Implement the missing CRC functional unit that evaluates whether
+   the compound is erroneous or not. Use the packet error rate
+   provider to get the packet error probability.
+2. include the CRC functional unit in the ``libfiles.py`` of the Glue.
+3. Rebuild/Update your campaign.
+4. Copy the config file into your campaign directory.
+5. Run the simulations.
+
+
 
 .. literalinclude:: ../../../../../../.createManualsWorkingDir/glue.fun.tutorial.experiment3
    :language: python
