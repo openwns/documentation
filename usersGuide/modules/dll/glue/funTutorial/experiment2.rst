@@ -39,9 +39,7 @@ Aloha
 
   * ``parentLogger`` (default ``None``)
 
-*********
-FUN setup
-*********
+   FUN setup
 
 The functional unit network configuration is as follows:
 

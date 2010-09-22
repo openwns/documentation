@@ -36,7 +36,7 @@ master_doc = 'index'
 
 # General substitutions.
 project = u'openWNS'
-copyright = u'2008, Department of Communication Networks, RWTH Aachen University'
+copyright = u'2010, ComNets Research Group, RWTH Aachen University'
 
 # The default replacements for |version| and |release|, also used in various
 # other places throughout the built documents.
