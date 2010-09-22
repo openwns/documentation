@@ -282,7 +282,7 @@ following two methods:
 
 .. code-block:: cpp
 
-   bool isAccepting(Compund)
+   bool isAccepting(compound)
    void wakeup()
 
 Before an FU is allowed to deliver a compound to another FU using
@@ -313,7 +313,7 @@ concatenation of a larger one.
 Figures :ref:`fig-fun-flow-yes` and :ref:`fig-fun-flow-no` illustrate
 the flow control protocol showing the method calls between two
 FUs. The FU "upper" wishes to deliver a compound to the FU "lower" in
-the outgoing flow using ``DATAreq``. Figure :fig:`fig-fun-flow-yes`
+the outgoing flow using ``DATAreq``. Figure :ref:`fig-fun-flow-yes`
 shows the method calls for a successful compound delivery between two
 FUs. Figure :ref:`fig-fun-flow-no` shows the method calls for an
 unsuccessful compound delivery attempt.
@@ -429,13 +429,13 @@ FU:
    Implement the handling of compounds of an FU including intra FUN
    flow control. The methods provided are
 
-   1. ``void onData(Compound)``
+   1. ``void onData(compound)``
 
-   2. ``void sendData(Compound)``
+   2. ``void sendData(compound)``
 
    3. ``void wakeup()``
 
-   4. ``bool isAccepting(Compound)``
+   4. ``bool isAccepting(compound)``
 
    Handling of compounds includes mutation, dropping, injection and
    forwarding. Activation and initialization of commands is considered

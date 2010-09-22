@@ -16,7 +16,7 @@ Experiment 1: A Simple FUN
 
 .. figure:: images/experiment1_throughput_clients.*
    :align: center
-   :width: 480
+   :width: 480px
 
    Aggregated throughput of the clients vs. load
 
@@ -24,6 +24,6 @@ Experiment 1: A Simple FUN
 
 .. figure:: images/experiment1_throughput_router.*
    :align: center
-   :width: 480
+   :width: 480px
 
    Aggregated throughput of the router vs. load

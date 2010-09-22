@@ -16,7 +16,7 @@ Experiment 4: The Buffer FU
 
 .. figure:: images/experiment4_throughput_clients.*
    :align: center
-   :width: 480
+   :width: 480px
 
    Aggregated throughput of the clients vs. load
 
