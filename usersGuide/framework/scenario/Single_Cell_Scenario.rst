@@ -12,7 +12,7 @@ To use ``pytree`` to open a config file, for example: ``~/myOpenWNS/tests/system
 
 .. code-block:: bash
 
-   $ ~/myOpenWNS/bin/pytree.py configMulticell.py
+   $ myOpenWNS/bin/pytree.py configMulticell.py
 
 After that, a visualised program will be started, like shown in :ref:`figure-scenarios-pytree`.
 
