@@ -14,7 +14,8 @@ To use ``pytree`` to open a config file, for example: ``~/myOpenWNS/tests/system
 
    $ ~/myOpenWNS/bin/pytree.py configMulticell.py
 
-After that, a visualised program will be started.
+After that, a visualised program will be started, like shown in :ref:`figure-scenarios-pytree`.
+
 
 .. _figure-scenarios-pytree:
 
@@ -57,19 +58,20 @@ Part of ``configSingleCell.py`` under directory ``myOpenWNS/tests/system/wimac-t
                                                    ueCreator, uePlacer, channelmodelcreator)
 
 
-The scenario built by this configuration is shown as below.
+The scenario built by this configuration is shown in Figure :ref:`figure-scenarios-singlecell`.
 
 .. _figure-scenarios-singlecell:
 
 .. figure:: images/single_cell_scenario.*
    :align: center
 
-   Station positions within this single cell
+   Station positions within this simple scenario
 
 
 =============================
 Explanation of configurations
 =============================
+
 
 .. code-block:: python
 

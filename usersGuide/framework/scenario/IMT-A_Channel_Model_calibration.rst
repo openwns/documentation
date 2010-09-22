@@ -24,7 +24,7 @@ Go to ``Extra`` menu of wrowser and open ``Preferences``. Find ``Sandbox`` tab a
 
 Then goto ''File'' menu and start ''View Scenario''. In the open window find the config file. Here we use ``~/myOpenWNS/tests/system/ofdma-tests/configITUInH.py`` as an example. This is an Indoor Hotspot scenario with 2 base stations.
 
-As show in the figure:
+As show in the Figure :ref:`figure-scenarios-Wrowser-view-scenario1`:
 
 .. _figure-scenarios-Wrowser-view-scenario1:
 
@@ -39,7 +39,7 @@ On the left part of this window click ``scan``.
 
 After scan finished, click ``Map Plotting`` tap at left bottom. All the probes for PHY layer will be listed. Choose one of then and click ``Redraw``.
 
-The following picture shows an example:
+Figure :ref:`figure-scenarios-Wrowser-view-scenario2` shows an example:
 
 .. _figure-scenarios-Wrowser-view-scenario2:
 
@@ -116,7 +116,7 @@ The codes above are from ``nocecreators.py`` in ``~/myOpenWNS/tests/system/ofdma
        return True
 
 
-In the codes presented above, ``scenarios.builders.CreatorPlacerBuilderUrbanMacro`` is used as creator placer builder. ``scenarios.builders.CreatorPlacerBuilderUrbanMacro`` is a child class of ``scenarios.builders.CreatorPlacerBuilder`` which is used in last chapter. Most parameters are pre-configurated according to Urban Macro (UMa) scenario model. In this scenario base station uses sectorization.  One circles of base stations(totally 7 base stations: 1 in the mittle and 6 around it with a hexagonal form) and 0 user terminal, as shown below.
+In the codes presented above, ``scenarios.builders.CreatorPlacerBuilderUrbanMacro`` is used as creator placer builder. ``scenarios.builders.CreatorPlacerBuilderUrbanMacro`` is a child class of ``scenarios.builders.CreatorPlacerBuilder`` which is used in last chapter. Most parameters are pre-configurated according to Urban Macro (UMa) scenario model. In this scenario base station uses sectorization.  One circles of base stations(totally 7 base stations: 1 in the mittle and 6 around it with a hexagonal form) and 0 user terminal, as shown in Figure :ref:`figure-scenarios-IMT-A-UMa`.
 
 .. _figure-scenarios-IMT-A-UMa:
 
