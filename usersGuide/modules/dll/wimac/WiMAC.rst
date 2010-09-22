@@ -14,8 +14,4 @@ WiMAC Tutorial
    .. experiment4
       experiment5
    
-   What_is_new
-   Functional_Unit_Network_(FUN)
-   Scheduler
-   Probes
-   What_is_missing
+   WiMAC_Notes

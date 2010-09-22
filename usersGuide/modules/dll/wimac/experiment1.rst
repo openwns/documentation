@@ -9,8 +9,8 @@ simulations and evaluate the results while learning the basic parts of the WiMAC
 configurations.
 
 In the following, we will assume that ``myWiMACCampaign`` is the root directory 
-of the simulation campaign, created as described in the wifi tutorial section 
-``preperation``, and ``myWiMACCampaign/experiment1`` is the directory where the 
+of the simulation campaign, created as described in the WiFiMAC tutorial section 
+``preparation``, and ``myWiMACCampaign/experiment1`` is the directory where the 
 simulations are stored.
 
 In the beginning, this directory contains only the following files:
@@ -36,7 +36,7 @@ One Base Station (BS) and one Mobile Station (MS) transmit data in uplink and do
 within a distance `d`.
 
 1. In this simulation, we would like to measure the saturation throughput
-   in downlinnk and uplink. Accordingly, we need to create a
+   in downlink and uplink. Accordingly, we need to create a
    set of simulations with increasing offered traffic and plot the
    carried throughput versus offered traffic.
    Each simulation campaign, independent of its complexity, follows four
@@ -58,7 +58,7 @@ within a distance `d`.
 
 
 
-Config.py
+config.py
 ---------
 
 To complete the campaign, a configuration file ``config.py`` is required that 
@@ -89,11 +89,11 @@ automatic generation of scenarios in the campaign: the object
 ``params`` contains member variables for every parameter that will be
 changed in the campaign. In this case, it is
 
-#. the carrier bandwidth (bandwidth).
-#. the distance between the BS and the MS (distance)
-#. the offered traffic (traffic)
+#. the carrier bandwidth (bandwidth),
+#. the distance between the BS and the MS (distance) and
+#. the offered traffic (traffic).
 
-Besides these parameters, this section also sets the packet size, the packet scheduling strategy, simulation's settling time and five other parametrs.
+Besides these parameters, this section also sets the packet size, the packet scheduling strategy, simulation's settling time and five other parameters.
 
 .. _experiment1FirstCampaignConfig:
 
@@ -103,7 +103,7 @@ campaignConfiguration.py
 ------------------------
 
 To set different values for the parameters of the simulations, a second file besides the
-``config.py`` is neccessary: the ``campaignConfiguration.py``.
+``config.py`` is necessary: the ``campaignConfiguration.py``.
 For the first experiment, a prepared ``campaignConfiguration.py`` can be found in
 ``myOpenWNS/tests/system/WiMAC-Tests--main--1.2/PyConfig/experiment1/``, this
 file needs to be copied into the simulations directory, overwriting the existing one:
@@ -137,7 +137,7 @@ called, the current values are fixed and represent one simulation:
    :language: python
 
 With this setup, 6 simulations are created, differentiated by the
-offered downlink traffic between 0.01 and 12.6 Mb/s. This concludes the file 
+offered downlink traffic between 0.01 and 12.6 Mbps. This concludes the file 
 ``campaignConfiguration.py``.
 
 .. _experiment1FirstSimcontrol:
@@ -257,7 +257,7 @@ Thus, the Wrowser is started by calling
 
 .. code-block:: bash
 
-   $ ~/wrowser/bin/wrowser
+   $ wrowser
 
 In the menu File are the different options to read the generated simulation data,
 we select ``Open Campaign Database`` and then under the appropriate user the 
@@ -304,7 +304,7 @@ this will be displayed in the x-axis. For the y-axis, we select ``wimac.top.wind
    Throughput plot
 
 In the new figure, we should see that the traffic has reached the saturation
-point at 7.3 Mb/s.
+point at 7.3 Mbps.
 
 Another interesting figure is the relation of offered traffic versus the packet 
 delay, evaluated as a probability function. This can be done by choosing a 
@@ -312,10 +312,10 @@ delay, evaluated as a probability function. This can be done by choosing a
 ``wimac.top.packet.incoming.delay_BS_Id1_PDF`` 
 
 The Packet Delay is only meaningful in underload, because the infinite delay of 
-lost or droped packets in overload is not considered in this metric. From the 
+lost or dropped packets in overload is not considered in this metric. From the 
 previous figure we can derive the saturation throughput. Therefore 
-we deselect the last two simulations with a  ``offeredTraffic`` beyond 7.3Mb/s. 
-In the ``Configure Graph`` menu which called with the botton next to ''Draw'' 
+we deselect the last two simulations with a  ``offeredTraffic`` beyond 7.3Mbps. 
+In the ``Configure Graph`` menu which called with the button next to ''Draw'' 
 button, we select the ``Line markers`` as ``None``
 
 :ref:`figure-wimac-experiment1-wrowser-configureGraph_b`.
@@ -348,8 +348,8 @@ Details
 
 So far, we have just used the prepared ``config.py``, without the knowledge how
 it generates the simulation scenario. In the following sections, we will go step
-by step through the different parts of the ``config.py`` and learn what is neccessary
-to setup the scenario and the WiMAC modul.
+by step through the different parts of the ``config.py`` and learn what is necessary
+to setup the scenario and the WiMAC module.
 
 
 
@@ -366,14 +366,14 @@ parameters.
 The statement ``from openwns.wrowser.simdb.SimConfig import params`` is required for the
 automatic generation of scenarios in the campaign: the object
 ``params`` contains member variables for every parameter that will be
-changed in the campaign. In this case, it is
+changed in the campaign. In this case, they are
 
-#. the carrier bandwidth (bandwidth).
-#. the distance between the BS and the MS (distance),
-#. the offered traffic (traffic) and
+#. the carrier bandwidth (bandwidth),
+#. the distance between the BS and the MS (distance) and
+#. the offered traffic (offeredTraffic).
 
 Besides these parameters, this section also sets the packet size, the packet scheduling
-strategy, simulation's settling time and five other parametrs.
+strategy, simulation's settling time and five other parameters.
 
 
 
@@ -389,7 +389,7 @@ Namely, we import
 
 * The random number generator
 
-* The simulator core ``openwns``, which inlcudes different types of lybaries e.g.
+* The simulator core ``openwns``, which includes different types of libraries e.g.
   classes to define dB, dBm and an interval.
 
 * The scenario package to define the radio environment.
@@ -423,36 +423,36 @@ status-report and the probes is set.
 Scenario
 --------
 
-The scenario building basically consist of the following definitions
+The scenario building basically consists of the following definitions
 
 * the positions of stations
 * the transceivers
 * the protocol stacks of the MAC
 
-After passing the default configuartion parametersOFDMA to the wimac module, the
+After passing the default configuration Config.parametersPhy to the wimac module, the
 creation of the scenario instance is done by using the scenario and wimac module;
 
 .. literalinclude:: ../../../../../.createManualsWorkingDir/wimac.tutorial.experiment1.config.scenario
    :language: python
 
 The positions of the stations can be defined by using the placers. (e.g. 
-``HexagonalPlacer``, ``LinearPlacer``) which garantue a specific distribution of
+``HexagonalPlacer``, ``LinearPlacer``) which guarantee a specific distribution of
 the positions. Here, the positions of BSs comply a hexagonal grid with the 
 chosen number of rings ``numberOfCircles`` around a center cell. All positions 
 of MSs are on a line according to the position list ``positionList``. Because we 
-only study a scenario with one BS and one MS we chose ``numberOfCircles`` and 
-``numberOfNodes`` equal to one. The different types of placers can be chosen 
-from the pytho classes in the path ``myOpenWNS/framework/scenarios/PyConfig/scenarios/placer/``
+only study a scenario with one BS and one MS we chose ``numberOfCircles`` equal 
+to zero and ``numberOfNodes`` equal to one. The different types of placers can 
+be chosen from the python classes in the path ``myOpenWNS/framework/scenarios/PyConfig/scenarios/placer/``.
 
 Next, the antenna type of the BS is defined with a position offset relative to the
 BS positions. This is required because more than one antenna per BS is possible. 
-Here we only have one antenna per BS with a hight of 5 meters.
+Here we only have one antenna per BS with a height of 5 meters.
 
-The protocoll stack of the stations is defined by the creator. In this file,
+The protocol stack of the stations is defined by the creator. In this file,
 the creator ``WiMAXBSCreator`` and ``WiMAXUECreator`` are used, which can be found
-in the folder ``myOpenWNS/modules/dll/WiMAC--main--1.0/PyConfig/wimac/support/``
+in the folder ``myOpenWNS/modules/dll/WiMAC--main--1.0/PyConfig/wimac/support/``.
 
-The scenario is build by the ``scenarios.builders.CreatorPlacerBuilder`` using the
+The scenario is built by the ``scenarios.builders.CreatorPlacerBuilder`` using the
 above mentioned parameters and functions.
 
 
@@ -490,7 +490,7 @@ Experiment 1 - Bandwidth (part 2)
 ************************************* 
 
 2. Find the impact of increased ``bandwidth`` from 5MHz to 10 and 20 MHz on the 
-   saturation throughputs by editing the ``campaignConfiguration.py``. and ``config.py``.
+   saturation throughput by editing the ``campaignConfiguration.py``. and ``config.py``.
 
    a. Change the static setting in ``config.py`` to a variable parameter that gets
       its value from the imported instance ``params``.
@@ -501,17 +501,20 @@ Experiment 1 - Bandwidth (part 2)
 
             bandwidth = Int(default = 5)
 
-   #. Add an outer for-loop to the existing one to vary the bandwidth between 5 and 20 MHz::
+   #. Modify the existing for-loop to generate different offered traffic between 
+      0.001 and 35.001 Mbps. Add an inner for-loop to vary the bandwidth between
+      5 and 20 MHz::
 
             for rate in [0,10,15,30,35]:
-                for params.bandwidth in [5,10,20]:
+                for bandw in [5,10,20]:
                     params.offeredTraffic = (0.001 + rate) * 1e6
+                    params.bandwidth = bandw
                     params.write()
 
 
    #. It is not necessary to delete existing scenarios, ``simcontrol.py`` will
       automatically identify the missing simulations and create them when told so.
-      Everytime you modify the campaign parameters, first call ``simcontrol.py --create-database``
+      Every time you modify the campaign parameters, first call ``simcontrol.py --create-database``
       to add entries to the database and ``simcontrol.py --create-scenarios`` to
       create the simulation directories accordingly. Create the simulations (in 
       the database and the scenarios) and execute them.
@@ -526,7 +529,8 @@ Experiment 1 - Distance (part 3)
 ***********************************
 
 3. Now, we want to vary another parameter ``distance`` to select a distance between 
-   BS and MS of 100m to 12km (with a bandwidth of 5 MHz).
+   BS and MS of 0.2km to 12km (with an offered traffic of 10.01 Mbps and a 
+   bandwidth of 5 MHz).
 
    a. Change the static setting in ``config.py`` to a variable parameter that gets its value from the imported instance ``params``.
 
@@ -536,9 +540,12 @@ Experiment 1 - Distance (part 3)
 
             distance= Int(default=100)
 
-   #. Add an outer for-loop to the existing one to vary the distance between 100m and 12000 m::
+   #. Replace the existing for-loop by the following code to vary the distance 
+      between 2000m and 12000m, but to keep the offered traffic at 10.01 Mbps 
+      and the bandwidth at 5 MHz::
 
             params.offeredTraffic = 10.01e6
+            params.bandwidth = 5
             for dist in xrange(1,7):
                 params.distance = dist * 2000
                 params.write()
