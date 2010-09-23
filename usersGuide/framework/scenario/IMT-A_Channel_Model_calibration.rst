@@ -37,9 +37,9 @@ The main window shows the positions of all base stations and user terminals. The
 
 On the left part of this window click ``scan``.
 
-After scan finished, click ``Map Plotting`` tap at left bottom. Here you get a list of available plots after the scan. ``RxPwr`` is the received power, ``SINR```the signal to noise and interference ratio. If you select a probe with ``BSID`` infix only results measured from one BS are shown. Suffix ``max`` means the maximum recorded value at a position, ``mean`` the average value. The suffix ``trials`` is for debug purposes assuring enough measurements were collected at each position. 
+After scan finished, click ``Map Plotting`` tap at left bottom. Here you get a list of available plots after the scan. ``RxPwr`` is the received power, ``SINR`` the signal to noise and interference ratio. If you select a probe with ``BSID`` infix only results measured from one BS are shown. Suffix ``max`` means the maximum recorded value at a position, ``mean`` the average value. The suffix ``trials`` is for debug purposes assuring enough measurements were collected at each position. 
 
-First have a look at the mean and max received power of both and each BS. Try out the ``raw contour plot`` option. A UT will usually associate to the BS it experiences best channel conditions to. Which available plot is best to visualize the relation between position and channel quality? Where is the boundary between the two cells?
+First have a look at the mean and max received power of both and each BS. Try out the ``Draw contour plot`` option. A UT will usually associate to the BS it experiences best channel conditions to. Which available plot is best to visualize the relation between position and channel quality? Where is the boundary between the two cells?
 
 Figure :ref:`figure-scenarios-Wrowser-view-scenario2` shows an example:
 
@@ -49,83 +49,34 @@ Figure :ref:`figure-scenarios-Wrowser-view-scenario2` shows an example:
    :align: center
 
    Example: Max Receiver Power for In door Hotspot scenario
-=================================================
-Example of OFDMA Scanner test of ITU UMa scenario
-=================================================
+
+Now open the ``Map Cut Plotting`` tab. Insert the start and end point coordinates and click ``Plot``. The x-axis shows the distance from ``Point 1``. On the y-axis the value of the area plot along the way between the points is shown. Now go back and redraw the area plot. Then return to the ``Map Cut Plotting`` tab. Can you find a more convenient way to select the points than typing in the coordinates?
+
+==================================================
+ITU Urban Macro Scenario Channel Model Calibration
+==================================================
+
+To assure an error free implementation of the IMT-A channel model, multiple evaluation groups have published their SINR and pathloss results. They can then be compared against each other. The results from the WINNER+ evaluation group are available `here
+<http://projects.celtic-initiative.org/winner+/WINNER+%20and%20ITU-R%20EG%20documents/Calibration%20for%20IMT-Advanced%20Evaluations.pdf>`_.
+
+The results for the Urban Macro scenario can be found in figure 3 of the document. The ``ofdma-tests`` in openWNS have been created to assure the channel model is calibrated and remains that way. Enter the test directory ``~/myOpenWNS/tests/system/ofdma-tests/`` and run the Urban Macro test by typing ``./fast-openwns -f configITUUMa.py``. While waiting for the simulation to finish we take a look at the simulation setup:
+
+.. literalinclude:: ../../../../../.createManualsWorkingDir/ofdmascanner.uma
+
+Above lines provide all that is needed to set up an Urban Macro scenario with one ring of interferers and a total of 21 sectors. BS transmission power is 49 dBm and center frequency is 2GHz. Increasing numberOfCircles to 2 would create 57 sectors. The number of nodes is set to zero, because a special kind of node is created later.
+
+.. literalinclude:: ../../../../../.createManualsWorkingDir/ofdmascanner.uma.setup
+
+The first line of this code block initializes the openWNS random number generator. It does not affect rundom numbers generated in Python. For that one has to include the line ``random.seed(2714)``. Next a simple UT is created and placed at position 1000m, 1000m. Finally mobility is added to the UT. It will scan a hexagon with radius 250m. The inner 25m will not be scanned. This corresponds to the geometry of the Urban Macro scenario. The resolution is 50 steps in x and y direction each. Since the ``creatorPlacerBuilder`` is not used for that additional node, the last line assures it is appended to the list of nodes.
+
+.. literalinclude:: ../../../../../.createManualsWorkingDir/ofdmascanner.uma.final
+
+At the end the measuring probes are set up. The probability density function (PDF) of maximal measured SINR, maximal received power, and minimal pathloss is recorded. By taking the maximum or minimum respectively it is assured that measurements come from the BS the UT would be associated to at each position. The last lines set the simulation time to 1000 seconds and force old results to be deleted with each new simulation run.
+
+The simulation should now be finished. Start ``wrowser``. From the ``File`` menu select ``Open Directory``. Select the ``output`` directory and click ``Set Root`` and then ``Scan``. Now ``Draw`` the maximum SINR and minimum pathloss. They correspond to the results found by the WINNER+ evaluation group.
 
 
-Now ``configITUUMa.py`` in ``~/myOpenWNS/tests/system/ofdma-tests/`` will be taken as example.
-
-.. code-block:: python
-
-   #BS Creator
-   self.sender = ofdmaphy.Station.Sender(self, "BS", [ofdmaphy.Transmitter.TransmitterDropIn()], centerFrequency)
-   #UE Creator
-   self.scanner = ofdmaphy.Station.Scanner(self, "UE" + str(self.nodeID), [ofdmaphy.Receiver.ReceiverDropIn()],  centerFrequency)
-
-The codes above are from ``nocecreators.py`` in ``~/myOpenWNS/tests/system/ofdma-tests/``. Here ``ofdmaphy.Station.Sender`` is used as base station and ``ofdmaphy.Station.Scanner`` as user terminal.
-
-.. code-block:: python
-
-   import nodecreators
-   import scenarios.builders
-   import scenarios.ituM2135
-
-   import openwns.geometry.position
-   import rise.scenario.Propagation
-
-   scenario = scenarios.builders.CreatorPlacerBuilderUrbanMacro(
-       nodecreators.BSCreator("49.0 dBm", 2000.0), 
-       nodecreators.UECreator(2000.0), 
-       sectorization = True, 
-       numberOfCircles = 1,
-       numberOfNodes = 0)
-
-   sm = openwns.simulator.getSimulator().rng.seed = 2714
-   sm = openwns.simulator.getSimulator().simulationModel
-   bsIDs = [node.nodeID for node in sm.getNodesByProperty("Type", "BS")]
-   ueIDs = [node.nodeID for node in sm.getNodesByProperty("Type", "UE")]
-
-   ueCreator = nodecreators.UECreator(2000.0)
-   ue = ueCreator.create()
-   ue.setPosition(openwns.geometry.position.Position(1000.0, 1000.0, 0.0))
-   openwns.simulator.getSimulator().simulationModel.nodes.append(ue)
-
-   for ue in  sm.getNodesByProperty("Type", "UE"):
-       ue.mobility.mobility = scenarios.placer.hexagonal.createAreaScanMobility(50, 250.0, 25.0, openwns.geometry.position.Position(1000.0, 1000.0, 0.0), 0.0)
-
-   import Probes
-   Probes.installDefaultProbesUMa(openwns.simulator.getSimulator(), xrange(len(bsIDs)), 650.0, 1350.0, 650.0, 1350.0)
-
-   openwns.simulator.getSimulator().maxSimTime = 1000.0
-   openwns.simulator.getSimulator().outputStrategy = openwns.simulator.OutputStrategy.DELETE
-
-   def plotMaps(simulator):
-       import glob
-       from scenarios.plotting.Plotting import *
-       files = glob.glob("output/*.m")
-       files = [f.replace(".m", "") for f in files]
-       files = [f.split("_") for f in files]
-       basefiles = []
-       for f in files:
-           f.remove(f[-1])
-           basefiles.append("_".join(f))
-
-       for f in basefiles:
-           print "Creating png for %s" % f
-           s = SingleMapCreator(f, 10, 1500.0, 1500.0, suffix=".m")
-            plotMap(s)
-       return True
 
 
-In the codes presented above, ``scenarios.builders.CreatorPlacerBuilderUrbanMacro`` is used as creator placer builder. ``scenarios.builders.CreatorPlacerBuilderUrbanMacro`` is a child class of ``scenarios.builders.CreatorPlacerBuilder`` which is used in last chapter. Most parameters are pre-configurated according to Urban Macro (UMa) scenario model. In this scenario base station uses sectorization.  One circles of base stations(totally 7 base stations: 1 in the mittle and 6 around it with a hexagonal form) and 0 user terminal, as shown in Figure :ref:`figure-scenarios-IMT-A-UMa`.
 
-.. _figure-scenarios-IMT-A-UMa:
-
-.. figure:: images/IMT-A-UMa.*
-   :align: center
-
-   Station positions of a Urban Macro scenario
-
-Other pre-configurated creator placer builders of ITM-A scenarios can be found under 'framework/scenarios/PyConfig/scenarios/ituM2135'.
 
