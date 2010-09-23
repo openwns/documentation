@@ -26,6 +26,7 @@ Welcome to the openWNS Users Guide!
    modules/dll/lte/LTE
    modules/dll/wimemac/WiMeMAC
 
+   CouchDB
    PyTree
    HowTos
 
