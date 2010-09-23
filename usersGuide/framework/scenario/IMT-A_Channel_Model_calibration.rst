@@ -61,15 +61,15 @@ To assure an error free implementation of the IMT-A channel model, multiple eval
 
 The results for the Urban Macro scenario can be found in figure 3 of the document. The ``ofdma-tests`` in openWNS have been created to assure the channel model is calibrated and remains that way. Enter the test directory ``~/myOpenWNS/tests/system/ofdma-tests/`` and run the Urban Macro test by typing ``./fast-openwns -f configITUUMa.py``. While waiting for the simulation to finish we take a look at the simulation setup:
 
-.. literalinclude:: ../../../../../.createManualsWorkingDir/ofdmascanner.uma
+.. literalinclude:: ../../../../.createManualsWorkingDir/ofdmascanner.uma
 
 Above lines provide all that is needed to set up an Urban Macro scenario with one ring of interferers and a total of 21 sectors. BS transmission power is 49 dBm and center frequency is 2GHz. Increasing numberOfCircles to 2 would create 57 sectors. The number of nodes is set to zero, because a special kind of node is created later.
 
-.. literalinclude:: ../../../../../.createManualsWorkingDir/ofdmascanner.uma.setup
+.. literalinclude:: ../../../../.createManualsWorkingDir/ofdmascanner.uma.setup
 
 The first line of this code block initializes the openWNS random number generator. It does not affect rundom numbers generated in Python. For that one has to include the line ``random.seed(2714)``. Next a simple UT is created and placed at position 1000m, 1000m. Finally mobility is added to the UT. It will scan a hexagon with radius 250m. The inner 25m will not be scanned. This corresponds to the geometry of the Urban Macro scenario. The resolution is 50 steps in x and y direction each. Since the ``creatorPlacerBuilder`` is not used for that additional node, the last line assures it is appended to the list of nodes.
 
-.. literalinclude:: ../../../../../.createManualsWorkingDir/ofdmascanner.uma.final
+.. literalinclude:: ../../../../.createManualsWorkingDir/ofdmascanner.uma.final
 
 At the end the measuring probes are set up. The probability density function (PDF) of maximal measured SINR, maximal received power, and minimal pathloss is recorded. By taking the maximum or minimum respectively it is assured that measurements come from the BS the UT would be associated to at each position. The last lines set the simulation time to 1000 seconds and force old results to be deleted with each new simulation run.
 
