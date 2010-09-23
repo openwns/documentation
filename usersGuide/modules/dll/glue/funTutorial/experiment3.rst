@@ -63,27 +63,34 @@ valid. In the outgoing data flow, all friends of a FU in a FUN have to
 be placed above. Otherwise, the friend's commands can not be retrieved
 while in control, since they are not yet activated.
 
-..  ***
-    CRC
-    ***
+***
+CRC
+***
 
-    ================ ====================================================
-    **Module**       ``wns.ldk.CRC``
-    ================ ====================================================
-    **Usage**
-                    ``CRC(perProvider)``
-                        Constructor
-                    ``perProvider``
-                        Name of the friend that provides the PER.
-    **Parameter**
-                    ``CRCsize`` (default ``16``)
-                        Size of the checksum in bit.
-                    ``isDropping`` (default ``True``)
-                        Select between *dropping* or *marking* behavior.
-    **Dependencies** A Packet Error Ratio (PER) provider to determine the
-                    probability of compound loss.
-    **Dropping**     Random compounds depending on their PER.
-    ================ ====================================================
+* **Module**
+
+  * ``wns.ldk.CRC``
+
+* **Usage** 
+
+  * Constructor: ``CRC(perProvider)``
+  * ``perProvider`` : Name of the friend FU that provides the PER 
+  * drops or marks random compounds depending on their PER
+
+* **Parameter**
+
+  * ``CRCsize`` (default ``16``)
+
+    * Size of the checksum in bits.
+
+  * ``isDropping`` (default ``True``)
+
+    * Select between *dropping* or *marking* behavior
+
+* **Dependencies**
+
+  * A Packet Error Ratio (PER) provider to determine the probability of compound loss.
+
 
 As an abstract modeling of the calculation of the checksum, the Cyclic
 Redundancy Check (CRC) unit performs a random experiment based on the
@@ -96,6 +103,14 @@ and thus decide whether the compound is defective or not.
 Depending on the configuration, defective compounds get dropped or
 simply marked defective.
 
+****
+Task
+****
+The figure below shows the functional unit that also comprises a CRC
+functional unit. Even though the lower convergence drops collided
+compounds on the physical layer, a minimal bit error rate remains. The
+CRC's task is to check whether the remaining packet error rate results
+in an erroneous packet.
 
 .. _figure-funtutorial-experiment3-fun:
 
@@ -104,13 +119,30 @@ simply marked defective.
 
    FUN setup
 
+
+1. Implement the missing CRC functional unit that evaluates whether
+   the compound is erroneous or not in the ``src`` directory of the
+   glue module. Use the CRC template from the functional unit
+   tutorial. Use the packet error rate provider to get the packet
+   error probability.
+2. Include the CRC functional unit in the ``libfiles.py`` of the Glue.
+3. Rebuild/Update your campaign.
+4. Copy the config file into your campaign directory.
+5. Run the simulations.
+
+
+
 .. literalinclude:: ../../../../../../.createManualsWorkingDir/glue.fun.tutorial.experiment3
    :language: python
+
+
+
 
 .. _figure-funtutorial-experiment3-results-throughput-clients:
 
 .. figure:: images/experiment3_throughput_clients.*
    :align: center
+   :width: 480px
 
    Aggregated throughput of the clients vs. load
 

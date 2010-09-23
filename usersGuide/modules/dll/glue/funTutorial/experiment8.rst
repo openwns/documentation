@@ -16,5 +16,6 @@ Experiment 8: The Stop-And-Wait ARQ Rich Connect FU
 
 .. figure:: images/experiment8_throughput_clients.*
    :align: center
+   :width: 480px
 
    Aggregated throughput of the clients vs. load

@@ -79,5 +79,6 @@ Now further expand the ``dll`` entry and click on ``fun``. A window like the one
 
 .. figure:: images/experiment5_throughput_glue_top_glue_bottom_clients.*
    :align: center
+   :width: 480px
 
    Aggregated throughput of the clients vs. load at top and bottom of the DLL

@@ -16,5 +16,6 @@ Experiment 9: The Group FU
 
 .. figure:: images/experiment9_throughput_clients.*
    :align: center
+   :width: 480px
 
    Aggregated throughput of the clients vs. load

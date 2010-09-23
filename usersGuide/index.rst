@@ -20,11 +20,11 @@ Welcome to the openWNS Users Guide!
    about/AboutThisBook
    gettingStarted/GettingStarted
    modules/dll/wifimac/WiFiMAC
-   modules/dll/glue/funTutorial/funTutorial
-   modules/dll/wimemac/WiMeMAC
-   modules/dll/wimac/WiMAC
-   modules/dll/lte/LTE
    framework/scenario/scenario
+   modules/dll/wimac/WiMAC
+   modules/dll/glue/funTutorial/funTutorial
+   modules/dll/lte/LTE
+   modules/dll/wimemac/WiMeMAC
 
    PyTree
    HowTos
