@@ -64,13 +64,13 @@ config.py
 To complete the campaign, a configuration file ``config.py`` is required that 
 configures the scenario, stations and the evaluation. For the first experiment, a 
 config.py can be found in 
-``myOpenWNS/tests/system/WiMAC-Tests--main--1.2/PyConfig/experiment1/``, this 
+``myOpenWNS/tests/system/wimac-tests/PyConfig/experiment1/``, this 
 file needs to be copied into the simulations directory 
 (``myWiMACCampaign/experiment1``):
 
 .. code-block:: bash
 
-   $ cp ../../myOpenWNS/tests/system/WiMAC-Tests--main--1.2/PyConfig/experiment1/config.py .
+   $ cp ../../myOpenWNS/tests/system/wimac-tests/PyConfig/experiment1/config.py .
 
 Take a look at the first lines of the configuration file ``config.py`` and you 
 can see how to adjust the parameters of this scenario:
@@ -105,12 +105,12 @@ campaignConfiguration.py
 To set different values for the parameters of the simulations, a second file besides the
 ``config.py`` is necessary: the ``campaignConfiguration.py``.
 For the first experiment, a prepared ``campaignConfiguration.py`` can be found in
-``myOpenWNS/tests/system/WiMAC-Tests--main--1.2/PyConfig/experiment1/``, this
+``myOpenWNS/tests/system/wimac-tests/PyConfig/experiment1/``, this
 file needs to be copied into the simulations directory, overwriting the existing one:
 
 .. code-block:: bash
 
-   $ cp ../../myOpenWNS/tests/system/WiMAC-Tests--main--1.2/PyConfig/experiment1/campaignConfiguration.py .
+   $ cp ../../myOpenWNS/tests/system/wimac-tests/PyConfig/experiment1/campaignConfiguration.py .
 
 Two sections in this files are especially interesting for the simulation: First, 
 the parameter class ``Set`` is defined that contains all simulation parameters that
@@ -174,7 +174,7 @@ This can be validated by calling
         3  NotQueued                    5010000.0
         4  NotQueued                    7510000.0
         5  NotQueued                   10010000.0
-        6  NotQueued                   12010000.0
+        6  NotQueued                   12510000.0
 
 Before running all simulations, a single one can be tested (e.g. for typos in 
 ``config.py``) by changing into one of the new created directories and running
@@ -450,7 +450,7 @@ Here we only have one antenna per BS with a height of 5 meters.
 
 The protocol stack of the stations is defined by the creator. In this file,
 the creator ``WiMAXBSCreator`` and ``WiMAXUECreator`` are used, which can be found
-in the folder ``myOpenWNS/modules/dll/WiMAC--main--1.0/PyConfig/wimac/support/``.
+in the folder ``myOpenWNS/modules/dll/wimac/PyConfig/wimac/support/``.
 
 The scenario is built by the ``scenarios.builders.CreatorPlacerBuilder`` using the
 above mentioned parameters and functions.
