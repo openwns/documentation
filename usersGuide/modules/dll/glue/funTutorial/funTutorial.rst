@@ -4,6 +4,7 @@ Functional Unit Network (FUN) Tutorial
 
 .. sectionauthor::
    Klaus Sambale <ksw@comnets.rwth-aachen.de>, Communication Networks (ComNets) Research Group, RWTH Aachen University
+   
    Maciej Muehleisen <mue@comnets.rwth-aachen.de>, Communication Networks (ComNets) Research Group, RWTH Aachen University
 
 .. toctree::
@@ -11,4 +12,6 @@ Functional Unit Network (FUN) Tutorial
    :glob:
 
    introduction
-   experiment*
+   experiment1
+   experiment2
+   experiment3
