@@ -6,7 +6,7 @@ Experiment 1: Display the throughput
 Creating a campaign folder
 **************************
 
-In this first experiment, we set up a simple simulation campaign and create a graphical output to evaluate the results. The simulation scenario will consist of two stations placed next to each other; one station is sending data, the other one receives it.
+In this first experiment, we set up a simple simulation campaign and create a graphical output to evaluate the results. The simulation scenario will consist of two devices (the implementation also uses 'stations' as a synonym) placed next to each other; one station is sending data, the other one receives it.
 
 .. figure:: images/experiment1-stationSetup.png
    :align: center
@@ -67,7 +67,7 @@ Open the file config.py with a text editor. At the beginning of this file, many 
 
 .. code-block:: python
 
-    from SimConfig import params
+    from openwns.wrowser.simdb.SimConfig import params
 
 This line imports the structure 'params' from the simulation configuration. We will see later, that this structure is created in campaignConfiguration.py. The following code sets up some variables:
 
@@ -149,7 +149,7 @@ To start the simulation, type
 
 .. code-block:: bash
 
-   $ ./simcontrol --execute-locally-with-state=NotQueued
+   $ ./simcontrol --execute-locally --restrict-state=NotQueued
 
 Now, the simulation is running:
 
@@ -194,7 +194,7 @@ Evaluate The Results
 Wrowser
 -------
 
-The Wrowser ("Wireless network simulator Result brOWSER") is a program to plot the simulation results in a clear and convenient way. For the following part of this tutorial, it is necessary that the Wrowser is installed. Start the Wrowser. 
+The Wrowser (``Wireless network simulator Result browser'') is a program to plot the simulation results in a clear and convenient way. For the following part of this tutorial, it is necessary that the Wrowser is installed. Start the Wrowser.
 
 
 To display our simulation results, select ``File-> Open Campaign Database``. Under the appropriate user name (e.g. your user name), the campaign name and its description is displayed. Select your campaign.
@@ -209,7 +209,7 @@ On the left side of the Wrowser window, the simulation parameters are listed. Do
 .. figure:: images/experiment1-Wrowser_configuration.png
    :align: center
 
-In this window, select 'throughputPerStation' as the simulation parameter. This will be displayed in the X-Axis. To select the Y-Axis parameter, click on the 'Y-Axis'-Tab and select wimemac.traffic.incoming.throughput_wns.node.Node.id3_Moments. This probe shows the incoming data throughput of the receiving node, which is the amount of data that has reached its destination. Now, select ``Draw``. If everything went fine, the graph looks like this:
+In this window, select 'throughputPerStation' as the simulation parameter. This will be displayed in the X-Axis. To select the Y-Axis parameter, click on the 'Y-Axis'-Tab and select ``wimemac.traffic.incoming.throughput_wns.node.Node.id3_Moments``. This probe shows the incoming data throughput of the receiving node, which is the amount of data that has reached its destination. Now, select ``Draw``. If everything went fine, the graph looks like this:
 
 
 .. figure:: images/experiment1-Wrowser_results.png

@@ -2,7 +2,7 @@
 Experiment 5: Relinquish Request
 ################################
 
-This experiment brings up the problem that a station cannot start a transmission if the superframe is already blocked by other reservations.
+This experiment brings up the problem that a station cannot start a transmission if the system is already saturated.
 
 ******
 Part 1
@@ -10,7 +10,7 @@ Part 1
 
 At first, create a new subcampaign with ``experiment5`` as the folder name. Copy the ``config.py`` and the ``campaignconfiguration.py`` from experiment 2 into this folder.
 
-Our new scenario similar to the one from the previous experiment. It consists of 4 stations arranged like this:
+Our new scenario is similar to the one from the previous experiment. It consists of 4 stations arranged like this:
 
 .. figure:: images/experiment5-scenario.png
    :align: center
@@ -37,8 +37,7 @@ Create the database and the scenarios and start the simulation. Afterwards displ
 .. figure:: images/experiment5-Wrowser_noRR.png
    :align: center
 
-As we can see, the transmissions went well unless the offered traffic is higher than 50 Mbit/s. Beyond this point, station 2 receives still all compounds up to the saturation point of the connection, but the more traffic station 2 receives, the less traffic receives station 4. This effect occurs because the order in which the transmission are started is important.
-For small values of ``throughputPerStation`` the superframes look like this:
+As we can see, the transmissions went well unless the offered traffic is higher than 50 Mb/s. Beyond this point, station 2 receives still all compounds up to the saturation point of the connection, but the more traffic station 2 receives, the less traffic receives station 4. This effect occurs because the order in which the transmission are started is important. For small values of ``throughputPerStation`` the superframes look like this:
 
 .. figure:: images/experiment5-Superframe_twoReservations.png
    :align: center
@@ -48,19 +47,19 @@ But bigger values lead to superframes like this:
 .. figure:: images/experiment5-Superframe_MajorMinor.png
    :align: center
 
-Since the connection to station 2 is established first, it can take all the space of the superframe it needs to transmit all of its compounds. When the second connection creates a reservation, it can only take the few slots that are still free. The more slots the first connection needed, the less slots can be used by the second connection.
+Since the connection to station 2 is established first, it can take all the space of the superframe it needs to transmit all of its compounds. When the second connection creates a reservation, it can only take the few MASs that are still free. The more MASs the first connection needed, the less MASs can be used by the second connection.
 
 .. figure:: images/experiment5-Superframe_full.png
    :align: center
 
-This means if one station transmits data with a high speed, all other connections are blocked. The solution to this problem will be presented in the second part of this experiment.
+This means if one station offers a lot of load per second, all other connections are blocked. The solution to this problem will be presented in the second part of this experiment.
 
 
 ******
 Part 2
 ******
 
-Connections for other stations in a full superframe are possible with a so called 'relinquish request'. A relinquish request is sended by a station that initiates a new transmission but can't reservate all the slots it needs for this transmission. When such a request reaches the stations that are already having active connections, they will adapt their reservation patterns so that another station can also establish a connection. For example, if a station receives a relinquish request and it knows from the previous beacon period that there are already two active transmissions running, it will adapt its own reservation pattern so that it allocates at most 1/3 of the superframe. With this step, a third connection can be established and every station can continue or initiate a transmission.
+Connections for other stations in a full superframe are possible with a so called `relinquish request'. A relinquish request is sendt by a station that initiates a new transmission but can't reservate all the MASs it needs for this transmission. When such a request reaches the stations that are already having active connections, they will adapt their reservation patterns so that another station can also establish a connection. For example, if a station receives a relinquish request and it knows from the previous beacon period that there are already two active transmissions running, it will adapt its own reservation pattern so that it allocates at most 1/3 of the superframe. With this step, a third connection can be established and every station can continue or initiate a transmission.
 
 To activate the relinquish request, open the ``config.py`` file of your simulation, look for the line 
 
@@ -72,7 +71,7 @@ and set its value to ``True``. Run the simulation again afterwards. Since you di
 
 .. code-block:: bash
 
-   $ ./simcontrol --execute-locally-with-state=Finished
+   $ ./simcontrol --execute-locally --restrict-state=Finished
 
 Display the campaign results again with the Wrowser. They should look like this:
 
@@ -80,10 +79,10 @@ Display the campaign results again with the Wrowser. They should look like this:
    :align: center
 
 This time, both connections could be established. The saturation point of the first connection is lower than in the previous simulation because it has to share the superframe with the second connection.
-When the simulation begins, the first reservation is created with all the slots it needs to transmit the data. When the second reservation is about to be created after 1 second of simulation time, station 1 shortens its pattern for the first transmission so that it only uses 1/2 of the superframe. This way, the transmission to station 4 can also be created and both transmissions run parallel.
+When the simulation begins, the first reservation is created with all the MASs it needs to transmit the data. When the second reservation is about to be created after 1 second of simulation time, station 1 shortens its pattern for the first transmission so that it only uses 1/2 of the superframe. This way, the transmission to station 4 can also be created and both transmissions run parallel.
 
 .. note::
 
-    The second connection has a slightly smaller throughput if the saturation point is reached. This efect occurs because of the segmentation of the superframe: Since the beacon period takes up 3 slots in this experiment, the remaining 253 slots can't be divided equally among the stations. Station 1 has one more slot reserved than station 3.
+    The second connection has a slightly smaller throughput if the saturation point is reached. This efect occurs because of the segmentation of the superframe: Since the beacon period takes up 3 MASs in this experiment, the remaining 253 MASs can't be divided equally among the stations. Station 1 has one more \ac{MAS} reserved than station 3.
 
 The next experiment will be the biggest and last experiment of this tutorial.

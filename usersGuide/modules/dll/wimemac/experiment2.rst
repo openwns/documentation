@@ -17,8 +17,8 @@ Switch to your campaign folder ``campaigns/experiment1`` and open the file ``cam
 .. literalinclude:: ../../../../../.createManualsWorkingDir/wimemac.tutorial.experiment2.campaignConfiguration.initialization
    :language: python
 
-Save it afterwards. The campaign consists now of 20 scenarios, the data troughput in the last scenario is 200 Mb/s.
-These changes won't take effect unless the contents of the campaignConfiguration.py are written into our campaign database. So we need to execute 
+Save it afterwards. The campaign consists now of 20 scenarios, the data throughput in the last scenario is 200 Mb/s.
+These changes won't take effect unless the contents of the campaignConfiguration.py are written into our campaign database. So we need to execute
 
 .. code-block:: bash
 
@@ -60,12 +60,12 @@ Start the Wrowser and select your campaign. Select the same graph configuration 
 .. figure:: images/experiment2-Wrowser_throughput.png
    :align: center
 
-The graph from experiment 1 is extended by 10 new measurement points. As you can see, all the data can be transmitted without problems unless the offered load is bigger than 160 Mb/s. The amount of successfully transferred data stays the same for higher values of ``throughputPerStation``. This means that 160 Mb/s is the saturaion point for the data throughput. If the offered load is higher than the saturation point of the transmission, not all the data can be transferred.
+The graph from experiment 1 is extended by 10 new measurement points. As you can see, all the data can be transmitted without problems unless the offered load is higher than 160 Mb/s. The amount of successfully transferred data stays the same for higher values of ``throughputPerStation``. This means that 160 Mb/s is the saturaion point of the system.
 
-Packet Delay
+Frame Delay
 ------------
 
-Another interesting aspect besides the saturation point is the packet delay. The packet delay is the delay between the generation of a data packet in the sending station and the transmission of this packet. There is a way to display this delay with the Wrowser: First, select ``Figure-> New-> PDF/CDF/CCDF``. Select ``traffic.endToEnd.packet.incoming.delay_wns.node.Node.id3_PDF`` from the probe list and select CCDF on the butten below the probe list. Now click the ``Configure...`` button and set the Y-Axis to a logarithmic scale (ln). After clicking ``OK`` and ``Draw`` you should see a graph like this:
+Another interesting aspect besides the saturation point is the frame delay. The frame delay is the time between the generation of a data frame and the completion of its transmission. It is an indicator for how long the frame had to be queued before it could be transmitted. There is a way to display this delay with the Wrowser: First, select ``Figure-> New-> PDF/CDF/CCDF``. Select ``traffic.endToEnd.packet.incoming.delay_wns.node.Node.id3_PDF`` from the probe list and select CCDF on the butten below the probe list. Now click the ``Configure...`` button and set the Y-Axis to a logarithmic scale (ln). After clicking ``OK`` and ``Draw`` you should see a graph like this:
 
 .. figure:: images/experiment2-Wrowser_delayNotZoomed.png
    :align: center
@@ -75,6 +75,6 @@ We can hardly get any information out of this view, so zoom to the left part of 
 .. figure:: images/experiment2-Wrowser_delayZoomed.png
    :align: center
 
-The X-Axis shows the packet delay in seconds, while the Y-Axis shows the propability that the delay is bigger than the X-value. Every scenario has its own curve in this diagram. The packet delay goes up to 0.3 seconds in some scenarios. It is also noticable that the delay is smaller the higher the value of ``throughputPerStation`` is.
+The X-Axis shows the frame delay in seconds, while the Y-Axis shows the propability that the delay is higher than the X-value. Every curve in this diagram represents a simulation with a specific value for ``throughputPerStation``. The frame delay goes up to 0.3 seconds in some scenarios. It is also noticable that the delay is smaller the higher the value of ``throughputPerStation`` is.
 
-In the following experiment we will see how we can manipulate the delay and the saturation point.
+In the following experiment we will see how we can manipulate the delay and the saturation point to increase the system capacity.
