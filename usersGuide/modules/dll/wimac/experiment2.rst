@@ -58,14 +58,14 @@ Preparation
 
 :Configuration files:
   Required configuration files ``config.py`` and ``campaignConfiguration.py`` 
-  can be found in ``~/myOpenWNS/tests/system/WiMAC-Tests--main--1.2/PyConfig/experiment2/``,
+  can be found in ``~/myOpenWNS/tests/system/wimac/PyConfig/experiment2/``,
   this file needs to be copied into the simulations directory 
   (``~/myFirstCampaign/experiment2``), e.g.:
 
    .. code-block:: bash
-
-     $ cp ../../myOpenWNS/tests/system/wimac/PyConfig/experiment2/config.py .
-     $ cp ../../myOpenWNS/tests/system/wimac/PyConfig/experiment2/campaignConfiguration.py .
+     $ cd ~/myFirstCampaign/experiment2
+     $ cp ~/myOpenWNS/tests/system/wimac/PyConfig/experiment2/config.py .
+     $ cp ~/myOpenWNS/tests/system/wimac/PyConfig/experiment2/campaignConfiguration.py .
 
 
 :Second MS:
@@ -141,8 +141,7 @@ For instance for a chosen string ``PropFair`` the packet scheduling strategy
 manner working combinations of the two strategy types are suggested and can be 
 easily configured. By using ``setupSchedulerDetail()`` instead of 
 ``setupScheduler()`` the strategy for packet scheduling and DSA can be chosen 
-independently which is used in the second part of the experiment in order to vary
-the DSA strategy only.
+independently.
 
 A class is registered at the ``StaticFactory`` by a name which is used twice 
 in the code. Once in the python file and once in the c++ code. 
@@ -184,18 +183,21 @@ Experiment 2 - dynamic subchannel assignment (part 2)
 *******************************************************
 
 2. In the second part we like to examine the impact of the DSA strategy on the frame
-   occupation. The scheduling strategies ``fixed`` and ``round robin`` may yield similar 
-   throughput results but they use different DSA strategies, namely ``linear first`` 
-   and ``fixed``.
+   occupation. The scheduling strategies ``Fixed`` and ``Round Robin`` may yield similar 
+   throughput results but they use different DSA strategies, namely ``Linear Frequency First`` 
+   and ``Fixed``.
       
    a. Recording the frame occupation can be activated by uncommenting the
       following line at the end of the ``config.py``:
        
             ``wimac.evaluation.default.installJSONScheduleEvaluation(WNS, loggingStationIDs)``
+
+      Change the line ``settlingTime = 0.1`` to ``settlingTime = 0.05`` to start probing earlier.
+      Also look for the line ``WNS.maxSimTime = 1.10`` and change it to ``WNS.maxSimTime = 0.06`` to reduce the simulation time. 
       
    #. In order to evaluate the differences of the DSA- strategies we will study 
-      the frame occupation in a middle load situation at 3.8 Mbps for the scheduling 
-      ``round robin`` and ``fixed``. You can get the corresponding simulation 
+      the frame occupation in a middle load situation at 3.85 Mbps for the scheduling 
+      ``Round Robin`` and ``Fixed``. You can get the corresponding simulation 
       ``SCENARIOID`` (and folder name) by the command ``./simcontrol.py -i``. The WiMAC 
       simulator is configured in a manner that the frame occupation can only be 
       probed in the debug (dbg) mode. Enter the folder:
@@ -203,13 +205,14 @@ Experiment 2 - dynamic subchannel assignment (part 2)
         .. code-block:: bash
 
             $ cd SCENARIOID
+
         
    #. Run the single simulation in debug mode
         
         .. code-block:: bash
 
             $ ./openwns-dbg
-   #. Do this for both, the ``round robin`` and ``fixed`` simulation.
+   #. Do this for both, the ``Round Robin`` and ``Fixed`` simulation.
         
    #. Watch the resulting frame occupation of these two simulations by using the
       Wrowser according to the CouchDB_.
