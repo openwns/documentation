@@ -129,8 +129,8 @@ called, the current values are fixed and represent one simulation:
 .. literalinclude:: ../../../../../.createManualsWorkingDir/wimac.tutorial.experiment1.campaignConfiguration.offeredTraffic
    :language: python
 
-With this setup, 6 simulations are created, differentiated by the
-offered downlink traffic between 0.01 and 12.6 Mbps. This concludes the file 
+With this setup, 5 simulations are created, differentiated by the
+offered downlink traffic between 0.01 and 10.01 Mbps. This concludes the file 
 ``campaignConfiguration.py``.
 
 .. _experiment1FirstSimcontrol:
@@ -169,7 +169,6 @@ This can be validated by calling
         3  NotQueued                    5010000.0
         4  NotQueued                    7510000.0
         5  NotQueued                   10010000.0
-        6  NotQueued                   12510000.0
 
 Before running all simulations, a single one can be tested (e.g. for typos in 
 ``config.py``) by changing into one of the new created directories and running
@@ -198,7 +197,6 @@ After this test, the simulations can be run one-by-one using the ``simcontrol.py
    Executing scenario with id: 3
    Executing scenario with id: 4
    Executing scenario with id: 5
-   Executing scenario with id: 6
 
 
 This starts the serial execution of all defined scenarios. In a "production" 
@@ -234,7 +232,6 @@ After some time, all 6 simulations should be finished, which can be controlled a
     3   Finished         1.10s  100.00%                 5010000.0
     4   Finished         1.10s  100.00%                 7510000.0
     5   Finished         1.10s  100.00%                10010000.0
-    6   Finished         1.10s  100.00%                12510000.0
     
 Each simulation directory now contains a directory ``output``, where all probe 
 output is stored in text files. Additionally, the output is stored in the 
@@ -333,7 +330,7 @@ we can see that the probability for a higher delay increases as the offered traf
 
    Delay plot
 
-Now compare uplink and downlink delays for 5.01 Mbps. How is the delay distributed? Why do the results differ?
+Now compare uplink and downlink delays for 5.01 Mbps. How is the delay distributed? Why do the results differ? Tip: This is a Time Division Duplex (TDD) configuration. 
 
 *******
 Details
@@ -494,9 +491,9 @@ Experiment 1 - Bandwidth (part 2)
       0.001 and 35.001 Mbps. Add an inner for-loop to vary the bandwidth between
       5 and 20 MHz::
 
-            for rate in [0,10,15,30,35]:
+            for rate in [0, 2.5, 5, 7.5, 10, 15, 30, 35]:
                 for bandw in [5,10,20]:
-                    params.offeredTraffic = (0.001 + rate) * 1e6
+                    params.offeredTraffic = (0.01 + rate) * 1e6
                     params.bandwidth = bandw
                     params.write()
 
@@ -506,7 +503,7 @@ Experiment 1 - Bandwidth (part 2)
       Every time you modify the campaign parameters, first call ``simcontrol.py --create-database``
       to add entries to the database and ``simcontrol.py --create-scenarios`` to
       create the simulation directories accordingly. Create the simulations (in 
-      the database and the scenarios) and execute them. Use ``./simcontrol.py --execute-locally --restrict-state=NotQueued`` to assure only the new simulations are executed.
+      the database and the scenarios). Use ``simcontrol.py -i`` to assure everything went right. Execute the simulations using ``./simcontrol.py --execute-locally --restrict-state=NotQueued`` to assure only the new simulations are executed. 
 
    #. Evaluate the impact of the bandwidth on the saturation point using the Wrowser.
 
@@ -527,23 +524,26 @@ Experiment 1 - Distance (part 3)
       ``campaignConfiguration.py``. As existing simulations do not
       have this parameter, but have used 100m, we add this as the default value by specifying::
 
-            distance= Int(default=100)
+            distance = Float(default=100.0)
 
    #. Replace the existing for-loop by the following code to vary the distance 
-      between 2000m and 12000m, but to keep the offered traffic at 10.01 Mbps 
-      and the bandwidth at 5 MHz::
+      between 2100m and 12100m::
 
-            params.offeredTraffic = 10.01e6
-            params.bandwidth = 5
-            for dist in xrange(1,7):
-                params.distance = dist * 2000
-                params.write()
+            for rate in [0, 2.5, 5, 7.5, 10, 15, 30, 35]:
+                for bandw in [5,10,20]:
+                    for dist in xrange(0,6):
+                        params.offeredTraffic = (0.01 + rate) * 1e6
+                        params.bandwidth = bandw
+                        params.distance = 100 + dist * 2000
+                        params.write()
 
-   #. Create the simulations (in the database and the scenarios) and execute them.
+   #. Create the simulations (in the database and the scenarios). Check them using the ``-i`` switch. You will see ``None`` at 100m distance, this is because two default parameters are not supported (yet).
 
-   #. Evaluate the impact of the ``distance`` on the saturation point using the Wrowser.
+   #. To save time only run the simulations for 10.01Mbps and 5MHz. This is done using the option ``--restrict-expression="bandwidth==5 and offeredTraffic==10.01E6" --restrict-state=NotQueued``. 
 
+   #. Evaluate the impact of the ``distance`` on the saturation point using the Wrowser. Use the ``toggle`` button to select the right simulations. Be sure to deselect the empty distance.
 
+The right way to carry out these simulations would have been creating a new subcampaign to just simulate the parameters of interest. Creating subcampaigns will be discussed in the next experiment.
 
 
 

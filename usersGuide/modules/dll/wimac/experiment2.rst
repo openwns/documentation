@@ -2,8 +2,6 @@
 Experiment 2 : Packet Scheduling
 #################################
 
-.. sectionauthor:: Benedikt Wolz <bmw@comnets.rwth-aachen.de>, Department of Communication Networks (ComNets), RWTH Aachen University
-
 In this experiment we extend the previous deployment by one additional MS. In 
 the single cell scenario with one BS and two MS we will study the impact of 
 different scheduling strategies on the throughput and fairness.
@@ -14,21 +12,15 @@ forwards its scheduling decisions within a MAP-message every frame. Additionally
 data packets are selected by the scheduler which are being transmitted on the 
 allocated resources. 
 
-The scheduler frame work within the openWNS allows to orthogonalize the 
+The scheduler framework within the openWNS allows to orthogonalize the 
 scheduling of the different dimensions and thereby to independently choose
 different strategies for each resource allocation (such as dynamic subchannel assignment (DSA),
 adaptive modulation and coding (AMC), adaptive power control (APC)) and the packet 
 scheduling. 
 
-For more details on the scheduling process within the ``WIMAC`` and ``openWNS`` 
-please refer to NewSchedulerManual_.
-
-.. _NewSchedulerManual: http://openwns.comnets.rwth-aachen.de/Wiki/NewSchedulerManual
-
-
 In this experiment we study the impact of different strategies for the 
 packet scheduling on the throughput and fairness as well as briefly examine the
-effect of different strategies for DSA on the frame occupation. During the DSA 
+effect of different strategies for DSA on the frame occupation. During DSA 
 transmission opportunities are defined in time and frequency and are dedicated 
 to MSs.
 
@@ -44,21 +36,21 @@ Preparation
   a third Probe "aggregated.bitThroughput" to the ``TutorialEvaluation``. By 
   uncommenting the corresponding line ``wimac.top.window.aggregated.bitThroughput``
   in the file ``default.py`` which is in the folder 
-  ``myOpenWNS/modules/dll/WiMAC--main--1.0/PyConfig/wimac/evaluation/``:
+  ``myOpenWNS/modules/dll/wimac/PyConfig/wimac/evaluation/``:
 
   .. literalinclude:: ../../../../../.createManualsWorkingDir/wimac.tutorial.experiment2.evaluating.tutorialEvaluation
      :language: python
 
 :Update campaign:
   Using ``./playground.py preparecampaign PATH`` with the same ``PATH``
-  as in the preparation for experiment 1 (namely ``../myWiMACCampaign`` according
+  as in the preparation for experiment 1 (namely ``~/myFirstCampaign`` according
   to the chapter "Preparations" ), we can update the sandbox and apply the made 
   changes to the probing. When prompted by ``./playground.py``, please select 
   ``(U)pdate the sandbox``
 
 
 :Create sub-campaign:
-  Using ``./playground.py preparecampaign PATH`` with the same ``PATH``, we can 
+  Using ``./playground.py preparecampaign PATH`` again with the same ``PATH``, we can 
   create a sub-campaign that uses the same sandbox, but a differed directory to 
   store the simulations. When prompted by ``./playground.py``, please select 
   ``(C)reate a sub-campaign`` and choose as name e.g. ``experiment2``.
@@ -66,14 +58,14 @@ Preparation
 
 :Configuration files:
   Required configuration files ``config.py`` and ``campaignConfiguration.py`` 
-  can be found in ``myOpenWNS/tests/system/WiMAC-Tests--main--1.2/PyConfig/experiment2/``,
+  can be found in ``~/myOpenWNS/tests/system/WiMAC-Tests--main--1.2/PyConfig/experiment2/``,
   this file needs to be copied into the simulations directory 
-  (``myWiMACCampaign/experiment2``), e.g.:
+  (``~/myFirstCampaign/experiment2``), e.g.:
 
    .. code-block:: bash
 
-     $ cp ../../myOpenWNS/tests/system/WiMAC-Tests--main--1.2/PyConfig/experiment2/config.py .
-     $ cp ../../myOpenWNS/tests/system/WiMAC-Tests--main--1.2/PyConfig/experiment2/campaignConfiguration.py .
+     $ cp ../../myOpenWNS/tests/system/wimac/PyConfig/experiment2/config.py .
+     $ cp ../../myOpenWNS/tests/system/wimac/PyConfig/experiment2/campaignConfiguration.py .
 
 
 :Second MS:
@@ -97,8 +89,8 @@ Preparation
 Static Factory
 *******************
 In previous tutorials we modified values of parameters in the PyConfig but the 
-protocol stack of the simulated communication systems and the c++ program were 
-left unchanged. Now we will change the protocol stack and the c++ program by means 
+protocol stack of the simulated communication systems and the C++ program were 
+left unchanged. Now we will change the protocol stack and the C++ program by means 
 of the ``StaticFactory``. 
 
 Within a given context, a number of different strategies to accomplish a task may
@@ -136,7 +128,7 @@ of packets to schedule.
 According to the string in the parameter ``Config.scheduler`` being set in the 
 ``config.py`` the function 
 ``wimac.support.helper.setupScheduler(WNS, Config.scheduler)`` in the file 
-``myOpenWNS/modules/dll/WiMAC--main--1.0/PyConfig/wimac/support/helper.py`` 
+``~/myOpenWNS/modules/dll/wimac/PyConfig/wimac/support/helper.py`` 
 the specific type of scheduler in terms of DSA- and packet scheduling strategy 
 is firstly selected and the schedulers are secondly instantiated in a loop for 
 each BS:
@@ -156,13 +148,13 @@ A class is registered at the ``StaticFactory`` by a name which is used twice
 in the code. Once in the python file and once in the c++ code. 
 The ``subStrategy`` (TYPE) (or strategy for packet scheduling) of 
 ``ProportionalFair`` (KIND) is registered once in the python file 
-``/myOpenWNS/framework/libwns--main--1.0/PyConfig/openwns/Scheduler.py`` with 
+``/myOpenWNS/framework/library/PyConfig/openwns/Scheduler.py`` with 
 the keyword ``__plugin__``:
 
   .. literalinclude:: ../../../../../.createManualsWorkingDir/wimac.tutorial.experiment2.staticFactory.substrategy.ProportionalFair.openwns.Scheduler.py
      :language: python
 
-and once at the beginning of the c++ file ``/myOpenWNS/framework/libwns--main--1.0/src/scheduler/strategy/staticpriority/ProportionalFair.cpp`` 
+and once at the beginning of the c++ file ``/myOpenWNS/framework/library/src/scheduler/strategy/staticpriority/ProportionalFair.cpp`` 
 referring to the ``SubStrategyInterface``:
 
   .. literalinclude:: ../../../../../.createManualsWorkingDir/wimac.tutorial.experiment2.staticFactory.substrategy.ProportionalFair.cpp
@@ -206,23 +198,18 @@ Experiment 2 - dynamic subchannel assignment (part 2)
       ``round robin`` and ``fixed``. You can get the corresponding simulation 
       ``SCENARIOID`` (and folder name) by the command ``./simcontrol.py -i``. The WiMAC 
       simulator is configured in a manner that the frame occupation can only be 
-      probed in the debug (dbg) mode. These folders have to be removed:
+      probed in the debug (dbg) mode. Enter the folder:
         
         .. code-block:: bash
 
-            $ rm -rf SCENARIOID
+            $ cd SCENARIOID
         
-      and recreated in a manner that these two simulations are run in the ``dbg`` mode:
-        
-        .. code-block:: bash
-
-           $ ./simcontrol.py --create-scenario --flavor=dbg
-        
-   #. Queue these two simulations again:
+   #. Run the single simulation in debug mode
         
         .. code-block:: bash
 
-            $ ./simcontrol.py --queue-single-scenario=SCENARIOID
+            $ ./openwns-dbg
+   #. Do this for both, the ``round robin`` and ``fixed`` simulation.
         
    #. Watch the resulting frame occupation of these two simulations by using the
       Wrowser according to the CouchDB_.
