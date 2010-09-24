@@ -2,7 +2,7 @@
 WiMAC Tutorial
 ================
 
-.. sectionauthor:: Benedikt Wolz <bmw@comnets.rwth-aachen.de> ,Maciej Muehleisen <mue@comnets.rwth-aachen.de>, Department of Communication Networks (ComNets), RWTH Aachen University
+.. sectionauthor:: Benedikt Wolz <bmw@comnets.rwth-aachen.de>, Department of Communication Networks (ComNets), RWTH Aachen University
 
 .. toctree::
    :maxdepth: 1
