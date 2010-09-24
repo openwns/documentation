@@ -50,8 +50,8 @@ The functional unit network configuration is as follows:
 Tasks
 -----
 
- 1. Copy the configuration file from the glue tutorial directory to
-    your campaign simulation directory.
+ 1. Copy the ``config2.py`` configuration file from the glue tutorial
+    directory as ``config.py`` to your campaign simulation directory.
  2. Execute the simulations.
 
 
