@@ -531,7 +531,7 @@ Experiment 1 - Distance (part 3)
 
             for rate in [0, 2.5, 5, 7.5, 10, 15, 30, 35]:
                 for bandw in [5,10,20]:
-                    for dist in xrange(0,6):
+                    for dist in xrange(0,7):
                         params.offeredTraffic = (0.01 + rate) * 1e6
                         params.bandwidth = bandw
                         params.distance = 100 + dist * 2000
