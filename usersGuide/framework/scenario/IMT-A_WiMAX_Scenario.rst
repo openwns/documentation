@@ -1,5 +1,5 @@
 ####################
-IMT-A WiMAX scenario
+IMT-A WiMAX Scenario
 ####################
 
 In this chapter you will create a WiMAX IMT-Advanced scenario

@@ -1,11 +1,11 @@
 ###############################
-IMT-A Channel Model calibration
+IMT-A Channel Model Calibration
 ###############################
 
-In this chapter we will introduce how to use wrowser scenario viewer and how to setup a IMT-Advanced (IMT-A) scenario.
+In this chapter we will introduce how to use the Wrowser scenario viewer and how to setup an IMT-Advanced (IMT-A) scenario.
 
 =====================================
-How to use wrowser to view a scenario
+How to use Wrowser to view a scenario
 =====================================
 
 
@@ -19,27 +19,27 @@ Then use following command to start Wrowser.
 
    $ openwns-wrowser: wrowser
 
-After wrowser started, ``sandbox path`` needs to be set up for wrowser first.
-Go to the ``Extra`` menu open ``Preferences``. Find the ``Sandbox`` tab and fill in your sandbox path ``/home/[USER]/myOpenWNS/sandbox``. ``[USER]`` must be replaced by your user name. Using ``~`` does not work in this path! Then click ``OK`` to save and close this dialog window. 
+After Wrowser started, ``sandbox path`` needs to be set up for Wrowser first.
+Go to the ``Extra`` menu and open ``Preferences``. Find the ``Sandbox`` tab and fill in your sandbox path ``/home/[USER]/myOpenWNS/sandbox``. ``[USER]`` must be replaced by your user name. Using ``~`` does not work in this path! Then click ``OK`` to save and close this dialog window. 
 
-Then goto the ''File'' menu and click ''View Scenario''. In the open window find the config file. Here we use ``~/myOpenWNS/tests/system/ofdma-tests/configITUInH.py`` as an example. This is the IMT-A Indoor Hotspot (InH) evaluation scenario with two base stations.
+Then go to the ''File'' menu and click ''View Scenario''. In the open window find the config file. Here we use ``~/myOpenWNS/tests/system/ofdma-tests/configITUInH.py`` as an example. This is the IMT-A Indoor Hotspot (InH) evaluation scenario with two base stations.
 
-As show in the Figure :ref:`figure-scenarios-Wrowser-view-scenario1`:
+As shown in the Figure :ref:`figure-scenarios-Wrowser-view-scenario1`:
 
 .. _figure-scenarios-Wrowser-view-scenario1:
 
 .. figure:: images/view-scenario1_InH.*
    :align: center
 
-   Scenario viewer of a Indoor Hotspot scenario, picture 1
+   Scenario viewer of an Indoor Hotspot scenario, picture 1
 
 The main window shows the positions of all base stations and user terminals. There are two base stations (BS) in this scenario. The ``ofdma-tests`` scenarios do not have real user terminals (UTs). ``UE3`` in this figure is only a scan node used to record the SINR distribution. It is positioned in the lower left corner of the scenario at relative position -60m, -25m from the center. The center is located at 1000m, 1000m.
 
 On the left part of this window click ``scan``.
 
-After scan finished, click ``Map Plotting`` tap at left bottom. Here you get a list of available plots after the scan. ``RxPwr`` is the received power, ``SINR`` the signal to noise and interference ratio. If you select a probe with ``BSID`` infix only results measured from one BS are shown. Suffix ``max`` means the maximum recorded value at a position, ``mean`` the average value. The suffix ``trials`` is for debug purposes assuring enough measurements were collected at each position. 
+After scan has finished, click ``Map Plotting`` tap at left bottom. Here you get a list of available plots after the scan. ``RxPwr`` is the received power, ``SINR`` the signal to noise and interference ratio. If you select a probe with ``BSID`` infix only, results measured from one BS are shown. Suffix ``max`` means the maximum recorded value at a position, ``mean`` the average value. The suffix ``trials`` is for debug purposes assuring enough measurements were collected at each position. 
 
-First have a look at the mean and max received power of both and each BS. Try out the ``Draw contour plot`` option. A UT will usually associate to the BS it experiences best channel conditions to. Which available plot is best to visualize the relation between position and channel quality? Where is the boundary between the two cells?
+First have a look at the mean and max received power of both and each BS. Try out the ``Draw contour plot`` option. A UT will usually associate to the BS it experiences best channel conditions to. Which available plot is best to visualise the relation between position and channel quality? Where is the boundary between the two cells?
 
 Figure :ref:`figure-scenarios-Wrowser-view-scenario2` shows an example:
 
@@ -67,7 +67,7 @@ Above lines provide all that is needed to set up an Urban Macro scenario with on
 
 .. literalinclude:: ../../../../.createManualsWorkingDir/ofdmascanner.uma.setup
 
-The first line of this code block initializes the openWNS random number generator. It does not affect rundom numbers generated in Python. For that one has to include the line ``random.seed(2714)``. Next a simple UT is created and placed at position 1000m, 1000m. Finally mobility is added to the UT. It will scan a hexagon with radius 250m. The inner 25m will not be scanned. This corresponds to the geometry of the Urban Macro scenario. The resolution is 50 steps in x and y direction each. Since the ``creatorPlacerBuilder`` is not used for that additional node, the last line assures it is appended to the list of nodes.
+The first line of this code block initializes the openWNS random number generator. It does not affect random numbers generated in Python. For that, one has to include the line ``random.seed(2714)``. Next a simple UT is created and placed at position 1000m, 1000m. Finally mobility is added to the UT. It will scan a hexagon with radius 250m. The inner 25m will not be scanned. This corresponds to the geometry of the Urban Macro scenario. The resolution is 50 steps in x and y direction each. Since the ``creatorPlacerBuilder`` is not used for that additional node, the last line assures it is appended to the list of nodes.
 
 .. literalinclude:: ../../../../.createManualsWorkingDir/ofdmascanner.uma.final
 
