@@ -127,7 +127,7 @@ in an erroneous packet.
    error probability.
 2. Include the CRC functional unit in the ``libfiles.py`` of the Glue.
 3. Rebuild/Update your campaign.
-4. Copy the config file into your campaign directory.
+4. Copy ``config3.py`` file as ``config.py`` into your campaign directory.
 5. Run the simulations.
 
 
