@@ -75,7 +75,7 @@ CRC
 
   * Constructor: ``CRC(perProvider)``
   * ``perProvider`` : Name of the friend FU that provides the PER 
-  * drops or marks random compounds depending on their PER
+  * Drops or marks random compounds depending on their PER
 
 * **Parameter**
 
@@ -97,7 +97,7 @@ Redundancy Check (CRC) unit performs a random experiment based on the
 PER of the compound it inspects. For that, it has to rely on the help
 of a friend, the ``perProvider``. The PER provider must provide a
 command conforming to the PER provider interface. Using this PER, the
-CRC unit can determine the of the compound it is currently inspecting
+CRC unit can determine the error rate of the compound it is currently inspecting
 and thus decide whether the compound is defective or not.
 
 Depending on the configuration, defective compounds get dropped or

@@ -70,7 +70,7 @@ choose two different methods:
 
 .. code-block:: cpp
 
-   void sendData(Compund)
+   void sendData(Compound)
    void onData(Compound)
 
 ``sendData`` is used for compounds in the outgoing flow while
@@ -104,7 +104,7 @@ their connector and deliverer sets.
 Given a FUN that is supposed to process compounds from outside the
 FUN, some of the units within the FUN serve as source units. Compounds
 are injected into the FUN using the ``sendData`` method of such source
-units. To put it the other way round, every FU whose ``sendData``
+units. In other words, every FU whose ``sendData``
 method is called from outside is called source unit.
 
 It is possible to further identify a set of units as a sink for
@@ -388,7 +388,7 @@ A weaker version of rule 4 would allow the modification of the
 compound given the knowledge that no FU in the chain of promises bases
 its decision on the changes made to the compound. But this condition
 is very difficult to guarantee. The FU ``Synchronizer`` helps dealing
-with this problem (see ???).
+with this problem.
 
 It is important to note that the order in which an FU awakens units in
 its receptor set significantly changes the behavior of propagation of
@@ -470,9 +470,9 @@ The high degree of configurability of protocol stacks using FUNs is
 achieved by allowing configuration at several levels. The levels of
 configurability in order of increasing abstraction are:
 
-- *Parameterization level:*
+- *Parametrization level:*
 
-   The lowest level of configuration includes the parameterization of
+   The lowest level of configuration includes the parametrization of
    concrete FUs: What is the window size of the *SelectiveRepeat* ARQ
    unit? What is the Maximum Transfer Unit (MTU) of the Segmentation
    And Reassembly (SAR) unit?

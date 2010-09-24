@@ -8,7 +8,7 @@ system is not even able to carry the saturation throughput. The reason
 for this behavior are collisions on the medium. In a case of a
 collision, the compound can not be received correctly.
 
-To solve the issue, we include a ALOHA functional unit. The ALOHA
+To solve the issue, we include the ALOHA functional unit. The ALOHA
 functional unit retransmits the compound in case of a collision after
 a delay that is chosen according to a given random distribution.
 

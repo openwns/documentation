@@ -16,7 +16,7 @@ functional unit specific data in the command.
 
 The figure shows a simple functional unit network that consists of the
 upper and lower convergence. The trivial case connects the upper
-converegence wth the lower convergence. All compounds are directly
+converegence with the lower convergence. All compounds are directly
 directed to the upper or the lower convergence respectively.
 
 .. _figure-funtutorial-experiment1-fun:
@@ -38,7 +38,7 @@ Tasks
 -----
 
  1. Create a new campaign.
- 2. Copy ``campaignConfiguration.py``, ``Tutorial.py`` and
+ 2. Copy ``campaignConfiguration.py``, ``Tutorial.py``, ``Evaluation.py`` and
     ``config1.py`` as ``config.py`` to the campaign's simulation directory.
  3. Create the database.
  4. Create the scenarios.
@@ -49,7 +49,7 @@ Tasks
 Results
 -------
 
-The results show that the goodput of the the clients depends on the
+The results show that the goodput of the clients depends on the
 offered traffic and the number of clients in the scenario. With a
 single client, the saturation throughput is at 40% of the offered
 traffic. With 25 clients in the scenario, the saturation throughput is
