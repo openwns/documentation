@@ -26,6 +26,7 @@ Welcome to the openWNS Users Guide!
    modules/dll/lte/LTE
 
    CouchDB
+   modules/wrowser/introduction
    PyTree
    HowTos
 
