@@ -24,7 +24,7 @@ The Wrowser now displays a dialog, with the list of all simulation campaign that
 .. _figure-wrowser-selectCampaign:
 
 .. figure:: images/Campaigns_rrr.*
-   :width: 520px
+   :width: 380px
    :align: center
 
    Campaign selection
@@ -36,7 +36,7 @@ Wrowser will display all possible parameter combinations, see
 .. _figure-wrowser-simparameters:
 
 .. figure:: images/wrowser-simParameters.png
-   :width: 520px
+   :width: 380px
    :align: center
 
    Parameter selection
@@ -53,7 +53,7 @@ Now only our selected parameter combinations are shown in the left side of the W
 .. _figure-wrowser-simparameters-filtered:
 
 .. figure:: images/simParametersFiltered.png
-   :width: 520px
+   :width: 380px
    :align: center
 
    Parameter selection filtered
@@ -63,7 +63,7 @@ As filter expression any valid python expression can be entered.
 We want to plot some throughput graphs. The adequate figure type for this purpose is called "Parameter Plot". Hence, we select Figure -> New -> Parameter. In the new window, we pick *load* as our simulation parameter. The simulation parameter will be displayed in the x-axis. For the y-axis, we select a throughput probe and click draw.
 
 .. figure:: images/wrowser-TP-client2.png 
-   :width: 520px
+   :width: 380px
    :align: center
 
 If we had simulated more than one drop we could aggregate our simulation results over the drop parameter by selecting the according aggregate parameter and also plot confidence intervals.
@@ -73,7 +73,7 @@ By right-clicking on a probe we also can select *Probe Info* to see all availabl
 .. _figure-wrowser-probeinfo:
 
 .. figure:: images/probeInfoData.png
-   :width: 520px
+   :width: 380px
    :align: center
 
    Probe info window
@@ -87,7 +87,7 @@ The big advantage of using the python export is that if you have to simulate aga
 Ok, let us now export the plot as python script. As filename we choose TP_client_experiment1.
 
 .. figure:: images/exportTPclient.png
-   :width: 520px
+   :width: 380px
    :align: center
 
 In the terminal we can start the generated export file.
