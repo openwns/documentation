@@ -25,6 +25,7 @@ Welcome to the openWNS Users Guide!
    modules/dll/wimac/WiMAC
    modules/dll/lte/LTE
    framework/scenario/scenario
+   modules/wrowser/introduction
 
    PyTree
    HowTos
