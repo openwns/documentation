@@ -1,6 +1,6 @@
-====================
-Wrowser Introduction
-====================
+=========================
+Using the openWNS Wrowser
+=========================
 
 The Wrowser (an acronym for Wireless network simulator Result brOWSER)
 supports with a graphical interface the collection of results,
