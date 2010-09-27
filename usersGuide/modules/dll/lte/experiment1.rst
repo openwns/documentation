@@ -25,17 +25,20 @@ Calibration Scenario
 Scenario Setup
 *******************************
 
-  .. literalinclude:: ../../../../../.createManualsWorkingDir/lte.tutorial.experiment1.scenario
-     :language: python
-
-The predefined IMT-Advanced Indoor Hotspot scenario ``CreatorPlacerBuilder`` is used to setup the scenario. To speedup testing the default ``Configuration`` is set to only one UT. For the real calibration the value has to be changed to 10. The default BS and UT creators are used to create the nodes. 
-
 The next lines do the general simulator setup.
 
   .. literalinclude:: ../../../../../.createManualsWorkingDir/lte.tutorial.experiment1.config
      :language: python
 
-Two random number generators (RNGs) are initialized in the last two lines. The first is the Python RNG, the second one the openWNS RNG. Since random UT positions are genarated in Python you must initialize the Python RNG. If not done it will be initialized with a value taken from the system clock causing undeterministic behaviour. 
+  .. literalinclude:: ../../../../../.createManualsWorkingDir/lte.tutorial.experiment1.prng
+     :language: python
+
+Two random number generators (RNGs) are initialized in the last two lines. The first is the openWNS RNG, the second one the Python RNG. Since random UT positions are genarated in Python you must initialize the Python RNG. If not done it will be initialized with a value taken from the system clock causing undeterministic behaviour. The random number generator MUST be initialized before the scenario is created. Else the seed will not be considered when randomly placing the nodes.
+
+  .. literalinclude:: ../../../../../.createManualsWorkingDir/lte.tutorial.experiment1.scenario
+     :language: python
+
+The predefined IMT-Advanced Indoor Hotspot scenario ``CreatorPlacerBuilder`` is used to setup the scenario. To speedup testing the default ``Configuration`` is set to only one UT. For the real calibration the value has to be changed to 10. The default BS and UT creators are used to create the nodes. 
 
 ******************
 Downlink Scheduler
