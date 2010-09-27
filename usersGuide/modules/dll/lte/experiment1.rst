@@ -12,7 +12,7 @@ In this experiment you learn how to setup the openWNS LTE module to obtain resul
 .. figure:: images/LTER8RefDL.*
    :align: center
 
-These figures show uplink and downlink user throughput distributions for the indoor hotspot (InH) scenario for three different partners of the the WINNERPLUS_ evaluation group. The openWNS complies with all five IMT-Advanced scenarios, but for simplicity we will only process the InH scenario in this tutorial.
+These figures show uplink and downlink user throughput distributions for the Indoor Hotspot (InH) scenario for three different partners of the the WINNERPLUS_ evaluation group. The openWNS complies with all five IMT-Advanced scenarios, but for simplicity we will only process the InH scenario in this tutorial.
 
 
 
@@ -25,24 +25,32 @@ Calibration Scenario
 Scenario Setup
 *******************************
 
-Scenario viewer should already be known. Describe ``channelModelCreator`` and random seed setup for multiple drops.
+  .. literalinclude:: ../../../../../.createManualsWorkingDir/lte.tutorial.experiment1.scenario
+     :language: python
+
+The predefined IMT-Advanced Indoor Hotspot scenario ``CreatorPlacerBuilder`` is used to setup the scenario. To speedup testing the default ``Configuration`` is set to only one UT. For the real calibration the value has to be changed to 10. The default BS and UT creators are used to create the nodes. 
+
+The next lines do the general simulator setup.
+
+  .. literalinclude:: ../../../../../.createManualsWorkingDir/lte.tutorial.experiment1.config
+     :language: python
+
+Two random number generators (RNGs) are initialized in the last two lines. The first is the Python RNG, the second one the openWNS RNG. Since random UT positions are genarated in Python you must initialize the Python RNG. If not done it will be initialized with a value taken from the system clock causing undeterministic behaviour. 
 
 ******************
 Downlink Scheduler
 ******************
 Downlink scheduling is Round Robin for all UEs and during each subframe the full bandwidth should be allocated to on UE.
 
-.. note::
-   In openWNS use the ``Exhaustive Round Robin`` scheduling strategy with any DSA strategy.
+In openWNS use the ``Exhaustive Round Robin`` scheduling strategy with any DSA strategy. This strategy is already configured as the default downlink strategy. "Exhaustive" means a user is  chosen and will be scheduled in the frame as long as he has data to transmit. In the next frame the next user will be chosen. In a full buffer simulation the users take turns occupying whole frames. 
 
 ****************
 Uplink Scheduler
 ****************
 
-Uplink scheduling is FDMA. Each user is assigned an equal sharw of resource blocks every subframe.
+Uplink scheduling is FDMA. Each user is assigned an equal share of resource blocks every subframe.
 
-.. note::
-   In openWNS use ``DSA Driven Round Robin`` scheduling strategy with ``Fixed`` DSA strategy.
+In openWNS use ``DSA Driven Round Robin`` scheduling strategy with ``Fixed`` DSA strategy. This strategy is already configured as the default uplink strategy. At the beginning of each frame the number of associated users is checked. The resources are then equally distributed. As long as the number of users stays constant (true for the calibration scenario) each user will get exactly the same resources in each frame. This reduces the uplink SINR variance and therefore the channel estimation error.
 
 
 *******************************
@@ -63,13 +71,21 @@ The dynamic offset mechanisms as specified in [3GPP36.213]_ are not implemented.
 
 .. [3GPP36.213] 3GPP Technical Specification 36.213, 'Evolved Universal Tertestial Radio Access (E-UTRA); Physical Layer Procedures (Release 8)', www.3gpp.org
 
+The ``helper`` class provides a method to change :math:`\alpha` and :math:`P_0` as shown in the code below.
 
+  .. literalinclude:: ../../../../../.createManualsWorkingDir/lte.tutorial.experiment1.apc
+     :language: python
+
+The function searches the Functional Unit Network (FUN) of all BSs to find the uplink scheduling Functional Unit (FU). It then changes the parameters of the APC strategy. 
 
 *******************************
 Small scale fading
 *******************************
 
-Describe ``FTFading`` setup.
+  .. literalinclude:: ../../../../../.createManualsWorkingDir/lte.tutorial.experiment1.apc
+     :language: python
+
+These lines use a ``helper`` function to activate frequency and time correlated fading (FTFading). In time domain the Jaces' Channel Model is used on each subchannel. Adjesent channel fadings are then weighted (correlation factor is 0.8) and summed up to create a correlation in time domain. For each IMT-Advanced scenario the right doppler spread is calculated according to the speed and center frequency. Speed is set to 3 km/h, center frequency is 3.4 GHz for the Indoor Hotspot scenario.
 
 -----
 Tasks
@@ -86,10 +102,13 @@ Task 2: Run Calibration Campaign
 #. Setup a campaign based on ``myOpenWNS/tests/system/lte-tests/PyConfig/config.py``. 
 #. Create the ``campaignConfiguration.py`` including two parameters:
 
-   * 40 random seeds 
-   * :math:`\alpha=1.0` and :math:`\alpha=0.8`
+   * 20 random seeds 
+   * :math:`\alpha=1.0, P_0 = "-106 dBm"` and :math:`\alpha=0.8, P_0 = "-81 dBm"`
+   * Instead of having a parameter :math:`\alpha` and :math:`\P_0` use a bool parameter ``fullPLCompensation`` (PL stands for PathLoss). 
+   * Read the comments in the ``Config`` class. Carefully adjust the number of nodes and offerend traffic. Do not forget to include a ``seed`` paramter in your campaign 
 
-#. Adapt ``config.py`` to include your settings
+#. Adapt ``config.py`` to include your settings. Read the comments in the ``Config`` class. Carefully adjust the number of nodes and offerend traffic. Do not forget to include the ``seed`` paramter from your campaign configuration. Use ``if`` statements to set ``alpha`` to 1.0 and ``pNull`` to "-106 dBm" if ``fullPLCompensation`` is set to ``True``. Use the other values if set to ``False``
+#. Manually run a single simulation to see if it works
 #. Queue the simulations.
 #. View results with wrowser. Use the aggregation functionality to generate average curves for the random drops.
 #. Compare with reference results from others
@@ -98,9 +117,9 @@ Task 2: Run Calibration Campaign
 Task 3: Script the Calibration Figures
 *******************************
 
-We will now use the sripting API of openWNS wrowser to retrieve the uplink and downlink user throughput distributions and plot these along with the results of other partners. We will also be using Pylab_ as a free Python substitute for MATLAB. Go to ``myOpenWNS/tests/system/lte-tests/PyConfig/`` and take a look at ``compareToReference``. This script reproduces the figures given at the very beginning of this LTE tutorial. Now extend the script to fetch your result (for :math:`\alpha=1`) from Task 1 and plot them along with the results of the other calibration results. First look at the section on the wrowser API below.
+We will now use the sripting API of openWNS wrowser to retrieve the uplink and downlink user throughput distributions and plot these along with the results of other partners. We will also be using Pylab_ as a free Python substitute for MATLAB. Go to ``myOpenWNS/tests/system/lte-tests/PyConfig/`` and take a look at ``compareToReference.py``. This script reproduces the figures given at the very beginning of this LTE tutorial. Now extend the script to fetch your result (for ``fullPLCompensation==True``) from Task 1 and plot them along with the results of the other calibration results. First look at the section on the wrowser API below.
 
-.. note:: Take care that you do not pass all scenarios when aggregating the PDF. Otherwise you will end up with an averaged curve not only for all random seeds but also for all values of :math:`\alpha`.
+.. note:: Take care that you do not pass all scenarios when aggregating the PDF (filter method). Otherwise you will end up with an averaged curve not only for all random seeds but also for all values of :math:`\alpha`. Run the script by typing ``python.py compareToReference.py``
 
 .. _PyLab: http://www.scipy.org/PyLab
 
@@ -204,11 +223,11 @@ To play around with the API, fire up a python shell and simply type in the comma
    [([-20.0, -19.5, . . ., 28.5, 29.0, 29.5, 30.0], [0.0, 0.0, . . ., 1.0, 1.0, 1.0, 1.0]),
     ([-20.0, -19.5, . . ., 28.5, 29.0, 29.5, 30.0], [0.0, 0.0, . . ., 1.0, 1.0, 1.0, 1.0]),]
     # One xvec,yvec pair per scenario
-    >>> api.getCDFs("winprost.SINR_UL_CenterCell_PDF", campaign, agg="AVG")
+    >>> api.getCDFs("lte.SINR_UL_CenterCell_PDF", campaign, agg="AVG")
     [([-20.0, -19.5, . . ., 28.5, 29.0, 29.5, 30.0], [0.0, 0.0, . . ., 1.0, 1.0, 1.0, 1.0])]
     # Excatly on xvec, yvec pair containing the average yvalue per bin
     >>> from pylab import *
-    >>> curve = api.getCDFs("winprost.SINR_UL_CenterCell_PDF", campaign, agg="AVG")
+    >>> curve = api.getCDFs("lte.SINR_UL_CenterCell_PDF", campaign, agg="AVG")
     >>> plot(curve[0][0], curve[0][1])
     [<matplotlib.lines.Line2D object at 0x936760c>]
     >>> show()
