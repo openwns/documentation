@@ -113,12 +113,12 @@ Two sections in this files are especially interesting for the simulation: First,
 the parameter class ``Set`` is defined that contains all simulation parameters that
 are used in ``config.py``:
 
-.. literalinclude:: ../../../../../.createManualsWorkingDir/wimac.tutorial.experiment1.campaignConfiguration.Set
+.. literalinclude:: ../../../../.createManualsWorkingDir/wimac.tutorial.experiment1.campaignConfiguration.Set
    :language: python
 
 Next, an instance with the same name as in the ``config.py`` is created:
 
-.. literalinclude:: ../../../../../.createManualsWorkingDir/wimac.tutorial.experiment1.campaignConfiguration.params
+.. literalinclude:: ../../../../.createManualsWorkingDir/wimac.tutorial.experiment1.campaignConfiguration.params
    :language: python
 
 .. The class ``Set`` contains the function ``setDefaults()``. Calling this functions,
@@ -128,7 +128,7 @@ Then, the parameters in ``params`` can be populated with different values. Each
 time the ``write()`` member function (inherited from the class ``Parameters``) is
 called, the current values are fixed and represent one simulation:
 
-.. literalinclude:: ../../../../../.createManualsWorkingDir/wimac.tutorial.experiment1.campaignConfiguration.offeredTraffic
+.. literalinclude:: ../../../../.createManualsWorkingDir/wimac.tutorial.experiment1.campaignConfiguration.offeredTraffic
    :language: python
 
 With this setup, 5 simulations are created, differentiated by the
