@@ -32,7 +32,7 @@ A simple Scenario
 =====================
 
 
-We start this chapter with an example of a single cell scenario, in which one central base station and 10 user terminals are defined.
+We start this chapter with an example of a single cell scenario, in which one central base station and 2 user terminals are defined.
 
 
 Part of ``config.py`` under directory ``myOpenWNS/tests/system/wimac-tests/configOFDMA/`` is presented as follows:
