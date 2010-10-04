@@ -10,12 +10,12 @@ The output is written to a probing measurement source called wimac.phyTrace and 
 
 WiMAC:
 
-.. literalinclude:: ../../../.createManualsWorkingDir/wimac.test.couchdb
+.. literalinclude:: ../../.createManualsWorkingDir/wimac.test.couchdb
    :language: python
 
 WiFiMAC:
 
-.. literalinclude:: ../../../.createManualsWorkingDir/wifimac.test.couchdb
+.. literalinclude:: ../../.createManualsWorkingDir/wifimac.test.couchdb
    :language: python
 
 
