@@ -63,9 +63,14 @@ Preparation
   (``~/myFirstCampaign/experiment2``), e.g.:
 
    .. code-block:: bash
-     $ cd ~/myFirstCampaign/experiment2
-     $ cp ~/myOpenWNS/tests/system/wimac/PyConfig/experiment2/config.py .
-     $ cp ~/myOpenWNS/tests/system/wimac/PyConfig/experiment2/campaignConfiguration.py .
+       $ cd ~/myFirstCampaign/experiment2
+       $ cp ~/myOpenWNS/tests/system/wimac/PyConfig/experiment2/config.py .
+       $ cp ~/myOpenWNS/tests/system/wimac/PyConfig/experiment2/campaignConfiguration.py .
+
+:Reduce bandwidth:
+  These files use a reduced system bandwidth of 1.25 MHz (although the standard 
+  considers a minimal bandwidth of 5MHz) in order to speed up the simulations 
+  campaign by reducing the required traffic load.
 
 
 :Second MS:
@@ -84,7 +89,8 @@ Preparation
 
    .. literalinclude:: ../../../../../.createManualsWorkingDir/wimac.tutorial.experiment2.config.probing
       :language: python
-      
+
+
 *******************
 Static Factory
 *******************
@@ -193,10 +199,10 @@ Experiment 2 - dynamic subchannel assignment (part 2)
             ``wimac.evaluation.default.installJSONScheduleEvaluation(WNS, loggingStationIDs)``
 
       Change the line ``settlingTime = 0.1`` to ``settlingTime = 0.05`` to start probing earlier.
-      Also look for the line ``WNS.maxSimTime = 1.10`` and change it to ``WNS.maxSimTime = 0.06`` to reduce the simulation time. 
+      Also look for the line ``WNS.maxSimTime = 0.9`` and change it to ``WNS.maxSimTime = 0.06`` to reduce the simulation time. 
       
    #. In order to evaluate the differences of the DSA- strategies we will study 
-      the frame occupation in a middle load situation at 3.85 Mbps for the scheduling 
+      the frame occupation in a middle load situation at 0.98 Mbps for the scheduling 
       ``Round Robin`` and ``Fixed``. You can get the corresponding simulation 
       ``SCENARIOID`` (and folder name) by the command ``./simcontrol.py -i``. The WiMAC 
       simulator is configured in a manner that the frame occupation can only be 

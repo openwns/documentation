@@ -511,12 +511,18 @@ Experiment 1, part 2 - Bandwidth
       add this as the default value by specifying::
 
             bandwidth = Int(default = 5)
+            
+      The default value is to be set also by adding ``params.bandwidth = 5`` 
+      after the command ``params = Set()``, e.g.::
+      
+            params = Set()
+            params.bandwidth = 5
 
    #. Modify the existing for-loop to generate different offered traffic between 
       0.001 and 35.001 Mbps. Add an inner for-loop to vary the bandwidth between
       5 and 20 MHz::
 
-            for rate in [0, 2.5, 5, 7.5, 10, 15, 30, 35]:
+            for rate in [0, 10, 15, 30, 35]:
                 for bandw in [5,10,20]:
                     params.offeredTraffic = (0.01 + rate) * 1e6
                     params.bandwidth = bandw
@@ -549,43 +555,43 @@ Experiment 1, part 3 - Distance
    BS and MS of 0.2km to 12km (with an offered traffic of 10.01 Mbps and a 
    bandwidth of 5 MHz).
 
-   #. Change the static setting in ``config.py`` to a variable parameter that gets its value from the imported instance ``params``.
+   #. Change the static setting in ``config.py`` to a variable parameter that 
+      gets its value from the imported instance ``params``.
 
    #. Add the parameter ``distance`` to the class ``Set`` in the
-      ``campaignConfiguration.py``. As existing simulations do not
-      have this parameter, but have used 100m, we add this as the default value by specifying::
+      ``campaignConfiguration.py``. As existing simulations do not have this 
+      parameter, but have used 100m, we add this as the default value by specifying::
 
-            distance = Float(default=100.0)
+            distance = Float(default = 100.0)
+
+      The old default value has to be removed by editing 
+      ``bandwidth = Int(default = 5)`` into::
+
+            bandwidth = Int()
+
+      The default value is to be set also by adding ``params.distance = 100`` 
+      after the command ``params = Set()``, e.g.::
+
+            params = Set()
+            params.bandwidth = 5
+            params.distance = 100
 
    #. Replace the existing for-loop by the following code to vary the distance 
       between 2100m and 12100m::
 
-            for rate in [0, 2.5, 5, 7.5, 10, 15, 30, 35]:
-                for bandw in [5,10,20]:
-                    for dist in xrange(0,7):
-                        params.offeredTraffic = (0.01 + rate) * 1e6
-                        params.bandwidth = bandw
-                        params.distance = 100 + dist * 2000
-                        params.write()
+            for dist in xrange(0,7):
+                params.offeredTraffic = 10 * 1e6
+                params.bandwidth = 5
+                params.distance = 100 + dist * 2000
+                params.write()
 
-   #. Create the simulations (in the database and the
-      scenarios). Check them using the ``-i`` switch. You will see
-      ``None`` at 100m distance, this is because two default parameters
-      are not supported (yet).
-
-   #. To save time only run the simulations for 10.01Mbps and
-      5MHz. This is done using the option
-      ``--restrict-expression="bandwidth==5 and offeredTraffic==10.01E6"
-      --restrict-state=NotQueued``.
+   .. Create the simulations (in the database and the
+      scenarios). Check them using the ``-i`` switch.
 
    #. Evaluate the impact of the ``distance`` on the saturation point
       using the Wrowser. Use the ``toggle`` button to select the right
-      simulations. Be sure to deselect the empty distance.
+      simulations.
 
-The right way to carry out these simulations would have been creating
-a new subcampaign to just simulate the parameters of
-interest. Creating subcampaigns will be discussed in the next
-experiment.
 
 
 
