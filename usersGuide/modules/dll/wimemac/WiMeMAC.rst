@@ -8,4 +8,8 @@ WiMeMAC Tutorial
    :maxdepth: 1
    :glob:
 
-   experiment*
+   experiment1
+   experiment2
+   experiment3
+   experiment4
+
