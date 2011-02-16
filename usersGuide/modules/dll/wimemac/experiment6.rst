@@ -111,14 +111,14 @@ At first, uncheck the checkbox next to ``4IA-Random-MAS`` since the graphs that 
 
     In this scenario, the odd indexes represent the receiving node of each connection. Since we measure the incoming throughput, it would make no sense to include the even indexes who have only outgoing data.
 
-The most conspicuous aspect of these results is that some stations reach a lower throughput despite a higher offered load. The reason for this is that the ``useRelinquishRequest`` parameter in this configuration is set to false. Stations that start to transmit earlier reserve more MASs if the offered load increases, so other stations have less free MASs to set up their own reservations. This effect starts at a throughput of 8 Mb/s per link. Since some stations are suppressed at higher values for ``offeredLoadpLink``, this is the saturation point for this scenario. The maximum throughput for the whole system (25 connections) is 25*8 Mb/s = 200 Mb/s.
+The most conspicuous aspect of these results is that some stations reach a lower throughput despite a higher offered load. The reason for this is that the ``useRelinquishRequest`` parameter in this configuration is set to false. Stations that start to transmit earlier reserve more MASs if the offered load increases, so other stations have less free MASs to set up their own reservations. This effect starts at a throughput of 8.5 Mb/s per link. Since some stations are suppressed at higher values for ``offeredLoadpLink``, this is the saturation point for this scenario. The maximum throughput for the whole system (25 connections) is 25*8.5 Mb/s = 212.5 Mb/s.
 
 Now let's see how the scenario went with interference aware scheduling. Check the checkbox next to ``2Random-MAS`` and uncheck ``4IA-Random-MAS``. Draw the results .
 
 .. figure:: images/experiment6-Wrowser_resultsWithIA.png
    :align: center
 
-At first appearance, these results look similar to the previous. But if you look closer, it is noticable that no station is suppressed before 12.5 Mbit throughput per link. That means, the complete system throughput is 312.5 Mbit. As you can see, the ``interferenceAwareness`` feature increased the maximum throughput by 112.5 Mb/s.
+At first appearance, these results look similar to the previous. But if you look closer, it is noticable that no station is suppressed before 12.5 Mbit throughput per link. That means, the complete system throughput is 312.5 Mbit. As you can see, the ``interferenceAwareness`` feature increased the maximum throughput by 100 Mb/s.
 The results depend on the wall attenuation. With a varying wall attenuation, different parts of the WPANS overlap and it is expected that the capacity gain using interference awareness is maximized for a certain attenuation.
 
 

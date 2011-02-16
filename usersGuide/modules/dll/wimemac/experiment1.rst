@@ -204,7 +204,7 @@ On the left side of the Wrowser window, the simulation parameters are listed. Do
 .. figure:: images/experiment1-Wrowser_configuration.png
    :align: center
 
-In this window, select 'throughputPerStation' as the simulation parameter. This will be displayed in the X-Axis. To select the Y-Axis parameter, click on the 'Y-Axis'-Tab and select ``wimemac.traffic.incoming.throughput_wns.node.Node.id_X_Moments``. X must be replaced with the ID of the receiving station. This probe shows the incoming data throughput of the receiving node, which is the amount of data that has reached its destination. In this scenario, the receiving station is the one with the higher ID. Now, select ``Draw``. If everything went fine, the graph looks like this:
+In this window, select 'throughputPerStation' as the simulation parameter. This will be displayed in the X-Axis. To select the Y-Axis parameter, click on the 'Y-Axis'-Tab and select ``traffic.endToEnd.window.incoming.bitThroughput_Node.id_X_Moments``. X must be replaced with the ID of the receiving station. This probe shows the incoming data throughput of the receiving node, which is the amount of data that has reached its destination. In this scenario, the receiving station is the one with the higher ID. Now, select ``Draw``. If everything went fine, the graph looks like this:
 
 
 .. figure:: images/experiment1-Wrowser_results.png
