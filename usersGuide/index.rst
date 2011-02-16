@@ -22,6 +22,7 @@ Welcome to the openWNS Users Guide!
    modules/dll/wifimac/WiFiMAC
    framework/scenario/scenario
    modules/dll/wimac/WiMAC
+   modules/dll/wimemac/WiMeMAC
    modules/dll/glue/funTutorial/funTutorial
    modules/dll/lte/LTE
    modules/dll/wimemac/WiMeMAC
