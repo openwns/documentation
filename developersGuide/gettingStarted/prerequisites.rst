@@ -49,13 +49,19 @@ Optional for build framework
 Ubuntu Linux
 ------------
 
-Ubuntu Linux 10.04 is currently the default development and testing platform for openWNS. All required packages can ge easily downloaded using the command:
+Ubuntu Linux 10.04 is currently the default development and testing platform for openWNS. We try to update to 12.04 ASAP. All required packages can ge easily downloaded using the command:
 
 .. code-block:: bash
 
     $ sudo apt-get install build-essential scons libboost-dev libboost-program-options-dev libboost-date-time-dev libboost-filesystem-dev libboost-signals-dev bzr libcppunit-dev python2.6-dev python-numpy
 
-if you are using the previous Long Term Support (LTS) version 8.04 (Hardy) of Ubuntu Linux you have to type:
+use the following line on Ubuntu 12.04 to get all required packages:
+
+.. code-block:: bash
+
+    $ sudo apt-get install build-essential scons libboost-dev libboost-program-options-dev libboost-date-time-dev libboost-filesystem-dev libboost-signals-dev bzr libcppunit-dev python-dev python-numpy
+
+if you are using version 8.04 (Hardy) of Ubuntu Linux you have to type:
 
 .. code-block:: bash
 
