@@ -20,6 +20,18 @@ Prerequisites
   * PostgreSQL_ A powerful, open source object-relational database system.
   * python-psycopg2_ (>= 2.0) A PostgreSQL database adapter for the Python programming language.
 
+For Ubuntu 10.04 and below
+   .. code-block:: bash
+
+      $ sudo apt-get install postgresql python-psycopg2
+
+For Ubuntu 12.04 (currently no support for PostgreSQL 9.X)
+   .. code-block:: bash
+
+      $ sudo apt-get install postgresql-8.4 python-psycopg2
+
+
+
 .. _PostgreSQL: http://www.postgresql.org/
 .. _python-psycopg2: http://freshmeat.net/projects/psycopg/
 
