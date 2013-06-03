@@ -87,3 +87,4 @@ should see the new command ``preparecampaign``:
    preparecampaign :  Prepare a simulation campaign.
    [...]
 
+There will be an error message since the database is not set up yet. You can still use Wrowser in directory mode to view data from a single output directory. Proceed to the next step to install and setup the database.
